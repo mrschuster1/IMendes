@@ -1,0 +1,89 @@
+object formChild: TformChild
+  Left = 0
+  Top = 0
+  Caption = 'IMendes'
+  ClientHeight = 667
+  ClientWidth = 1082
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI Semibold'
+  Font.Style = []
+  Font.Quality = fqClearTypeNatural
+  FormStyle = fsMDIChild
+  Position = poMainFormCenter
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnCreate = FormCreate
+  TextHeight = 15
+  object pnlMain: TdxPanel
+    Left = 0
+    Top = 0
+    Width = 1082
+    Height = 667
+    Align = alClient
+    Frame.Visible = False
+    TabOrder = 0
+    ExplicitWidth = 808
+    ExplicitHeight = 552
+  end
+  object Localizer: TcxLocalizer
+    Left = 700
+    Top = 72
+  end
+  object StyledForm: TscStyledForm
+    FluentUIBackground = scfuibNone
+    FluentUIAcrylicColor = clBtnFace
+    FluentUIAcrylicColorAlpha = 100
+    FluentUIBorder = True
+    FluentUIInactiveAcrylicColorOpaque = False
+    DWMClientRoundedCornersType = scDWMRoundedCornersDefault
+    DWMClientShadow = False
+    DWMClientShadowHitTest = False
+    DropDownForm = False
+    DropDownAnimation = False
+    DropDownBorderColor = clBtnShadow
+    StylesMenuSorted = False
+    ShowStylesMenu = False
+    StylesMenuCaption = 'Styles'
+    ClientWidth = 0
+    ClientHeight = 0
+    ShowHints = True
+    Buttons = <>
+    ButtonFont.Charset = DEFAULT_CHARSET
+    ButtonFont.Color = clWindowText
+    ButtonFont.Height = -15
+    ButtonFont.Name = 'Segoe UI'
+    ButtonFont.Style = []
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -15
+    CaptionFont.Name = 'Segoe UI'
+    CaptionFont.Style = [fsBold]
+    CaptionAlignment = taLeftJustify
+    InActiveClientColor = 3421236
+    InActiveClientColorAlpha = 100
+    InActiveClientBlurAmount = 5
+    Tabs = <>
+    TabFont.Charset = DEFAULT_CHARSET
+    TabFont.Color = clWindowText
+    TabFont.Height = -15
+    TabFont.Name = 'Segoe UI'
+    TabFont.Style = []
+    ShowButtons = True
+    ShowTabs = True
+    TabIndex = 0
+    TabsPosition = sctpLeft
+    ShowInactiveTab = True
+    CaptionWallpaperIndex = -1
+    CaptionWallpaperInActiveIndex = -1
+    CaptionWallpaperLeftMargin = 1
+    CaptionWallpaperTopMargin = 1
+    CaptionWallpaperRightMargin = 1
+    CaptionWallpaperBottomMargin = 1
+    Left = 608
+    Top = 72
+  end
+end
