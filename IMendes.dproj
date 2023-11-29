@@ -4,7 +4,7 @@
         <ProjectVersion>19.5</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -92,7 +92,8 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Icon_MainIcon>ExportaMendes_Icon.ico</Icon_MainIcon>
+        <AppExecutionLevel>requireAdministrator</AppExecutionLevel>
+        <Icon_MainIcon>IMendes_Icon.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -104,7 +105,7 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Icon_MainIcon>ExportaMendes_Icon.ico</Icon_MainIcon>
+        <Icon_MainIcon>IMendes_Icon.ico</Icon_MainIcon>
         <DCC_UsePackage>excelxp;$(DCC_UsePackage)</DCC_UsePackage>
         <AppExecutionLevel>requireAdministrator</AppExecutionLevel>
     </PropertyGroup>
@@ -135,6 +136,12 @@
         </DCCReference>
         <DCCReference Include="src\View\View.Child.pas">
             <Form>formChild</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\Handlers\Handler.Exception.pas"/>
+        <DCCReference Include="src\Helpers\Helpers.Excel.pas"/>
+        <DCCReference Include="src\View\View.PesquisaGrade.pas">
+            <Form>formPesquisaGrade</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\View\View.Exportacao.pas">

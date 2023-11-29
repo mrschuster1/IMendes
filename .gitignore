@@ -70,3 +70,5 @@ modules/
 *.rar
 *.xlsx
 bin/IMendes.ini
+resource/EXPORTAÇÃO.csv
+*.csv

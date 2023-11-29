@@ -10,6 +10,9 @@ uses
   View.Empresas in 'src\View\View.Empresas.pas' {formEmpresas},
   View.Main in 'src\View\View.Main.pas' {formMain},
   View.Child in 'src\View\View.Child.pas' {formChild},
+  Handler.Exception in 'src\Handlers\Handler.Exception.pas',
+  Helpers.Excel in 'src\Helpers\Helpers.Excel.pas',
+  View.PesquisaGrade in 'src\View\View.PesquisaGrade.pas' {formPesquisaGrade},
   View.Exportacao in 'src\View\View.Exportacao.pas' {formExportacao},
   View.Importacao in 'src\View\View.Importacao.pas' {formImportacao};
 
@@ -18,6 +21,7 @@ uses
 
 begin
   ReportMemoryLeaksOnShutdown := true;
+  Application.OnException := HandlerException.DoHandlerException;
   Application.Initialize;
   Application.CreateForm(TDM, DM);
   if TformEmpresas.SelecionarEmpresa then

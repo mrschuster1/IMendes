@@ -19,6 +19,7 @@ function MostrarMsg(Msg1, Msg2: string; const Btn1: string = '&Sim';
   external 'ExibirMsg.dll' name 'MostrarMsg';
 
 procedure Aviso(Mensagem: string);
+procedure Erro(Mensagem: string);
 procedure MensagemSucesso(Mensagem: string);
 procedure CamposVazios(Mensagem: string);
 
@@ -29,6 +30,10 @@ implementation
 procedure Aviso(Mensagem: string);
 begin
   MostrarMsg('Aviso', Mensagem, 'Ok', '', '', '', COR_PRINCIPAL);
+end;
+procedure Erro(Mensagem: string);
+begin
+  MostrarMsg('Aviso de erro', Mensagem, 'Ok', '', '', '', COR_ERRO);
 end;
 
 procedure MensagemSucesso(Mensagem: string);

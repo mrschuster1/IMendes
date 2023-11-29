@@ -1,169 +1,205 @@
 inherited formImportacao: TformImportacao
   Caption = 'Importa'#231#227'o'
-  Icon.Data = {
-    0000010001001818000001002000880900001600000028000000180000003000
-    0000010020000000000000090000130B0000130B000000000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    0000FFFFFF0FFFFFFFBEFFFFFFBAFFFFFF0D0000000000000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    000000000000000000000000000000000000000000000000000000000000FFFF
-    FF0FFFFFFFC7FFFFFFFFFFFFFFFFFFFFFFC5FFFFFF0D00000000000000000000
-    0000000000000000000000000000FFFFFF49FFFFFFE3FFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBC00000000FFFFFF05FFFF
-    FFC8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC3FFFFFF05000000000000
-    0000000000000000000000000000FFFFFFE3FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC100000000FFFFFF1BFFFF
-    FFF0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEDFFFFFF15000000000000
-    0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    000000000000FFFFFFFFFFFFFFFF000000000000000000000000000000000000
-    0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    000000000000FFFFFFFFFFFFFFFF000000000000000000000000000000000000
-    0000FFFFFF49FFFFFFE3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC20000
-    000000000000FFFFFFFFFFFFFFFF000000000000000000000000000000000000
-    0000FFFFFFE3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FF1A00000000FFFFFFC5FFFFFFC3000000000000000000000000000000000000
-    0000FFFFFFFFFFFFFFFFFFFFFF42FFFFFF86FFFFFF86FFFFFF42FFFFFFFF0000
-    00000000000000000000FFFFFFFFFFFFFF5DFFFFFF2AFFFFFF69FFFFFFFFFFFF
-    FF77000000000000000000000000000000000000000000000000000000000000
-    0000FFFFFFFFFFFFFFFFFFFFFFC5FFFFFF1EFFFFFF1EFFFFFFC5FFFFFFFF0000
-    0000FFFFFFFFFFFFFFFFFFFFFFEEFFFFFF78FFFFFFE1FFFFFF12FFFFFFFFFFFF
-    FFF9FFFFFF76FFFFFF1A00000000000000000000000000000000000000000000
-    0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2BFFFFFF2BFFFFFFFFFFFFFFFF0000
-    0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA2FFFFFF23FFFFFFA6FFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFC2000000000000000000000000000000000000
-    0000FFFFFFFFFFFFFFFFFFFFFFCAFFFFFF1CFFFFFF1CFFFFFFCBFFFFFFFF0000
-    0000FFFFFFFFFFFFFFFFFFFFFFFDFFFFFF0CFFFFFFE5FFFFFF7DFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
-    0000FFFFFFFFFFFFFFFFFFFFFF47FFFFFF83FFFFFF83FFFFFF49FFFFFFFF0000
-    0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF58FFFFFF28FFFFFF77FFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
-    0000FFFFFFE3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
-    0000FFFFFF4BFFFFFFE4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
-    0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    000000000000FFFFFFFFFFFFFFFF000000000000000000000000000000000000
-    0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
-    00000000000000000000000000000000000000000000FFFFFFC3FFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFED000000000000000000000000000000000000
-    0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
-    00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFF71000000000000000000000000000000000000
-    0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
-    00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFF8800000000000000000000000000000000000000000000
-    0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
-    00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFF880000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000FFFFFFE3FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-    FF80000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000FFFFFF4BFFFFFFE4FFFFFFFFFFFFFFFFFFFF
-    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEFFFFFF710000
-    0000000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000000
-    000000000000000000000000000000000000000000000000000000000000FFFF
-    8700FFFF0300F0020100F0020100F3FFCF00F3FFCF008000CF0080004F0080E0
-    7F0080801F0080800F0080800F0080800F0080000F0080000F00F3FFCF00F3FC
-    0F00F3FC0F00F3FC1F00F3FC3F00F0007F00F000FF00FFFFFF00FFFFFF00}
-  ExplicitWidth = 1094
-  ExplicitHeight = 705
   TextHeight = 15
   inherited pnlMain: TdxPanel
-    ExplicitWidth = 1076
-    ExplicitHeight = 658
-    object Grid: TcxGrid
-      AlignWithMargins = True
-      Left = 20
-      Top = 77
-      Width = 1042
-      Height = 570
-      Margins.Left = 20
-      Margins.Top = 20
-      Margins.Right = 20
-      Margins.Bottom = 20
-      Align = alClient
-      BorderStyle = cxcbsNone
-      TabOrder = 0
-      ExplicitWidth = 1036
-      ExplicitHeight = 561
-      object TableView: TcxGridDBTableView
-        Navigator.Buttons.CustomButtons = <>
-        Navigator.Buttons.First.Visible = True
-        Navigator.Buttons.PriorPage.Visible = True
-        Navigator.Buttons.Prior.Visible = True
-        Navigator.Buttons.Next.Visible = True
-        Navigator.Buttons.NextPage.Visible = True
-        Navigator.Buttons.Last.Visible = True
-        Navigator.Buttons.Insert.Visible = False
-        Navigator.Buttons.Append.Visible = False
-        Navigator.Buttons.Delete.Visible = False
-        Navigator.Buttons.Edit.Visible = False
-        Navigator.Buttons.Post.Visible = False
-        Navigator.Buttons.Cancel.Visible = False
-        Navigator.Buttons.Refresh.Visible = True
-        Navigator.Buttons.SaveBookmark.Visible = True
-        Navigator.Buttons.GotoBookmark.Visible = True
-        Navigator.Buttons.Filter.Visible = True
-        Navigator.InfoPanel.DisplayMask = '[RecordIndex] de [RecordCount]'
-        Navigator.InfoPanel.Visible = True
-        Navigator.Visible = True
-        FilterBox.Visible = fvNever
-        ScrollbarAnnotations.Active = True
-        ScrollbarAnnotations.CustomAnnotations = <>
-        DataController.DataSource = DataSource1
-        DataController.KeyFieldNames = 'CODIGO'
-        DataController.MultiThreadedOptions.Filtering = bTrue
-        DataController.MultiThreadedOptions.Sorting = bTrue
-        DataController.Summary.DefaultGroupSummaryItems = <>
-        DataController.Summary.FooterSummaryItems = <>
-        DataController.Summary.SummaryGroups = <>
-        OptionsBehavior.IncSearch = True
-        OptionsBehavior.NavigatorHints = True
-        OptionsCustomize.ColumnFiltering = False
-        OptionsData.Deleting = False
-        OptionsData.DeletingConfirmation = False
-        OptionsData.Editing = False
-        OptionsData.Inserting = False
-        OptionsSelection.MultiSelect = True
-        OptionsSelection.CellMultiSelect = True
-        OptionsSelection.InvertSelect = False
-        OptionsView.CellEndEllipsis = True
-        OptionsView.FocusRect = False
-        OptionsView.ColumnAutoWidth = True
-        OptionsView.GridLineColor = clNone
-        OptionsView.GridLines = glNone
-        OptionsView.GroupByBox = False
-        OptionsView.HeaderFilterButtonShowMode = fbmSmartTag
-        OptionsView.ShowColumnFilterButtons = sfbWhenSelected
-      end
-      object GridLevel1: TcxGridLevel
-        Caption = 'cxGrid1Level1'
-        GridView = TableView
+    inherited Grid: TcxGrid
+      inherited TableView: TcxGridDBTableView
+        DataController.DataSource = DataSource
+        DataController.KeyFieldNames = 'ID'
+        OptionsView.ColumnAutoWidth = False
+        object TableViewRecId: TcxGridDBColumn
+          DataBinding.FieldName = 'RecId'
+          Visible = False
+          Width = 74
+        end
+        object TableViewID: TcxGridDBColumn
+          DataBinding.FieldName = 'ID'
+          Width = 144
+        end
+        object TableViewEAN: TcxGridDBColumn
+          DataBinding.FieldName = 'EAN'
+          Width = 144
+        end
+        object TableViewCodigoInterno: TcxGridDBColumn
+          DataBinding.FieldName = 'CodigoInterno'
+          Width = 144
+        end
+        object TableViewCodigoIMendes: TcxGridDBColumn
+          DataBinding.FieldName = 'CodigoIMendes'
+          Width = 144
+        end
+        object TableViewStatus: TcxGridDBColumn
+          DataBinding.FieldName = 'Status'
+          Width = 144
+        end
+        object TableViewDescricao: TcxGridDBColumn
+          DataBinding.FieldName = 'Descricao'
+          Width = 144
+        end
+        object TableViewNCM: TcxGridDBColumn
+          DataBinding.FieldName = 'NCM'
+          Width = 144
+        end
+        object TableViewCEST: TcxGridDBColumn
+          DataBinding.FieldName = 'CEST'
+          Width = 144
+        end
+        object TableViewPercIPI: TcxGridDBColumn
+          DataBinding.FieldName = 'PercIPI'
+          Width = 144
+        end
+        object TableViewCSTIPI: TcxGridDBColumn
+          DataBinding.FieldName = 'CSTIPI'
+          Width = 144
+        end
+        object TableViewCSTPisCofinsEnt: TcxGridDBColumn
+          DataBinding.FieldName = 'CSTPisCofinsEnt'
+          Width = 144
+        end
+        object TableViewCSTPisCofinsSai: TcxGridDBColumn
+          DataBinding.FieldName = 'CSTPisCofinsSai'
+          Width = 144
+        end
+        object TableViewNatRecIsentaPisCofins: TcxGridDBColumn
+          DataBinding.FieldName = 'NatRecIsentaPisCofins'
+          Width = 144
+        end
+        object TableViewLista: TcxGridDBColumn
+          DataBinding.FieldName = 'Lista'
+          Width = 144
+        end
+        object TableViewTipo: TcxGridDBColumn
+          DataBinding.FieldName = 'Tipo'
+          Width = 144
+        end
+        object TableViewPercPIS: TcxGridDBColumn
+          DataBinding.FieldName = 'PercPIS'
+          Width = 144
+        end
+        object TableViewPercCOFINS: TcxGridDBColumn
+          DataBinding.FieldName = 'PercCOFINS'
+          Width = 144
+        end
+        object TableViewCFOPCompra: TcxGridDBColumn
+          DataBinding.FieldName = 'CFOPCompra'
+          Width = 144
+        end
+        object TableViewCFOPVenda: TcxGridDBColumn
+          DataBinding.FieldName = 'CFOPVenda'
+          Width = 144
+        end
+        object TableViewCST: TcxGridDBColumn
+          DataBinding.FieldName = 'CST'
+          Width = 144
+        end
+        object TableViewCSOSN: TcxGridDBColumn
+          DataBinding.FieldName = 'CSOSN'
+          Width = 144
+        end
+        object TableViewModBC: TcxGridDBColumn
+          DataBinding.FieldName = 'ModBC'
+          Width = 144
+        end
+        object TableViewPercICMS: TcxGridDBColumn
+          DataBinding.FieldName = 'PercICMS'
+          Width = 144
+        end
+        object TableViewPercICMSPDV: TcxGridDBColumn
+          DataBinding.FieldName = 'PercICMSPDV'
+          Width = 144
+        end
+        object TableViewSimbPDV: TcxGridDBColumn
+          DataBinding.FieldName = 'SimbPDV'
+          Width = 144
+        end
+        object TableViewPercRedBCICMS: TcxGridDBColumn
+          DataBinding.FieldName = 'PercRedBCICMS'
+          Width = 144
+        end
+        object TableViewPercRedBCICMSST: TcxGridDBColumn
+          DataBinding.FieldName = 'PercRedBCICMSST'
+          Width = 144
+        end
+        object TableViewModBCST: TcxGridDBColumn
+          DataBinding.FieldName = 'ModBCST'
+          Width = 144
+        end
+        object TableViewPercICMSST: TcxGridDBColumn
+          DataBinding.FieldName = 'PercICMSST'
+          Width = 144
+        end
+        object TableViewIVA: TcxGridDBColumn
+          DataBinding.FieldName = 'IVA'
+          Width = 144
+        end
+        object TableViewPautaST: TcxGridDBColumn
+          DataBinding.FieldName = 'PautaST'
+          Width = 144
+        end
+        object TableViewPercFCP: TcxGridDBColumn
+          DataBinding.FieldName = 'PercFCP'
+          Width = 144
+        end
+        object TableViewAntecipado: TcxGridDBColumn
+          DataBinding.FieldName = 'Antecipado'
+          Width = 144
+        end
+        object TableViewPercDesoneracao: TcxGridDBColumn
+          DataBinding.FieldName = 'PercDesoneracao'
+          Width = 144
+        end
+        object TableViewPercDiferimento: TcxGridDBColumn
+          DataBinding.FieldName = 'PercDiferimento'
+          Width = 144
+        end
+        object TableViewPercIsencao: TcxGridDBColumn
+          DataBinding.FieldName = 'PercIsencao'
+          Width = 144
+        end
+        object TableViewaDRemICMS: TcxGridDBColumn
+          DataBinding.FieldName = 'aDRemICMS'
+          Width = 144
+        end
+        object TableViewCodANP: TcxGridDBColumn
+          DataBinding.FieldName = 'CodANP'
+          Width = 144
+        end
+        object TableViewCodBeneficio: TcxGridDBColumn
+          DataBinding.FieldName = 'CodBeneficio'
+          Width = 144
+        end
+        object TableViewDataAlteracao: TcxGridDBColumn
+          DataBinding.FieldName = 'DataAlteracao'
+          Width = 144
+        end
+        object TableViewDataRevisao: TcxGridDBColumn
+          DataBinding.FieldName = 'DataRevisao'
+          Width = 144
+        end
+        object TableViewDataUltimoConsumo: TcxGridDBColumn
+          DataBinding.FieldName = 'DataUltimoConsumo'
+          Width = 144
+        end
+        object TableViewCodigoGPC: TcxGridDBColumn
+          DataBinding.FieldName = 'CodigoGPC'
+          Width = 144
+        end
       end
     end
-    object pnlTop: TdxPanel
-      Left = 0
-      Top = 0
-      Width = 1082
-      Height = 57
-      Align = alTop
-      Frame.Borders = [bBottom]
-      Frame.Visible = False
-      TabOrder = 1
-      ExplicitWidth = 1076
+    inherited pnlTop: TdxPanel
+      inherited lblRegistros: TcxLabel
+        AnchorX = 1062
+        AnchorY = 29
+      end
+      inherited edtPesquisa: TcxTextEdit
+        Left = 273
+        ExplicitWidth = 888
+        Width = 770
+      end
+      inherited buttonImprimirGrade: TcxButton
+        Left = 144
+        Margins.Left = 10
+      end
       object btnImportar: TcxButton
         AlignWithMargins = True
         Left = 20
@@ -190,67 +226,192 @@ inherited formImportacao: TformImportacao
           53805189D65C87DC65BCE4EC8FB134CB7D5C86DC266E73F6B397B699DA85693F
           B4809B2FE6D934CDD7621E41AE70119BBF03867408533C21DEEE000000004945
           4E44AE426082}
-        TabOrder = 0
+        TabOrder = 3
         OnClick = btnImportarClick
-      end
-      object lblRegistros: TcxLabel
-        Left = 134
-        Top = 0
-        Align = alLeft
-        ParentFont = False
-        Style.Font.Charset = DEFAULT_CHARSET
-        Style.Font.Color = clWindowText
-        Style.Font.Height = -17
-        Style.Font.Name = 'Segoe UI Semibold'
-        Style.Font.Style = []
-        Style.Font.Quality = fqClearType
-        Style.IsFontAssigned = True
-        Properties.Alignment.Vert = taVCenter
-        Transparent = True
-        AnchorY = 29
-      end
-      object edtPesquisa: TcxTextEdit
-        AlignWithMargins = True
-        Left = 158
-        Top = 10
-        Margins.Left = 15
-        Margins.Top = 10
-        Margins.Right = 20
-        Margins.Bottom = 10
-        Align = alClient
-        Style.BorderStyle = ebsNone
-        TabOrder = 2
-        TextHint = ' Pesquisar'
-        ExplicitWidth = 898
-        Width = 904
       end
     end
   end
-  object TMSFNCGridExcelIO1: TTMSFNCGridExcelIO [1]
-    Left = 528
-    Top = 336
-    Width = 32
-    Height = 32
-    Visible = True
-    Options.ExportOverwriteMessage = 'File %s already exists'#13'Ok to overwrite ?'
-    UseUnicode = False
-    Version = '3.24'
-  end
-  object ClientDataSet1: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    Left = 760
-    Top = 208
-  end
-  object DataSource1: TDataSource
-    DataSet = ClientDataSet1
-    Left = 944
-    Top = 328
+  inherited ComponentPrinter: TdxComponentPrinter
+    PixelsPerInch = 96
+    inherited GridPrinter: TdxGridReportLink
+      ReportDocument.CreationDate = 45259.496029537040000000
+      PixelsPerInch = 96
+      BuiltInReportLink = True
+    end
   end
   object dialogExcel: TdxOpenFileDialog
-    Filter = 'Planilha Excel|*.xlsx'
+    Filter = 'Planilha Excel|*.csv;*.xlsx'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Left = 664
     Top = 208
+  end
+  object DataSource: TDataSource
+    DataSet = MemData
+    Left = 832
+    Top = 208
+  end
+  object ImportCSV: TQImport3ASCII
+    DataSet = MemData
+    Formats.DecimalSeparator = ','
+    Formats.ThousandSeparator = '.'
+    Formats.DateSeparator = '/'
+    Formats.TimeSeparator = ':'
+    Formats.BooleanTrue.Strings = (
+      'True')
+    Formats.BooleanFalse.Strings = (
+      'False')
+    Formats.NullValues.Strings = (
+      'Null')
+    Formats.ShortDateFormat = 'dd/mm/yyyy'
+    Formats.LongDateFormat = 'dddd, d'#39' de '#39'mmmm'#39' de '#39'yyyy'
+    Formats.ShortTimeFormat = 'hh:nn'
+    Formats.LongTimeFormat = 'hh:nn:ss'
+    FieldFormats = <>
+    ErrorLogFileName = 'error.log'
+    AddType = qatInsert
+    Comma = ';'
+    Quote = '"'
+    Left = 576
+    Top = 208
+  end
+  object MemData: TdxMemData
+    Indexes = <
+      item
+        FieldName = 'ID'
+        SortOptions = []
+      end>
+    SortOptions = []
+    SortedFields = 'ID'
+    Left = 752
+    Top = 208
+    object ID: TStringField
+      FieldName = 'ID'
+    end
+    object EAN: TStringField
+      FieldName = 'EAN'
+    end
+    object CodigoInterno: TStringField
+      FieldName = 'CodigoInterno'
+    end
+    object CodigoIMendes: TStringField
+      FieldName = 'CodigoIMendes'
+    end
+    object Status: TStringField
+      FieldName = 'Status'
+    end
+    object Descricao: TStringField
+      FieldName = 'Descricao'
+    end
+    object NCM: TStringField
+      FieldName = 'NCM'
+    end
+    object CEST: TStringField
+      FieldName = 'CEST'
+    end
+    object IPI: TStringField
+      FieldName = 'PercIPI'
+    end
+    object CSTIPI: TStringField
+      FieldName = 'CSTIPI'
+    end
+    object CSTPisCofinsEntrada: TStringField
+      FieldName = 'CSTPisCofinsEnt'
+    end
+    object CSTPisCofinsSaida: TStringField
+      FieldName = 'CSTPisCofinsSai'
+    end
+    object NatRecIsentaPisCofins: TStringField
+      FieldName = 'NatRecIsentaPisCofins'
+    end
+    object LIsta: TStringField
+      FieldName = 'Lista'
+    end
+    object Tipo: TStringField
+      FieldName = 'Tipo'
+    end
+    object PIS: TStringField
+      FieldName = 'PercPIS'
+    end
+    object Cofins: TStringField
+      FieldName = 'PercCOFINS'
+    end
+    object CFOPCompra: TStringField
+      FieldName = 'CFOPCompra'
+    end
+    object CFOPVenda: TStringField
+      FieldName = 'CFOPVenda'
+    end
+    object CST: TStringField
+      FieldName = 'CST'
+    end
+    object CSOSN: TStringField
+      FieldName = 'CSOSN'
+    end
+    object ModBC: TStringField
+      FieldName = 'ModBC'
+    end
+    object ICMS: TStringField
+      FieldName = 'PercICMS'
+    end
+    object ICMSPDV: TStringField
+      FieldName = 'PercICMSPDV'
+    end
+    object SimbPDV: TStringField
+      FieldName = 'SimbPDV'
+    end
+    object RedBCICMS: TStringField
+      FieldName = 'PercRedBCICMS'
+    end
+    object RedBCICMSST: TStringField
+      FieldName = 'PercRedBCICMSST'
+    end
+    object ModBCST: TStringField
+      FieldName = 'ModBCST'
+    end
+    object ICMSST: TStringField
+      FieldName = 'PercICMSST'
+    end
+    object IVA: TStringField
+      FieldName = 'IVA'
+    end
+    object PautaST: TStringField
+      FieldName = 'PautaST'
+    end
+    object FCP: TStringField
+      FieldName = 'PercFCP'
+    end
+    object Antecipado: TStringField
+      FieldName = 'Antecipado'
+    end
+    object Desoneracao: TStringField
+      FieldName = 'PercDesoneracao'
+    end
+    object Diferimento: TStringField
+      FieldName = 'PercDiferimento'
+    end
+    object Isencao: TStringField
+      FieldName = 'PercIsencao'
+    end
+    object aDRemICMS: TStringField
+      FieldName = 'aDRemICMS'
+    end
+    object ANP: TStringField
+      FieldName = 'CodANP'
+    end
+    object CodigoBeneficio: TStringField
+      FieldName = 'CodBeneficio'
+    end
+    object DataAlteracao: TStringField
+      FieldName = 'DataAlteracao'
+    end
+    object DataRevisao: TStringField
+      FieldName = 'DataRevisao'
+    end
+    object DataUltimoConsumo: TStringField
+      FieldName = 'DataUltimoConsumo'
+    end
+    object CodigoGPC: TStringField
+      FieldName = 'CodigoGPC'
+    end
   end
 end

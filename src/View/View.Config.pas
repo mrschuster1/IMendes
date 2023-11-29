@@ -38,7 +38,10 @@ uses
   cxMaskEdit,
   cxButtonEdit,
   dxShellDialogs,
-  scStyledForm, Helper.Forms;
+  scStyledForm,
+  Helper.Forms,
+  cxCheckBox,
+  cxShellBrowserDialog;
 
 type
   TformConfig = class(TForm)
@@ -61,18 +64,42 @@ type
     dlgFBClient: TdxOpenFileDialog;
     LocalizarFBClient: TAction;
     StyledForm: TscStyledForm;
+    lblConexao: TcxLabel;
+    dxLayoutItem3: TdxLayoutItem;
+    dxLayoutItem4: TdxLayoutItem;
+    lblCaminhos: TcxLabel;
+    dxLayoutItem5: TdxLayoutItem;
+    edtExportacao: TcxButtonEdit;
+    dxLayoutItem6: TdxLayoutItem;
+    edtImportacao: TcxButtonEdit;
+    dxLayoutItem7: TdxLayoutItem;
+    checkSalvarAutomatico: TcxCheckBox;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dxLayoutItem8: TdxLayoutItem;
+    checkBuscarAutomatico: TcxCheckBox;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    LocalizarPastaExportacao: TAction;
+    LocalizarPastaImportacao: TAction;
+    dialogExportacao: TdxOpenFileDialog;
+    dialogImportacao: TdxOpenFileDialog;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure LocalizarBancoEcoExecute(Sender: TObject);
     procedure LocalizarFBClientExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure LocalizarPastaExportacaoExecute(Sender: TObject);
+    procedure LocalizarPastaImportacaoExecute(Sender: TObject);
   private
     procedure Salvar;
     procedure Cancelar;
-    procedure SalvarParametro(Edit: TcxCustomTextEdit;
+    procedure SalvarParametroString(Edit: TcxCustomTextEdit;
       Secao, Parametro: string);
-    procedure CarregarParametro(Edit: TcxCustomTextEdit; Secao,
+    procedure CarregarParametroString(Edit: TcxCustomTextEdit; Secao,
       Parametro: string);
+    procedure CarregarParametroBoolean(Checkbox: TcxCheckBox;
+      Secao, Parametro: string);
+    procedure SalvarParametroBoolean(Checkbox: TcxCheckBox;
+      Secao, Parametro: string);
     procedure CarregarParametros;
     { Private declarations }
   public
@@ -88,7 +115,8 @@ implementation
 
 
 uses
-  Helpers.Ini, View.Empresas;
+  Helpers.Ini,
+  View.Empresas;
 
 procedure TformConfig.btnCancelarClick(Sender: TObject);
 begin
@@ -102,12 +130,25 @@ end;
 
 procedure TformConfig.Salvar;
 begin
-  SalvarParametro(edtBanco, 'conexao', 'banco');
-  SalvarParametro(edtFBClient, 'conexao', 'firebird');
+  SalvarParametroString(edtBanco, 'conexao', 'banco');
+  SalvarParametroString(edtFBClient, 'conexao', 'firebird');
+  SalvarParametroString(edtImportacao, 'importacao', 'diretorio');
+  SalvarParametroString(edtExportacao, 'exportacao', 'diretorio');
+
+  SalvarParametroBoolean(checkSalvarAutomatico, 'exportacao',
+    'salvar-automatico');
+  SalvarParametroBoolean(checkBuscarAutomatico, 'importacao',
+    'buscar-automatico');
   modalresult := mrok;
 end;
 
-procedure TformConfig.SalvarParametro(Edit: TcxCustomTextEdit;
+procedure TformConfig.SalvarParametroBoolean(Checkbox: TcxCheckBox; Secao,
+  Parametro: string);
+begin
+  TIniHelper.SetValue(Secao, Parametro, Checkbox.Checked)
+end;
+
+procedure TformConfig.SalvarParametroString(Edit: TcxCustomTextEdit;
   Secao, Parametro: string);
 begin
   TIniHelper.SetValue(Secao, Parametro, Edit.Text)
@@ -118,16 +159,28 @@ begin
   modalresult := mrCancel;
 end;
 
-procedure TformConfig.CarregarParametro(Edit: TcxCustomTextEdit; Secao,
+procedure TformConfig.CarregarParametroString(Edit: TcxCustomTextEdit; Secao,
   Parametro: string);
 begin
   Edit.Text := TIniHelper.GetValue(Secao, Parametro, '')
 end;
 
+procedure TformConfig.CarregarParametroBoolean(Checkbox: TcxCheckBox; Secao,
+  Parametro: string);
+begin
+  Checkbox.Checked := TIniHelper.GetValue(Secao, Parametro, Checkbox.Checked)
+end;
+
 procedure TformConfig.CarregarParametros;
 begin
-  CarregarParametro(edtFBClient, 'conexao', 'firebird');
-  CarregarParametro(edtBanco, 'conexao', 'banco');
+  CarregarParametroString(edtFBClient, 'conexao', 'firebird');
+  CarregarParametroString(edtBanco, 'conexao', 'banco');
+  CarregarParametroString(edtExportacao, 'exportacao', 'diretorio');
+  CarregarParametroString(edtImportacao, 'importacao', 'diretorio');
+  CarregarParametroBoolean(checkBuscarAutomatico, 'importacao',
+    'buscar-automatico');
+  CarregarParametroBoolean(checkSalvarAutomatico, 'exportacao',
+    'salvar-automatico');
   dlgFBClient.FileName := edtFBClient.Text;
   dlgBancoEco.FileName := edtBanco.Text;
 end;
@@ -155,6 +208,18 @@ begin
     edtFBClient.Text := dlgFBClient.FileName;
 
   StyledForm.HideClientInActiveEffect;
+end;
+
+procedure TformConfig.LocalizarPastaExportacaoExecute(Sender: TObject);
+begin
+  if dialogExportacao.Execute then
+    edtExportacao.Text := dialogExportacao.FileName;
+end;
+
+procedure TformConfig.LocalizarPastaImportacaoExecute(Sender: TObject);
+begin
+  if dialogImportacao.Execute then
+    edtImportacao.Text := dialogImportacao.FileName;
 end;
 
 end.

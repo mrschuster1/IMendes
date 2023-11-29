@@ -107,7 +107,9 @@ begin
   var
   lFormEmpresas := Self.Create(nil);
   try
-    result := lFormEmpresas.ShowModal = mrok
+    result := lFormEmpresas.ShowModal = mrok;
+    if result = false then
+      Application.Terminate
   finally
     lFormEmpresas.Free
   end;

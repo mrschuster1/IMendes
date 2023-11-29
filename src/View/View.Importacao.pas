@@ -12,7 +12,7 @@ uses
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
-  View.Child,
+  View.PesquisaGrade,
   cxGraphics,
   cxControls,
   cxLookAndFeels,
@@ -21,10 +21,6 @@ uses
   dxSkinOffice2019Black,
   cxGeometry,
   dxFramedControl,
-  scStyledForm,
-  cxClasses,
-  cxLocalization,
-  dxPanel,
   cxStyles,
   cxCustomData,
   cxFilter,
@@ -36,59 +32,148 @@ uses
   dxScrollbarAnnotations,
   Data.DB,
   cxDBData,
-  Vcl.Menus,
   cxContainer,
-  cxTextEdit,
-  cxLabel,
+  Vcl.Menus,
+  dxPSGlbl,
+  dxPSUtl,
+  dxPSEngn,
+  dxPrnPg,
+  dxBkgnd,
+  dxWrap,
+  dxPrnDev,
+  dxPSCompsProvider,
+  dxPSFillPatterns,
+  dxPSEdgePatterns,
+  dxPSPDFExportCore,
+  dxPSPDFExport,
+  cxDrawTextUtils,
+  dxPSPrVwStd,
+  dxPSPrVwAdv,
+  dxPSPrVwRibbon,
+  dxPScxPageControlProducer,
+  dxPScxGridLnk,
+  dxPScxGridLayoutViewLnk,
+  dxPScxEditorProducers,
+  dxPScxExtEditorProducers,
+  dxPSCore,
+  dxPScxCommon,
+  cxClasses,
+  scStyledForm,
+  cxLocalization,
   Vcl.StdCtrls,
   cxButtons,
+  cxTextEdit,
+  cxLabel,
   cxGridLevel,
+  cxGridCustomView,
   cxGridCustomTableView,
   cxGridTableView,
   cxGridDBTableView,
-  cxGridCustomView,
   cxGrid,
-  Datasnap.DBClient,
-  FireDAC.Stan.Intf,
-  FireDAC.Stan.Option,
-  FireDAC.Stan.Param,
-  FireDAC.Stan.Error,
-  FireDAC.DatS,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf,
-  FireDAC.Stan.Async,
-  FireDAC.DApt,
-  FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client,
-  FireDAC.UI.Intf,
-  FireDAC.Stan.Def,
-  FireDAC.Stan.Pool,
-  FireDAC.Phys,
-  FireDAC.VCLUI.Wait,
-  dxShellDialogs,
-  FireDAC.Phys.ODBCDef,
-  FireDAC.Phys.ODBCBase,
-  FireDAC.Phys.ODBC,
-  Vcl.TMSFNCCustomComponent,
-  Vcl.TMSFNCGridExcelIO;
+  dxPanel,
+  dxmdaset,
+  QImport3,
+  QImport3ASCII,
+  dxShellDialogs;
 
 type
-  TformImportacao = class(TformChild)
-    Grid: TcxGrid;
-    TableView: TcxGridDBTableView;
-    GridLevel1: TcxGridLevel;
-    pnlTop: TdxPanel;
-    btnImportar: TcxButton;
-    lblRegistros: TcxLabel;
-    edtPesquisa: TcxTextEdit;
-    ClientDataSet1: TClientDataSet;
-    DataSource1: TDataSource;
+  TformImportacao = class(TformPesquisaGrade)
     dialogExcel: TdxOpenFileDialog;
-    TMSFNCGridExcelIO1: TTMSFNCGridExcelIO;
+    DataSource: TDataSource;
+    ImportCSV: TQImport3ASCII;
+    MemData: TdxMemData;
+    ID: TStringField;
+    EAN: TStringField;
+    CodigoInterno: TStringField;
+    CodigoIMendes: TStringField;
+    Status: TStringField;
+    Descricao: TStringField;
+    NCM: TStringField;
+    CEST: TStringField;
+    IPI: TStringField;
+    CSTIPI: TStringField;
+    CSTPisCofinsEntrada: TStringField;
+    CSTPisCofinsSaida: TStringField;
+    NatRecIsentaPisCofins: TStringField;
+    LIsta: TStringField;
+    Tipo: TStringField;
+    PIS: TStringField;
+    Cofins: TStringField;
+    CFOPCompra: TStringField;
+    CFOPVenda: TStringField;
+    CST: TStringField;
+    CSOSN: TStringField;
+    ModBC: TStringField;
+    ICMS: TStringField;
+    ICMSPDV: TStringField;
+    SimbPDV: TStringField;
+    RedBCICMS: TStringField;
+    RedBCICMSST: TStringField;
+    ModBCST: TStringField;
+    ICMSST: TStringField;
+    IVA: TStringField;
+    PautaST: TStringField;
+    FCP: TStringField;
+    Antecipado: TStringField;
+    Desoneracao: TStringField;
+    Diferimento: TStringField;
+    Isencao: TStringField;
+    aDRemICMS: TStringField;
+    ANP: TStringField;
+    CodigoBeneficio: TStringField;
+    DataAlteracao: TStringField;
+    DataRevisao: TStringField;
+    DataUltimoConsumo: TStringField;
+    CodigoGPC: TStringField;
+    TableViewRecId: TcxGridDBColumn;
+    TableViewID: TcxGridDBColumn;
+    TableViewEAN: TcxGridDBColumn;
+    TableViewCodigoInterno: TcxGridDBColumn;
+    TableViewCodigoIMendes: TcxGridDBColumn;
+    TableViewStatus: TcxGridDBColumn;
+    TableViewDescricao: TcxGridDBColumn;
+    TableViewNCM: TcxGridDBColumn;
+    TableViewCEST: TcxGridDBColumn;
+    TableViewPercIPI: TcxGridDBColumn;
+    TableViewCSTIPI: TcxGridDBColumn;
+    TableViewCSTPisCofinsEnt: TcxGridDBColumn;
+    TableViewCSTPisCofinsSai: TcxGridDBColumn;
+    TableViewNatRecIsentaPisCofins: TcxGridDBColumn;
+    TableViewLista: TcxGridDBColumn;
+    TableViewTipo: TcxGridDBColumn;
+    TableViewPercPIS: TcxGridDBColumn;
+    TableViewPercCOFINS: TcxGridDBColumn;
+    TableViewCFOPCompra: TcxGridDBColumn;
+    TableViewCFOPVenda: TcxGridDBColumn;
+    TableViewCST: TcxGridDBColumn;
+    TableViewCSOSN: TcxGridDBColumn;
+    TableViewModBC: TcxGridDBColumn;
+    TableViewPercICMS: TcxGridDBColumn;
+    TableViewPercICMSPDV: TcxGridDBColumn;
+    TableViewSimbPDV: TcxGridDBColumn;
+    TableViewPercRedBCICMS: TcxGridDBColumn;
+    TableViewPercRedBCICMSST: TcxGridDBColumn;
+    TableViewModBCST: TcxGridDBColumn;
+    TableViewPercICMSST: TcxGridDBColumn;
+    TableViewIVA: TcxGridDBColumn;
+    TableViewPautaST: TcxGridDBColumn;
+    TableViewPercFCP: TcxGridDBColumn;
+    TableViewAntecipado: TcxGridDBColumn;
+    TableViewPercDesoneracao: TcxGridDBColumn;
+    TableViewPercDiferimento: TcxGridDBColumn;
+    TableViewPercIsencao: TcxGridDBColumn;
+    TableViewaDRemICMS: TcxGridDBColumn;
+    TableViewCodANP: TcxGridDBColumn;
+    TableViewCodBeneficio: TcxGridDBColumn;
+    TableViewDataAlteracao: TcxGridDBColumn;
+    TableViewDataRevisao: TcxGridDBColumn;
+    TableViewDataUltimoConsumo: TcxGridDBColumn;
+    TableViewCodigoGPC: TcxGridDBColumn;
+    btnImportar: TcxButton;
     procedure btnImportarClick(Sender: TObject);
   private
-    procedure ImportarExcel;
-
+    procedure Importar;
+    { Private declarations }
   public
     { Public declarations }
   end;
@@ -100,24 +185,22 @@ implementation
 
 {$R *.dfm}
 
-{ TformImportacao }
 
 procedure TformImportacao.btnImportarClick(Sender: TObject);
 begin
   inherited;
-  if dialogExcel.Execute then
-
+  Importar;
 end;
 
-procedure TformImportacao.ImportarExcel;
+procedure TformImportacao.Importar;
 begin
-  // Limpar dados existentes no ClientDataSet
-  ClientDataSet1.EmptyDataSet;
-
-  // Importar dados do Excel para o ClientDataSet
-  TMSFNCGridExcelIO1.sav('Caminho\\Para\\Seu\\Arquivo.xls',
-    ClientDataSet1);
-
+  if dialogExcel.Execute then
+  begin
+    ImportCSV.Map.LoadFromFile('map2.txt');
+    ImportCSV.FileName := dialogExcel.FileName;
+    MemData.Open;
+    ImportCSV.Execute;
+  end;
 end;
 
 end.

@@ -24,8 +24,6 @@ object formEmpresas: TformEmpresas
     Align = alClient
     Frame.Visible = False
     TabOrder = 0
-    ExplicitWidth = 585
-    ExplicitHeight = 260
     object pnlBottom: TdxPanel
       Left = 0
       Top = 212
@@ -35,8 +33,6 @@ object formEmpresas: TformEmpresas
       Frame.Borders = [bBottom]
       Frame.Visible = False
       TabOrder = 0
-      ExplicitTop = 203
-      ExplicitWidth = 585
       object btnConfirmar: TcxButton
         AlignWithMargins = True
         Left = 351
@@ -126,8 +122,6 @@ object formEmpresas: TformEmpresas
       ParentFont = False
       TabOrder = 1
       LayoutLookAndFeel = dxLayoutCxLookAndFeel1
-      ExplicitWidth = 585
-      ExplicitHeight = 203
       object lblEmpresas: TcxLabel
         Left = 19
         Top = 19

@@ -101,7 +101,7 @@ object formMain: TformMain
     TabOrder = 2
     Panels = <
       item
-        Text = '27/11/2023'
+        Text = '29/11/2023'
         Style = spsDate
         Width = 80
         Progress.Level0Fill.Color = clLime
@@ -111,7 +111,7 @@ object formMain: TformMain
         Progress.Position = 0
       end
       item
-        Text = '08:29:06'
+        Text = '11:50:55'
         Style = spsTime
         Width = 70
         Progress.Level0Fill.Color = clLime
@@ -336,6 +336,12 @@ object formMain: TformMain
         B4809B2FE6D934CDD7621E41AE70119BBF03867408533C21DEEE000000004945
         4E44AE426082}
       OnClick = buttonImportarClick
+    end
+    object dxBarLargeButton1: TdxBarLargeButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
     end
   end
   object dxSkinController: TdxSkinController

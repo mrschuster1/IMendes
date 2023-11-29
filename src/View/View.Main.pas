@@ -68,6 +68,7 @@ type
     buttonImportar: TdxBarLargeButton;
     MDITabs: TdxTabbedMDIManager;
     StatusBar: TTMSFNCStatusBar;
+    dxBarLargeButton1: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure buttonConfigClick(Sender: TObject);
     procedure buttonExportacaoClick(Sender: TObject);
@@ -95,9 +96,10 @@ uses
   View.Config,
   View.Exportacao,
   utils.Dialogs,
-  View.Empresas, View.Importacao;
+  View.Empresas,
+  View.Importacao;
 
-{ TForm1 }
+{ TFormMain }
 
 procedure TformMain.AtualizarStatusBar;
 begin

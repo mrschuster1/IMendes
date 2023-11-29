@@ -4,8 +4,8 @@ object formConfig: TformConfig
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Configura'#231#245'es'
-  ClientHeight = 179
-  ClientWidth = 866
+  ClientHeight = 389
+  ClientWidth = 892
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object formConfig: TformConfig
   object pnlMain: TdxPanel
     Left = 0
     Top = 0
-    Width = 866
-    Height = 179
+    Width = 892
+    Height = 389
     Align = alClient
     Frame.Visible = False
     TabOrder = 0
@@ -28,18 +28,18 @@ object formConfig: TformConfig
     ExplicitHeight = 170
     object pnlBottom: TdxPanel
       Left = 0
-      Top = 122
-      Width = 866
+      Top = 332
+      Width = 892
       Height = 57
       Align = alBottom
       Frame.Borders = [bBottom]
       Frame.Visible = False
       TabOrder = 0
-      ExplicitTop = 113
-      ExplicitWidth = 860
+      ExplicitTop = 374
+      ExplicitWidth = 872
       object btnSalvar: TcxButton
         AlignWithMargins = True
-        Left = 626
+        Left = 652
         Top = 10
         Width = 100
         Height = 37
@@ -66,7 +66,8 @@ object formConfig: TformConfig
           0000000049454E44AE426082}
         TabOrder = 0
         OnClick = btnSalvarClick
-        ExplicitLeft = 620
+        ExplicitLeft = 608
+        ExplicitTop = -14
       end
       object lblRegistros: TcxLabel
         Left = 0
@@ -86,7 +87,7 @@ object formConfig: TformConfig
       end
       object btnCancelar: TcxButton
         AlignWithMargins = True
-        Left = 746
+        Left = 772
         Top = 10
         Width = 100
         Height = 37
@@ -113,8 +114,8 @@ object formConfig: TformConfig
     object Layout: TdxLayoutControl
       Left = 0
       Top = 0
-      Width = 866
-      Height = 122
+      Width = 892
+      Height = 332
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -125,11 +126,11 @@ object formConfig: TformConfig
       ParentFont = False
       TabOrder = 1
       LayoutLookAndFeel = dxLayoutCxLookAndFeel1
-      ExplicitWidth = 860
-      ExplicitHeight = 113
+      ExplicitTop = -3
+      ExplicitHeight = 397
       object edtBanco: TcxButtonEdit
         Left = 186
-        Top = 19
+        Top = 61
         Properties.Buttons = <
           item
             Action = LocalizarBancoEco
@@ -138,12 +139,12 @@ object formConfig: TformConfig
           end>
         Style.HotTrack = False
         Style.TransparentBorder = False
-        TabOrder = 0
-        Width = 661
+        TabOrder = 1
+        Width = 687
       end
       object edtFBClient: TcxButtonEdit
         Left = 186
-        Top = 59
+        Top = 101
         Properties.Buttons = <
           item
             Action = LocalizarFBClient
@@ -152,14 +153,94 @@ object formConfig: TformConfig
           end>
         Style.HotTrack = False
         Style.TransparentBorder = False
-        TabOrder = 1
-        Width = 661
+        TabOrder = 2
+        Width = 687
+      end
+      object lblConexao: TcxLabel
+        Left = 19
+        Top = 19
+        Caption = 'Conex'#227'o'
+        ParentFont = False
+        Style.Font.Charset = DEFAULT_CHARSET
+        Style.Font.Color = clWindowText
+        Style.Font.Height = -23
+        Style.Font.Name = 'Segoe UI Semibold'
+        Style.Font.Style = []
+        Style.Font.Quality = fqClearType
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        Style.IsFontAssigned = True
+        Transparent = True
+      end
+      object lblCaminhos: TcxLabel
+        Left = 19
+        Top = 161
+        Caption = 'Diret'#243'rios padr'#227'o'
+        ParentFont = False
+        Style.Font.Charset = DEFAULT_CHARSET
+        Style.Font.Color = clWindowText
+        Style.Font.Height = -23
+        Style.Font.Name = 'Segoe UI Semibold'
+        Style.Font.Style = []
+        Style.Font.Quality = fqClearType
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        Style.IsFontAssigned = True
+        Transparent = True
+      end
+      object edtExportacao: TcxButtonEdit
+        Left = 186
+        Top = 203
+        Properties.Buttons = <
+          item
+            Action = LocalizarPastaExportacao
+            Default = True
+            Kind = bkEllipsis
+          end>
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        TabOrder = 4
+        Width = 463
+      end
+      object edtImportacao: TcxButtonEdit
+        Left = 186
+        Top = 243
+        Properties.Buttons = <
+          item
+            Action = LocalizarPastaImportacao
+            Default = True
+            Kind = bkEllipsis
+          end>
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        TabOrder = 6
+        Width = 463
+      end
+      object checkSalvarAutomatico: TcxCheckBox
+        Left = 664
+        Top = 203
+        Caption = 'Salvar automaticamente'
+        State = cbsChecked
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        TabOrder = 5
+        Transparent = True
+      end
+      object checkBuscarAutomatico: TcxCheckBox
+        Left = 660
+        Top = 243
+        Caption = 'Buscar automaticamente'
+        State = cbsChecked
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        TabOrder = 7
+        Transparent = True
       end
       object LayoutGroup_Root: TdxLayoutGroup
         AlignHorz = ahClient
         AlignVert = avTop
         Hidden = True
-        ItemIndex = 1
+        ItemIndex = 5
         ShowBorder = False
         Index = -1
       end
@@ -172,7 +253,7 @@ object formConfig: TformConfig
         ControlOptions.OriginalHeight = 29
         ControlOptions.OriginalWidth = 279
         ControlOptions.ShowBorder = False
-        Index = 0
+        Index = 1
       end
       object dxLayoutItem1: TdxLayoutItem
         Parent = LayoutGroup_Root
@@ -181,20 +262,91 @@ object formConfig: TformConfig
         ControlOptions.OriginalHeight = 29
         ControlOptions.OriginalWidth = 121
         ControlOptions.ShowBorder = False
+        Index = 2
+      end
+      object dxLayoutItem3: TdxLayoutItem
+        Parent = LayoutGroup_Root
+        CaptionOptions.Text = 'cxLabel1'
+        CaptionOptions.Visible = False
+        Control = lblConexao
+        ControlOptions.OriginalHeight = 31
+        ControlOptions.OriginalWidth = 64
+        ControlOptions.ShowBorder = False
+        Index = 0
+      end
+      object dxLayoutItem4: TdxLayoutItem
+        Parent = LayoutGroup_Root
+        Offsets.Top = 20
+        CaptionOptions.Visible = False
+        Control = lblCaminhos
+        ControlOptions.OriginalHeight = 31
+        ControlOptions.OriginalWidth = 91
+        ControlOptions.ShowBorder = False
+        Index = 3
+      end
+      object dxLayoutItem5: TdxLayoutItem
+        Parent = dxLayoutAutoCreatedGroup1
+        AlignHorz = ahClient
+        CaptionOptions.Text = 'Exporta'#231#227'o'
+        Control = edtExportacao
+        ControlOptions.OriginalHeight = 29
+        ControlOptions.OriginalWidth = 121
+        ControlOptions.ShowBorder = False
+        Index = 0
+      end
+      object dxLayoutItem6: TdxLayoutItem
+        Parent = dxLayoutAutoCreatedGroup2
+        AlignHorz = ahClient
+        CaptionOptions.Text = 'Importa'#231#227'o'
+        Control = edtImportacao
+        ControlOptions.OriginalHeight = 29
+        ControlOptions.OriginalWidth = 121
+        ControlOptions.ShowBorder = False
+        Index = 0
+      end
+      object dxLayoutItem7: TdxLayoutItem
+        Parent = dxLayoutAutoCreatedGroup1
+        AlignVert = avClient
+        Offsets.Left = 4
+        CaptionOptions.Visible = False
+        Control = checkSalvarAutomatico
+        ControlOptions.OriginalHeight = 27
+        ControlOptions.OriginalWidth = 209
+        ControlOptions.ShowBorder = False
         Index = 1
+      end
+      object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+        Parent = LayoutGroup_Root
+        LayoutDirection = ldHorizontal
+        Index = 4
+      end
+      object dxLayoutItem8: TdxLayoutItem
+        Parent = dxLayoutAutoCreatedGroup2
+        AlignVert = avClient
+        CaptionOptions.Visible = False
+        Control = checkBuscarAutomatico
+        ControlOptions.OriginalHeight = 27
+        ControlOptions.OriginalWidth = 213
+        ControlOptions.ShowBorder = False
+        Index = 1
+      end
+      object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+        Parent = LayoutGroup_Root
+        LayoutDirection = ldHorizontal
+        Index = 5
       end
     end
   end
   object dxLayoutLookAndFeelList1: TdxLayoutLookAndFeelList
-    Left = 760
-    Top = 200
+    Left = 592
+    Top = 136
     object dxLayoutCxLookAndFeel1: TdxLayoutCxLookAndFeel
       PixelsPerInch = 96
     end
   end
   object ActionList1: TActionList
-    Left = 760
-    Top = 304
+    Left = 696
+    Top = 136
     object LocalizarBancoEco: TAction
       Caption = 'LocalizarBancoEco'
       OnExecute = LocalizarBancoEcoExecute
@@ -203,19 +355,27 @@ object formConfig: TformConfig
       Caption = 'LocalizarFBClient'
       OnExecute = LocalizarFBClientExecute
     end
+    object LocalizarPastaExportacao: TAction
+      Caption = 'Action1'
+      OnExecute = LocalizarPastaExportacaoExecute
+    end
+    object LocalizarPastaImportacao: TAction
+      Caption = 'LocalizarPastaImportacao'
+      OnExecute = LocalizarPastaImportacaoExecute
+    end
   end
   object dlgBancoEco: TdxOpenFileDialog
     FileName = 'c:\ecosis\dados\ecodados.eco'
     Filter = 'Banco de dados|*.eco;*.fdb|Todos os arquivos|*'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
-    Left = 424
+    Left = 256
     Top = 328
   end
   object dlgFBClient: TdxOpenFileDialog
     FileName = 'c:\ecosis\windows\fbclient.dll'
     Filter = 'DLL|*.dll'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
-    Left = 536
+    Left = 336
     Top = 328
   end
   object StyledForm: TscStyledForm
@@ -268,7 +428,19 @@ object formConfig: TformConfig
     CaptionWallpaperTopMargin = 1
     CaptionWallpaperRightMargin = 1
     CaptionWallpaperBottomMargin = 1
-    Left = 624
-    Top = 376
+    Left = 784
+    Top = 136
+  end
+  object dialogExportacao: TdxOpenFileDialog
+    Filter = 'Planilha excel|*.xlsx'
+    Options = [ofPathMustExist, ofEnableSizing]
+    Left = 48
+    Top = 328
+  end
+  object dialogImportacao: TdxOpenFileDialog
+    Filter = 'Planilha excel|*.xlsx;*.csv'
+    Options = [ofPathMustExist, ofEnableSizing]
+    Left = 152
+    Top = 328
   end
 end
