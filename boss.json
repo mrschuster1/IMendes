@@ -1,0 +1,11 @@
+{
+	"name": "IMendes",
+	"description": "",
+	"version": "1.0.0",
+	"homepage": "",
+	"mainsrc": "./src",
+	"projects": [],
+	"dependencies": {
+		"github.com/hashload/ragna": "^3.2.6"
+	}
+}

@@ -1,8 +1,14 @@
 inherited formImportacao: TformImportacao
   Caption = 'Importa'#231#227'o'
+  ClientHeight = 667
+  ClientWidth = 1082
   TextHeight = 15
   inherited pnlMain: TdxPanel
+    Width = 1082
+    Height = 667
     inherited Grid: TcxGrid
+      Width = 1042
+      Height = 570
       inherited TableView: TcxGridDBTableView
         DataController.DataSource = DataSource
         DataController.KeyFieldNames = 'ID'
@@ -187,18 +193,23 @@ inherited formImportacao: TformImportacao
       end
     end
     inherited pnlTop: TdxPanel
+      Width = 1082
       inherited lblRegistros: TcxLabel
+        Left = 1053
         AnchorX = 1062
         AnchorY = 29
       end
       inherited edtPesquisa: TcxTextEdit
         Left = 273
-        ExplicitWidth = 888
+        ExplicitLeft = 273
+        ExplicitWidth = 764
+        ExplicitHeight = 37
         Width = 770
       end
       inherited buttonImprimirGrade: TcxButton
         Left = 144
         Margins.Left = 10
+        ExplicitLeft = 144
       end
       object btnImportar: TcxButton
         AlignWithMargins = True
@@ -231,7 +242,12 @@ inherited formImportacao: TformImportacao
       end
     end
   end
+  inherited StyledForm: TscStyledForm
+    Top = 128
+  end
   inherited ComponentPrinter: TdxComponentPrinter
+    Left = 512
+    Top = 176
     PixelsPerInch = 96
     inherited GridPrinter: TdxGridReportLink
       ReportDocument.CreationDate = 45259.496029537040000000
@@ -269,6 +285,7 @@ inherited formImportacao: TformImportacao
     FieldFormats = <>
     ErrorLogFileName = 'error.log'
     AddType = qatInsert
+    OnAfterImport = ImportCSVAfterImport
     Comma = ';'
     Quote = '"'
     Left = 576
@@ -285,21 +302,25 @@ inherited formImportacao: TformImportacao
     Left = 752
     Top = 208
     object ID: TStringField
+      DisplayLabel = 'Id'
       FieldName = 'ID'
     end
     object EAN: TStringField
       FieldName = 'EAN'
     end
     object CodigoInterno: TStringField
+      DisplayLabel = 'C'#243'digo interno'
       FieldName = 'CodigoInterno'
     end
     object CodigoIMendes: TStringField
+      DisplayLabel = 'C'#243'digo IMendes'
       FieldName = 'CodigoIMendes'
     end
     object Status: TStringField
       FieldName = 'Status'
     end
     object Descricao: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
       FieldName = 'Descricao'
     end
     object NCM: TStringField
@@ -309,18 +330,23 @@ inherited formImportacao: TformImportacao
       FieldName = 'CEST'
     end
     object IPI: TStringField
+      DisplayLabel = '% IPI'
       FieldName = 'PercIPI'
     end
     object CSTIPI: TStringField
+      DisplayLabel = 'CST IPI'
       FieldName = 'CSTIPI'
     end
     object CSTPisCofinsEntrada: TStringField
+      DisplayLabel = 'CST Pis Cofins Entrada'
       FieldName = 'CSTPisCofinsEnt'
     end
     object CSTPisCofinsSaida: TStringField
+      DisplayLabel = 'CST Pis Cofins Sa'#237'da'
       FieldName = 'CSTPisCofinsSai'
     end
     object NatRecIsentaPisCofins: TStringField
+      DisplayLabel = 'Natureza de receita isenta Pis Cofins'
       FieldName = 'NatRecIsentaPisCofins'
     end
     object LIsta: TStringField
@@ -330,15 +356,19 @@ inherited formImportacao: TformImportacao
       FieldName = 'Tipo'
     end
     object PIS: TStringField
+      DisplayLabel = '% PIS'
       FieldName = 'PercPIS'
     end
     object Cofins: TStringField
+      DisplayLabel = '% COFINS'
       FieldName = 'PercCOFINS'
     end
     object CFOPCompra: TStringField
+      DisplayLabel = 'CFOP Compra'
       FieldName = 'CFOPCompra'
     end
     object CFOPVenda: TStringField
+      DisplayLabel = 'CFOP Venda'
       FieldName = 'CFOPVenda'
     end
     object CST: TStringField
@@ -348,27 +378,34 @@ inherited formImportacao: TformImportacao
       FieldName = 'CSOSN'
     end
     object ModBC: TStringField
+      DisplayLabel = 'Mod. BC'
       FieldName = 'ModBC'
     end
     object ICMS: TStringField
+      DisplayLabel = '% ICMS'
       FieldName = 'PercICMS'
     end
     object ICMSPDV: TStringField
+      DisplayLabel = '% ICMS PDV'
       FieldName = 'PercICMSPDV'
     end
     object SimbPDV: TStringField
       FieldName = 'SimbPDV'
     end
     object RedBCICMS: TStringField
+      DisplayLabel = '% Redu'#231#227'o BC ICMS'
       FieldName = 'PercRedBCICMS'
     end
     object RedBCICMSST: TStringField
+      DisplayLabel = '% Redu'#231#227'o BC ICMS ST'
       FieldName = 'PercRedBCICMSST'
     end
     object ModBCST: TStringField
+      DisplayLabel = 'Mod. BC ST'
       FieldName = 'ModBCST'
     end
     object ICMSST: TStringField
+      DisplayLabel = '% ICMS ST'
       FieldName = 'PercICMSST'
     end
     object IVA: TStringField
@@ -378,39 +415,49 @@ inherited formImportacao: TformImportacao
       FieldName = 'PautaST'
     end
     object FCP: TStringField
+      DisplayLabel = '% FCP'
       FieldName = 'PercFCP'
     end
     object Antecipado: TStringField
       FieldName = 'Antecipado'
     end
     object Desoneracao: TStringField
+      DisplayLabel = '% Desoneracao'
       FieldName = 'PercDesoneracao'
     end
     object Diferimento: TStringField
+      DisplayLabel = '% Diferimento'
       FieldName = 'PercDiferimento'
     end
     object Isencao: TStringField
+      DisplayLabel = '% Isencao'
       FieldName = 'PercIsencao'
     end
     object aDRemICMS: TStringField
       FieldName = 'aDRemICMS'
     end
     object ANP: TStringField
+      DisplayLabel = 'C'#243'd. ANP'
       FieldName = 'CodANP'
     end
     object CodigoBeneficio: TStringField
+      DisplayLabel = 'C'#243'd. Benef'#205'cio'
       FieldName = 'CodBeneficio'
     end
     object DataAlteracao: TStringField
+      DisplayLabel = 'Data de altera'#231#227'o'
       FieldName = 'DataAlteracao'
     end
     object DataRevisao: TStringField
+      DisplayLabel = 'Data de revis'#227'o'
       FieldName = 'DataRevisao'
     end
     object DataUltimoConsumo: TStringField
+      DisplayLabel = 'Data do '#250'ltimo consumo'
       FieldName = 'DataUltimoConsumo'
     end
     object CodigoGPC: TStringField
+      DisplayLabel = 'C'#243'digo GPC'
       FieldName = 'CodigoGPC'
     end
   end

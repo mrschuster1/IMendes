@@ -3,15 +3,17 @@ unit Handler.Exception;
 interface
 
 uses
-  System.SysUtils;
+  System.SysUtils,
+  Quick.Log,
+  Quick.Commons;
 
 type
-  HandlerException = class
+  TException = class
   private
-    class procedure GerarLog(E: Exception);
-    class procedure EnviarEmail(E: Exception);
+
   public
     class procedure DoHandlerException(Sender: TObject; E: Exception);
+
   end;
 
 implementation
@@ -19,25 +21,20 @@ implementation
 uses
   Vcl.Dialogs,
   System.UITypes,
-  Utils.Dialogs;
+  Utils.Dialogs,
+  Forms;
 
-class procedure HandlerException.DoHandlerException(Sender: TObject;
+
+class procedure TException.DoHandlerException(Sender: TObject;
   E: Exception);
 begin
-  GerarLog(E);
-  EnviarEmail(E);
   Erro('Aconteceu um erro, mas não se preocupe, já avisamos a equipe do suporte!'
-    + #13 + e.Message);
+    + #13 + E.Message);
 end;
 
-class procedure HandlerException.EnviarEmail(E: Exception);
-begin
 
-end;
+initialization
 
-class procedure HandlerException.GerarLog(E: Exception);
-begin
-
-end;
+Application.OnException := TException.DoHandlerException
 
 end.

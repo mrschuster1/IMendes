@@ -1,8 +1,8 @@
 object DM: TDM
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Height = 430
-  Width = 642
+  Height = 181
+  Width = 534
   PixelsPerInch = 120
   object Connection: TFDConnection
     Params.Strings = (
@@ -24,26 +24,5 @@ object DM: TDM
     Provider = 'Forms'
     Left = 368
     Top = 56
-  end
-  object dxEMFSession1: TdxEMFSession
-    DataProvider = dxEMFFireDACDataProvider1
-    Left = 80
-    Top = 120
-  end
-  object dxEMFFireDACDataProvider1: TdxEMFFireDACDataProvider
-    Connection = Connection
-    Left = 208
-    Top = 152
-  end
-  object dxEMFDataSet1: TdxEMFDataSet
-    Session = dxEMFSession1
-    Params = <>
-    Left = 368
-    Top = 176
-  end
-  object dxEMFDataSource1: TdxEMFDataSource
-    Session = dxEMFSession1
-    Left = 264
-    Top = 256
   end
 end

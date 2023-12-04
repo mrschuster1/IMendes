@@ -20,33 +20,26 @@ uses
   FireDAC.Comp.UI,
   FireDAC.Phys.IBBase,
   Data.DB,
-  FireDAC.Comp.Client, dxEMF.DataDefinitions, cxEMFData, dxEMF.DataSet,
-  dxEMF.Core, dxEMF.DataProvider.FireDAC;
+  FireDAC.Comp.Client;
 
 type
   TDM = class(TDataModule)
     Connection: TFDConnection;
     FBClient: TFDPhysFBDriverLink;
     DBWaitCursor: TFDGUIxWaitCursor;
-    dxEMFSession1: TdxEMFSession;
-    dxEMFFireDACDataProvider1: TdxEMFFireDACDataProvider;
-    dxEMFDataSet1: TdxEMFDataSet;
-    dxEMFDataSource1: TdxEMFDataSource;
     procedure ConnectionBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
-    FEmpresa: string;
     { Private declarations }
     procedure CarregarConfiguracoes;
   public
     { Public declarations }
+    constructor Create; reintroduce;
     procedure Conectar;
     procedure Desconectar;
-    function CaminhoDB: string;
-    procedure ListarEmpresas(Strings: TStrings);
-    function NomeEmpresa: string;
-    property Empresa: string read FEmpresa write FEmpresa;
+    procedure Reconectar;
+    class function CaminhoDB: string;
   end;
 
 var
@@ -63,12 +56,18 @@ uses
 {$R *.dfm}
 
 
-function TDM.CaminhoDB: string;
+class function TDM.CaminhoDB: string;
 begin
-  if Connection.Connected then
-    result := Connection.Params.Database
-  else
-    result := 'Desconectado'
+  var
+  lDM := self.Create;
+  try
+    if lDM.Connection.Connected then
+      result := lDM.Connection.Params.Database
+    else
+      result := 'Desconectado';
+  finally
+    lDM.free
+  end;
 end;
 
 procedure TDM.CarregarConfiguracoes;
@@ -84,15 +83,25 @@ begin
     ('conexao', 'banco', 'c:\ecosis\dados\ecodados.eco');
 end;
 
+procedure TDM.Reconectar;
+begin
+  Desconectar;
+  Conectar
+end;
+
 procedure TDM.Conectar;
 begin
-  Connection.Connected := false;
   Connection.Connected := true
 end;
 
 procedure TDM.ConnectionBeforeConnect(Sender: TObject);
 begin
   CarregarConfiguracoes
+end;
+
+constructor TDM.Create;
+begin
+  inherited Create(nil);
 end;
 
 procedure TDM.DataModuleCreate(Sender: TObject);
@@ -102,52 +111,12 @@ end;
 
 procedure TDM.DataModuleDestroy(Sender: TObject);
 begin
-  Connection.Connected := false
+  Desconectar
 end;
 
 procedure TDM.Desconectar;
 begin
   Connection.Connected := false
-end;
-
-procedure TDM.ListarEmpresas(Strings: TStrings);
-begin
-  var
-  queryEmpresas := TFDQuery.Create(self);
-  try
-    queryEmpresas.Connection := Connection;
-    queryEmpresas.Open
-      ('select codigo, nomefantasia from tgerempresa order by 1');
-
-    while not queryEmpresas.Eof do
-    begin
-      Strings.Add(queryEmpresas.FieldByName('codigo')
-        .AsString + ' - ' + queryEmpresas.FieldByName('nomefantasia').AsString);
-
-      queryEmpresas.Next
-    end;
-
-  finally
-    queryEmpresas.Free
-  end;
-end;
-
-function TDM.NomeEmpresa: string;
-begin
-  var
-  queryEmpresas := TFDQuery.Create(self);
-  try
-    queryEmpresas.Connection := Connection;
-    queryEmpresas.sql.Add
-      ('select codigo, nomefantasia from tgerempresa where codigo = :codigo order by 1');
-    queryEmpresas.ParamByName('codigo').AsString := Empresa;
-    queryEmpresas.Open;
-    result := queryEmpresas.FieldByName('codigo')
-      .AsString + ' - ' + queryEmpresas.FieldByName('nomefantasia').AsString;
-
-  finally
-    queryEmpresas.Free
-  end;
 end;
 
 end.

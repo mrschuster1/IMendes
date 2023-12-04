@@ -4,38 +4,42 @@ object formEmpresas: TformEmpresas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Empresas'
-  ClientHeight = 269
-  ClientWidth = 591
+  ClientHeight = 260
+  ClientWidth = 585
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Position = poOwnerFormCenter
+  Position = poScreenCenter
   OnActivate = FormActivate
   OnShow = FormShow
   TextHeight = 15
   object pnlMain: TdxPanel
     Left = 0
     Top = 0
-    Width = 591
-    Height = 269
+    Width = 585
+    Height = 260
     Align = alClient
     Frame.Visible = False
     TabOrder = 0
+    ExplicitWidth = 579
+    ExplicitHeight = 251
     object pnlBottom: TdxPanel
       Left = 0
-      Top = 212
-      Width = 591
+      Top = 203
+      Width = 585
       Height = 57
       Align = alBottom
       Frame.Borders = [bBottom]
       Frame.Visible = False
       TabOrder = 0
+      ExplicitTop = 194
+      ExplicitWidth = 579
       object btnConfirmar: TcxButton
         AlignWithMargins = True
-        Left = 351
+        Left = 345
         Top = 10
         Width = 100
         Height = 37
@@ -63,7 +67,7 @@ object formEmpresas: TformEmpresas
           39393032333434207A222F3E0D0A3C2F7376673E0D0A}
         TabOrder = 0
         OnClick = btnConfirmarClick
-        ExplicitLeft = 345
+        ExplicitLeft = 339
       end
       object lblRegistros: TcxLabel
         Left = 0
@@ -83,7 +87,7 @@ object formEmpresas: TformEmpresas
       end
       object btnCancelar: TcxButton
         AlignWithMargins = True
-        Left = 471
+        Left = 465
         Top = 10
         Width = 100
         Height = 37
@@ -104,14 +108,14 @@ object formEmpresas: TformEmpresas
           9F9D0F3962C0AF776902E6C4A0AD55D6C2480000000049454E44AE426082}
         TabOrder = 2
         OnClick = btnCancelarClick
-        ExplicitLeft = 465
+        ExplicitLeft = 459
       end
     end
     object Layout: TdxLayoutControl
       Left = 0
       Top = 0
-      Width = 591
-      Height = 212
+      Width = 585
+      Height = 203
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -122,6 +126,8 @@ object formEmpresas: TformEmpresas
       ParentFont = False
       TabOrder = 1
       LayoutLookAndFeel = dxLayoutCxLookAndFeel1
+      ExplicitWidth = 579
+      ExplicitHeight = 194
       object lblEmpresas: TcxLabel
         Left = 19
         Top = 19
@@ -147,7 +153,7 @@ object formEmpresas: TformEmpresas
         Style.HotTrack = False
         Style.TransparentBorder = False
         TabOrder = 1
-        Width = 553
+        Width = 547
       end
       object LayoutGroup_Root: TdxLayoutGroup
         AlignHorz = ahClient

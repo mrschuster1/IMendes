@@ -1,0 +1,22 @@
+{
+	"hash": "d41d8cd98f00b204e9800998ecf8427e",
+	"updated": "2023-11-30T08:54:24.0998223-03:00",
+	"installedModules": {
+		"github.com/hashload/ragna": {
+			"name": "ragna",
+			"version": "3.2.6",
+			"hash": "825f4edd7b2688a5689ef66f9eca359c",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		},
+		"github.com/viniciussanchez/dataset-serialize": {
+			"name": "dataset-serialize",
+			"version": "v2.5.1",
+			"hash": "aeb9dcb884aaa3348aa1f44f89947547",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		}
+	}
+}

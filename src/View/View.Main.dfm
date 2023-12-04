@@ -2,8 +2,8 @@ object formMain: TformMain
   Left = 0
   Top = 0
   Caption = 'IMendes'
-  ClientHeight = 709
-  ClientWidth = 1053
+  ClientHeight = 700
+  ClientWidth = 1047
   Color = 2434341
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object formMain: TformMain
   object Ribbon: TdxRibbon
     Left = 0
     Top = 0
-    Width = 1053
+    Width = 1047
     Height = 157
     ApplicationButton.Menu = ribbonMenu
     BarManager = BarManager
@@ -56,7 +56,7 @@ object formMain: TformMain
     Contexts = <>
     TabOrder = 0
     TabStop = False
-    ExplicitWidth = 1047
+    ExplicitWidth = 1041
     object tabGeral: TdxRibbonTab
       Active = True
       Caption = 'Geral'
@@ -85,8 +85,8 @@ object formMain: TformMain
   end
   object StatusBar: TTMSFNCStatusBar
     Left = 0
-    Top = 689
-    Width = 1053
+    Top = 680
+    Width = 1047
     Height = 20
     ParentDoubleBuffered = False
     Color = 68106
@@ -101,7 +101,7 @@ object formMain: TformMain
     TabOrder = 2
     Panels = <
       item
-        Text = '29/11/2023'
+        Text = '04/12/2023'
         Style = spsDate
         Width = 80
         Progress.Level0Fill.Color = clLime
@@ -111,7 +111,7 @@ object formMain: TformMain
         Progress.Position = 0
       end
       item
-        Text = '11:50:55'
+        Text = '10:31:33'
         Style = spsTime
         Width = 70
         Progress.Level0Fill.Color = clLime
@@ -148,8 +148,8 @@ object formMain: TformMain
     PanelAppearance.Font.Quality = fqClearTypeNatural
     PanelAppearance.Fill.Color = 68106
     PanelAppearance.Stroke.Color = 68106
-    ExplicitTop = 680
-    ExplicitWidth = 1047
+    ExplicitTop = 671
+    ExplicitWidth = 1041
   end
   object BarManager: TdxBarManager
     Font.Charset = DEFAULT_CHARSET

@@ -171,8 +171,10 @@ type
     TableViewCodigoGPC: TcxGridDBColumn;
     btnImportar: TcxButton;
     procedure btnImportarClick(Sender: TObject);
+    procedure ImportCSVAfterImport(Sender: TObject);
   private
     procedure Importar;
+    procedure SalvarGridExcel(Caminho: string);
     { Private declarations }
   public
     { Public declarations }
@@ -186,6 +188,10 @@ implementation
 {$R *.dfm}
 
 
+uses
+  Helpers.Ini,
+  Utils.Dialogs;
+
 procedure TformImportacao.btnImportarClick(Sender: TObject);
 begin
   inherited;
@@ -194,13 +200,39 @@ end;
 
 procedure TformImportacao.Importar;
 begin
-  if dialogExcel.Execute then
+  StyledForm.ShowClientInActiveEffect;
+
+  if (TIniHelper.GetValue('importacao', 'buscar-automatico', false) = true) and
+    (TIniHelper.GetValue('importacao', 'diretorio', '') <> '') then
+    SalvarGridExcel(TIniHelper.GetValue('importacao', 'diretorio', ''))
+  else
   begin
-    ImportCSV.Map.LoadFromFile('map2.txt');
-    ImportCSV.FileName := dialogExcel.FileName;
-    MemData.Open;
-    ImportCSV.Execute;
+    if TIniHelper.GetValue('importacao', 'diretorio', '') = '' then
+      dialogExcel.FileName := 'produtos.csv'
+    else
+      dialogExcel.FileName := TIniHelper.GetValue('importacao',
+        'diretorio', '');
+
+    if dialogExcel.Execute then
+      SalvarGridExcel(dialogExcel.FileName)
   end;
+  StyledForm.HideClientInActiveEffect;
+end;
+
+procedure TformImportacao.ImportCSVAfterImport(Sender: TObject);
+begin
+  inherited;
+  lblRegistros.Caption := format('Total de registros: %s',
+    [MemData.RecordCount.ToString]);
+end;
+
+procedure TformImportacao.SalvarGridExcel(Caminho: string);
+begin
+  ImportCSV.Map.LoadFromFile(TIniHelper.GetValue('importacao', 'mapeamento',
+    'resource/posicoes.map'));
+  ImportCSV.FileName := Caminho;
+  MemData.Open;
+  ImportCSV.Execute;
 end;
 
 end.

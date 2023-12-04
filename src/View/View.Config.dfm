@@ -4,7 +4,7 @@ object formConfig: TformConfig
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Configura'#231#245'es'
-  ClientHeight = 389
+  ClientHeight = 473
   ClientWidth = 892
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,23 +20,23 @@ object formConfig: TformConfig
     Left = 0
     Top = 0
     Width = 892
-    Height = 389
+    Height = 473
     Align = alClient
     Frame.Visible = False
     TabOrder = 0
-    ExplicitWidth = 860
-    ExplicitHeight = 170
+    ExplicitWidth = 886
+    ExplicitHeight = 464
     object pnlBottom: TdxPanel
       Left = 0
-      Top = 332
+      Top = 416
       Width = 892
       Height = 57
       Align = alBottom
       Frame.Borders = [bBottom]
       Frame.Visible = False
       TabOrder = 0
-      ExplicitTop = 374
-      ExplicitWidth = 872
+      ExplicitTop = 407
+      ExplicitWidth = 886
       object btnSalvar: TcxButton
         AlignWithMargins = True
         Left = 652
@@ -66,8 +66,7 @@ object formConfig: TformConfig
           0000000049454E44AE426082}
         TabOrder = 0
         OnClick = btnSalvarClick
-        ExplicitLeft = 608
-        ExplicitTop = -14
+        ExplicitLeft = 646
       end
       object lblRegistros: TcxLabel
         Left = 0
@@ -108,14 +107,14 @@ object formConfig: TformConfig
           9F9D0F3962C0AF776902E6C4A0AD55D6C2480000000049454E44AE426082}
         TabOrder = 2
         OnClick = btnCancelarClick
-        ExplicitLeft = 740
+        ExplicitLeft = 766
       end
     end
     object Layout: TdxLayoutControl
       Left = 0
       Top = 0
       Width = 892
-      Height = 332
+      Height = 416
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -126,8 +125,8 @@ object formConfig: TformConfig
       ParentFont = False
       TabOrder = 1
       LayoutLookAndFeel = dxLayoutCxLookAndFeel1
-      ExplicitTop = -3
-      ExplicitHeight = 397
+      ExplicitWidth = 886
+      ExplicitHeight = 407
       object edtBanco: TcxButtonEdit
         Left = 186
         Top = 61
@@ -190,7 +189,7 @@ object formConfig: TformConfig
       end
       object edtExportacao: TcxButtonEdit
         Left = 186
-        Top = 203
+        Top = 243
         Properties.Buttons = <
           item
             Action = LocalizarPastaExportacao
@@ -199,12 +198,12 @@ object formConfig: TformConfig
           end>
         Style.HotTrack = False
         Style.TransparentBorder = False
-        TabOrder = 4
+        TabOrder = 5
         Width = 463
       end
       object edtImportacao: TcxButtonEdit
         Left = 186
-        Top = 243
+        Top = 283
         Properties.Buttons = <
           item
             Action = LocalizarPastaImportacao
@@ -213,34 +212,48 @@ object formConfig: TformConfig
           end>
         Style.HotTrack = False
         Style.TransparentBorder = False
-        TabOrder = 6
+        TabOrder = 7
         Width = 463
       end
       object checkSalvarAutomatico: TcxCheckBox
         Left = 664
-        Top = 203
+        Top = 243
         Caption = 'Salvar automaticamente'
         State = cbsChecked
         Style.HotTrack = False
         Style.TransparentBorder = False
-        TabOrder = 5
+        TabOrder = 6
         Transparent = True
       end
       object checkBuscarAutomatico: TcxCheckBox
         Left = 660
-        Top = 243
+        Top = 283
         Caption = 'Buscar automaticamente'
         State = cbsChecked
         Style.HotTrack = False
         Style.TransparentBorder = False
-        TabOrder = 7
+        TabOrder = 8
         Transparent = True
+      end
+      object edtMapeamento: TcxButtonEdit
+        Left = 186
+        Top = 203
+        Properties.Buttons = <
+          item
+            Action = LocalizarMapeamento
+            Default = True
+            Kind = bkEllipsis
+          end>
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        TabOrder = 4
+        Width = 687
       end
       object LayoutGroup_Root: TdxLayoutGroup
         AlignHorz = ahClient
         AlignVert = avTop
         Hidden = True
-        ItemIndex = 5
+        ItemIndex = 4
         ShowBorder = False
         Index = -1
       end
@@ -287,6 +300,7 @@ object formConfig: TformConfig
       object dxLayoutItem5: TdxLayoutItem
         Parent = dxLayoutAutoCreatedGroup1
         AlignHorz = ahClient
+        AlignVert = avTop
         CaptionOptions.Text = 'Exporta'#231#227'o'
         Control = edtExportacao
         ControlOptions.OriginalHeight = 29
@@ -318,7 +332,7 @@ object formConfig: TformConfig
       object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
         Parent = LayoutGroup_Root
         LayoutDirection = ldHorizontal
-        Index = 4
+        Index = 5
       end
       object dxLayoutItem8: TdxLayoutItem
         Parent = dxLayoutAutoCreatedGroup2
@@ -333,7 +347,16 @@ object formConfig: TformConfig
       object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
         Parent = LayoutGroup_Root
         LayoutDirection = ldHorizontal
-        Index = 5
+        Index = 6
+      end
+      object dxLayoutItem9: TdxLayoutItem
+        Parent = LayoutGroup_Root
+        CaptionOptions.Text = 'Mapeamento'
+        Control = edtMapeamento
+        ControlOptions.OriginalHeight = 29
+        ControlOptions.OriginalWidth = 121
+        ControlOptions.ShowBorder = False
+        Index = 4
       end
     end
   end
@@ -362,6 +385,10 @@ object formConfig: TformConfig
     object LocalizarPastaImportacao: TAction
       Caption = 'LocalizarPastaImportacao'
       OnExecute = LocalizarPastaImportacaoExecute
+    end
+    object LocalizarMapeamento: TAction
+      Caption = 'LocalizarMapeamento'
+      OnExecute = LocalizarMapeamentoExecute
     end
   end
   object dlgBancoEco: TdxOpenFileDialog
@@ -442,5 +469,11 @@ object formConfig: TformConfig
     Options = [ofPathMustExist, ofEnableSizing]
     Left = 152
     Top = 328
+  end
+  object dialogMapeamento: TdxOpenFileDialog
+    Filter = 'Arquivo de mapeamento de posi'#231#245'es|*.map'
+    Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
+    Left = 432
+    Top = 336
   end
 end

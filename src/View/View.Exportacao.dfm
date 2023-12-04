@@ -1,10 +1,14 @@
 inherited formExportacao: TformExportacao
   Caption = 'Exporta'#231#227'o'
-  ExplicitLeft = 2
-  ExplicitTop = 2
+  ClientHeight = 667
+  ClientWidth = 1082
   TextHeight = 15
   inherited pnlMain: TdxPanel
+    Width = 1082
+    Height = 667
     inherited Grid: TcxGrid
+      Width = 1042
+      Height = 570
       inherited TableView: TcxGridDBTableView
         DataController.DataSource = ds
         object TableViewCODIGOBARRA: TcxGridDBColumn
@@ -55,14 +59,18 @@ inherited formExportacao: TformExportacao
       end
     end
     inherited pnlTop: TdxPanel
+      Width = 1082
       inherited lblRegistros: TcxLabel
+        Left = 1053
+        AnchorX = 1062
         AnchorY = 29
       end
       inherited edtPesquisa: TcxTextEdit
         Left = 273
         ExplicitLeft = 273
-        ExplicitWidth = 754
-        Width = 760
+        ExplicitWidth = 764
+        ExplicitHeight = 37
+        Width = 770
       end
       inherited buttonImprimirGrade: TcxButton
         Left = 144
@@ -119,60 +127,9 @@ inherited formExportacao: TformExportacao
     end
   end
   object ds: TDataSource
-    DataSet = sql
+    DataSet = MemData
     Left = 896
     Top = 176
-  end
-  object sql: TFDQuery
-    BeforeOpen = sqlBeforeOpen
-    AfterOpen = sqlAfterOpen
-    Connection = DM.Connection
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    SQL.Strings = (
-      'select P.CODIGO,'
-      '       P.CODIGOBARRA,'
-      '       P.DESCRICAO'
-      '       '
-      'from TESTPRODUTOGERAL P'
-      ''
-      'inner join TESTPRODUTO PR on PR.EMPRESA = :EMPRESA and'
-      '      PR.PRODUTO = P.CODIGO'
-      ''
-      'where PR.ATIVO = '#39'S'#39
-      ''
-      'order by 2 asc  ')
-    Left = 896
-    Top = 248
-    ParamData = <
-      item
-        Name = 'EMPRESA'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 2
-        Value = Null
-      end>
-    object sqlCODIGOBARRA: TStringField
-      DisplayLabel = 'C'#243'digo de barras'
-      FieldName = 'CODIGOBARRA'
-      Origin = 'CODIGOBARRA'
-      Required = True
-    end
-    object sqlCODIGO: TStringField
-      DisplayLabel = 'C'#243'digo'
-      FieldName = 'CODIGO'
-      Origin = 'CODIGO'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-      Size = 6
-    end
-    object sqlDESCRICAO: TStringField
-      DisplayLabel = 'Descri'#231#227'o'
-      FieldName = 'DESCRICAO'
-      Origin = 'DESCRICAO'
-      Required = True
-      Size = 50
-    end
   end
   object dlgExportGridExcel: TdxSaveFileDialog
     Filter = '*.xlsx|Planilha Excel'
@@ -180,5 +137,27 @@ inherited formExportacao: TformExportacao
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 900
     Top = 341
+  end
+  object MemData: TdxMemData
+    Active = True
+    Indexes = <>
+    SortOptions = []
+    AfterOpen = MemDataAfterOpen
+    Left = 536
+    Top = 336
+    object MemDataCODIGOBARRA: TStringField
+      DisplayLabel = 'C'#243'digo de barras'
+      FieldName = 'CODIGOBARRA'
+    end
+    object MemDataCODIGO: TStringField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'CODIGO'
+      Size = 6
+    end
+    object MemDataDESCRICAO: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'DESCRICAO'
+      Size = 50
+    end
   end
 end

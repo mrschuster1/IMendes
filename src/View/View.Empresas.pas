@@ -64,6 +64,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    class var Empresa: integer;
     class function SelecionarEmpresa: boolean;
   end;
 
@@ -76,7 +77,8 @@ implementation
 
 
 uses
-  Model.Connection;
+  Model.Connection,
+  Services.Empresas;
 
 { TformEmpresas }
 
@@ -98,18 +100,16 @@ end;
 
 procedure TformEmpresas.FormShow(Sender: TObject);
 begin
-  dm.ListarEmpresas(cbEmpresas.Properties.Items);
-  cbEmpresas.ItemIndex := 0;
+  TServiceEmpresas.ListarEmpresas(cbEmpresas.Properties.Items);
+  cbEmpresas.ItemIndex := 0
 end;
 
 class function TformEmpresas.SelecionarEmpresa: boolean;
 begin
   var
-  lFormEmpresas := Self.Create(nil);
+  lFormEmpresas := Self.Create(application);
   try
     result := lFormEmpresas.ShowModal = mrok;
-    if result = false then
-      Application.Terminate
   finally
     lFormEmpresas.Free
   end;
@@ -122,7 +122,8 @@ end;
 
 procedure TformEmpresas.Salvar;
 begin
-  dm.Empresa := Copy(cbEmpresas.Properties.Items[cbEmpresas.ItemIndex], 0, 2);
+  TServiceEmpresas.SetEmpresa
+    (Copy(cbEmpresas.Properties.Items[cbEmpresas.ItemIndex], 0, 3));
   ModalResult := mrok;
 end;
 

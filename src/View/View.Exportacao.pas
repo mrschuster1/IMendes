@@ -84,24 +84,24 @@ uses
   FireDAC.DApt,
   dxShellDialogs,
   FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client,
+  dxmdaset;
 
 type
   TformExportacao = class(TformPesquisaGrade)
     btnExportar: TcxButton;
     ds: TDataSource;
-    sql: TFDQuery;
-    sqlCODIGOBARRA: TStringField;
-    sqlCODIGO: TStringField;
-    sqlDESCRICAO: TStringField;
     dlgExportGridExcel: TdxSaveFileDialog;
     TableViewCODIGOBARRA: TcxGridDBColumn;
     TableViewCODIGO: TcxGridDBColumn;
     TableViewDESCRICAO: TcxGridDBColumn;
-    procedure sqlAfterOpen(DataSet: TDataSet);
-    procedure sqlBeforeOpen(DataSet: TDataSet);
+    MemData: TdxMemData;
+    MemDataCODIGOBARRA: TStringField;
+    MemDataCODIGO: TStringField;
+    MemDataDESCRICAO: TStringField;
     procedure FormCreate(Sender: TObject);
     procedure btnExportarClick(Sender: TObject);
+    procedure MemDataAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
     procedure ExportarGridExcel;
@@ -122,11 +122,21 @@ implementation
 uses
   Model.Connection,
   Helpers.Ini,
-  Utils.Dialogs;
+  Utils.Dialogs,
+  Services.Empresas,
+  Services.Produtos;
 
 procedure TformExportacao.AbrirQuery;
 begin
-  sql.open
+  var
+  lProdutos := TServiceProdutos.Create;
+  try
+    MemData.CopyFromDataSet(lProdutos.Get);
+    lblRegistros.Caption := format('Total de registros: %s',
+      [MemData.RecordCount.ToString]);
+  finally
+    lProdutos.Free
+  end;
 end;
 
 procedure TformExportacao.btnExportarClick(Sender: TObject);
@@ -162,6 +172,12 @@ begin
   AbrirQuery;
 end;
 
+procedure TformExportacao.MemDataAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+  TableView.DataController.CreateAllItems(true);
+end;
+
 procedure TformExportacao.SalvarGridExcel(Caminho: string);
 begin
   TableView.OptionsView.Header := false;
@@ -174,20 +190,6 @@ begin
     ShellExecute(0, 'open', PChar(Caminho), nil, nil,
       SW_SHOWNORMAL);
   TableView.OptionsView.Header := true;
-end;
-
-procedure TformExportacao.sqlAfterOpen(DataSet: TDataSet);
-begin
-  inherited;
-  TableView.DataController.CreateAllItems(true);
-  lblRegistros.Caption := format('Total de registros: %s',
-    [sql.RecordCount.ToString]);
-end;
-
-procedure TformExportacao.sqlBeforeOpen(DataSet: TDataSet);
-begin
-  inherited;
-  sql.ParamByName('EMPRESA').AsString := dm.Empresa
 end;
 
 end.

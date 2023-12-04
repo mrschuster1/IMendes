@@ -74,13 +74,13 @@ type
     procedure buttonExportacaoClick(Sender: TObject);
     procedure buttonImportarClick(Sender: TObject);
   private
-    { Private declarations }
     procedure CarregarIdioma;
     procedure AtualizarStatusBar;
     procedure Configurar;
     function FecharTodasAbas: boolean;
+
   public
-    { Public declarations }
+    Empresa: integer;
   end;
 
 var
@@ -97,16 +97,16 @@ uses
   View.Exportacao,
   utils.Dialogs,
   View.Empresas,
-  View.Importacao;
+  View.Importacao,
+  Services.Empresas;
 
 { TFormMain }
 
 procedure TformMain.AtualizarStatusBar;
 begin
   StatusBar.Panels.Items[2].Text := format(' Banco de dados: %s',
-    [dm.CaminhoDB]);
-  StatusBar.Panels.Items[3].Text := format(' Empresa: %s',
-    [dm.NomeEmpresa])
+    [tdm.CaminhoDB]);
+  StatusBar.Panels.Items[3].Text := TServiceEmpresas.NomeEmpresa
 end;
 
 procedure TformMain.buttonConfigClick(Sender: TObject);
