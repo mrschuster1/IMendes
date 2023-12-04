@@ -206,6 +206,7 @@ type
     LayoutViewDBLayoutViewItem27: TcxGridDBLayoutViewItem;
     LayoutViewDBLayoutViewItem28: TcxGridDBLayoutViewItem;
     LayoutViewDBLayoutViewItem29: TcxGridDBLayoutViewItem;
+    LayoutViewGroup1: TdxLayoutGroup;
     procedure buttonImprimirGradeClick(Sender: TObject);
     procedure edtPesquisaPropertiesChange(Sender: TObject);
     procedure btnImportarClick(Sender: TObject);

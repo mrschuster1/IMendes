@@ -1,19 +1,17 @@
 inherited formImportar: TformImportar
   Caption = 'Importa'#231#227'o'
-  ExplicitLeft = 3
-  ExplicitTop = 3
-  ExplicitWidth = 1088
-  ExplicitHeight = 696
+  ExplicitWidth = 1082
+  ExplicitHeight = 687
   TextHeight = 15
   inherited pnlMain: TdxPanel
-    ExplicitWidth = 1070
-    ExplicitHeight = 649
+    ExplicitWidth = 1064
+    ExplicitHeight = 640
     object Grid: TcxGrid
       AlignWithMargins = True
       Left = 20
       Top = 77
-      Width = 1036
-      Height = 561
+      Width = 1030
+      Height = 552
       Margins.Left = 20
       Margins.Top = 20
       Margins.Right = 20
@@ -21,6 +19,8 @@ inherited formImportar: TformImportar
       Align = alClient
       BorderStyle = cxcbsNone
       TabOrder = 0
+      ExplicitWidth = 1024
+      ExplicitHeight = 543
       object TableView: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
         Navigator.Buttons.First.Visible = True
@@ -66,16 +66,24 @@ inherited formImportar: TformImportar
         OptionsView.GroupByBox = False
         OptionsView.HeaderFilterButtonShowMode = fbmSmartTag
         OptionsView.ShowColumnFilterButtons = sfbWhenSelected
-        object TableViewID: TcxGridDBColumn
-          DataBinding.FieldName = 'ID'
+        object TableViewCodigoInterno: TcxGridDBColumn
+          DataBinding.FieldName = 'CodigoInterno'
+          Width = 133
+        end
+        object TableViewDescricao: TcxGridDBColumn
+          DataBinding.FieldName = 'Descricao'
           Width = 133
         end
         object TableViewEAN: TcxGridDBColumn
           DataBinding.FieldName = 'EAN'
           Width = 133
         end
-        object TableViewCodigoInterno: TcxGridDBColumn
-          DataBinding.FieldName = 'CodigoInterno'
+        object TableViewID: TcxGridDBColumn
+          DataBinding.FieldName = 'ID'
+          Width = 133
+        end
+        object TableViewNCM: TcxGridDBColumn
+          DataBinding.FieldName = 'NCM'
           Width = 133
         end
         object TableViewCodigoIMendes: TcxGridDBColumn
@@ -84,14 +92,6 @@ inherited formImportar: TformImportar
         end
         object TableViewStatus: TcxGridDBColumn
           DataBinding.FieldName = 'Status'
-          Width = 133
-        end
-        object TableViewDescricao: TcxGridDBColumn
-          DataBinding.FieldName = 'Descricao'
-          Width = 133
-        end
-        object TableViewNCM: TcxGridDBColumn
-          DataBinding.FieldName = 'NCM'
           Width = 133
         end
       end
@@ -250,6 +250,7 @@ inherited formImportar: TformImportar
           AlignVert = avClient
           CaptionOptions.Text = 'Template Layout'
           Hidden = True
+          ItemIndex = 1
           LayoutDirection = ldTabbed
           ScrollOptions.Horizontal = smAuto
           ScrollOptions.Vertical = smAuto
@@ -262,7 +263,8 @@ inherited formImportar: TformImportar
         end
         object LayoutViewLayoutItem2: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 1
+          AlignVert = avClient
+          Index = 3
         end
         object LayoutViewLayoutItem3: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
@@ -270,107 +272,116 @@ inherited formImportar: TformImportar
         end
         object LayoutViewLayoutItem4: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 3
+          Index = 4
         end
         object LayoutViewLayoutItem5: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 4
+          Index = 5
         end
         object LayoutViewLayoutItem6: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 5
+          Index = 6
         end
         object LayoutViewLayoutItem7: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 6
+          Index = 7
         end
         object LayoutViewLayoutItem8: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 7
+          Index = 8
         end
         object LayoutViewLayoutItem9: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 8
+          Index = 9
         end
         object LayoutViewLayoutItem10: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 9
+          Index = 10
         end
         object LayoutViewLayoutItem11: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 10
+          Index = 11
         end
         object LayoutViewLayoutItem12: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 11
+          Index = 12
         end
         object LayoutViewLayoutItem13: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 12
+          Index = 13
         end
         object LayoutViewLayoutItem14: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 13
+          Index = 14
         end
         object LayoutViewLayoutItem15: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 14
-        end
-        object LayoutViewLayoutItem16: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
           Index = 15
         end
+        object LayoutViewLayoutItem16: TcxGridLayoutItem
+          Parent = LayoutViewGroup1
+          AlignHorz = ahLeft
+          Index = 0
+        end
         object LayoutViewLayoutItem17: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 16
+          Parent = LayoutViewGroup1
+          Index = 1
         end
         object LayoutViewLayoutItem18: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 17
+          Index = 16
         end
         object LayoutViewLayoutItem19: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 18
+          Index = 17
         end
         object LayoutViewLayoutItem20: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 19
+          Parent = LayoutViewGroup1
+          Index = 3
         end
         object LayoutViewLayoutItem21: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 20
+          Parent = LayoutViewGroup1
+          Index = 4
         end
         object LayoutViewLayoutItem22: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 21
+          Parent = LayoutViewGroup1
+          Index = 2
         end
         object LayoutViewLayoutItem23: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 22
+          Index = 18
         end
         object LayoutViewLayoutItem24: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 23
+          Index = 19
         end
         object LayoutViewLayoutItem25: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 24
+          Index = 20
         end
         object LayoutViewLayoutItem26: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 25
+          Index = 21
         end
         object LayoutViewLayoutItem27: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 26
+          Index = 22
         end
         object LayoutViewLayoutItem28: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 27
+          Index = 23
         end
         object LayoutViewLayoutItem29: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 28
+          Index = 24
+        end
+        object LayoutViewGroup1: TdxLayoutGroup
+          Parent = LayoutViewGroup_Root
+          CaptionOptions.Text = 'ICMS'
+          ButtonOptions.DefaultHeight = 20
+          ButtonOptions.DefaultWidth = 20
+          ItemIndex = 4
+          Index = 1
         end
       end
       object GridLevel1: TcxGridLevel
@@ -388,15 +399,16 @@ inherited formImportar: TformImportar
     object pnlTop: TdxPanel
       Left = 0
       Top = 0
-      Width = 1076
+      Width = 1070
       Height = 57
       Align = alTop
       Frame.Borders = [bBottom]
       Frame.Visible = False
       TabOrder = 1
+      ExplicitWidth = 1064
       object lblRegistros: TcxLabel
         AlignWithMargins = True
-        Left = 1047
+        Left = 1041
         Top = 0
         Margins.Left = 0
         Margins.Top = 0
@@ -414,9 +426,8 @@ inherited formImportar: TformImportar
         Properties.Alignment.Horz = taRightJustify
         Properties.Alignment.Vert = taVCenter
         Transparent = True
-        ExplicitLeft = 1045
-        ExplicitHeight = 55
-        AnchorX = 1056
+        ExplicitLeft = 1035
+        AnchorX = 1050
         AnchorY = 29
       end
       object edtPesquisa: TcxTextEdit
@@ -432,10 +443,8 @@ inherited formImportar: TformImportar
         Style.BorderStyle = ebsNone
         TabOrder = 1
         TextHint = ' Pesquisar'
-        ExplicitLeft = 149
-        ExplicitWidth = 774
-        ExplicitHeight = 35
-        Width = 764
+        ExplicitWidth = 752
+        Width = 758
       end
       object buttonImprimirGrade: TcxButton
         AlignWithMargins = True
@@ -461,8 +470,6 @@ inherited formImportar: TformImportar
           454E44AE426082}
         TabOrder = 2
         OnClick = buttonImprimirGradeClick
-        ExplicitLeft = 20
-        ExplicitHeight = 35
       end
       object btnImportar: TcxButton
         AlignWithMargins = True
@@ -495,11 +502,19 @@ inherited formImportar: TformImportar
       end
     end
   end
+  inherited Localizer: TcxLocalizer
+    Left = 692
+    Top = 144
+  end
+  inherited StyledForm: TscStyledForm
+    Left = 600
+    Top = 160
+  end
   object ComponentPrinter: TdxComponentPrinter
     CurrentLink = GridPrinter
     Version = 0
-    Left = 496
-    Top = 72
+    Left = 528
+    Top = 184
     PixelsPerInch = 96
     object GridPrinter: TdxGridReportLink
       Active = True
@@ -517,7 +532,7 @@ inherited formImportar: TformImportar
       PrinterPage._dxMeasurementUnits_ = 0
       PrinterPage._dxLastMU_ = 2
       ReportDocument.Caption = 'Imrpess'#227'o - IMendes'
-      ReportDocument.CreationDate = 45264.487686608790000000
+      ReportDocument.CreationDate = 45264.698963067130000000
       ReportDocument.Creator = 'IMendes'
       OptionsOnEveryPage.Footers = False
       OptionsOnEveryPage.Caption = False
