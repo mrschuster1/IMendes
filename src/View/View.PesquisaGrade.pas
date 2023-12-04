@@ -70,7 +70,7 @@ uses
   dxPScxEditorProducers,
   dxPScxExtEditorProducers,
   dxPSCore,
-  dxPScxCommon;
+  dxPScxCommon, dxSkinOffice2019Colorful;
 
 type
   TformPesquisaGrade = class(TformChild)

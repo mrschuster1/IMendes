@@ -111,7 +111,7 @@ object formMain: TformMain
         Progress.Position = 0
       end
       item
-        Text = '10:31:33'
+        Text = '11:48:33'
         Style = spsTime
         Width = 70
         Progress.Level0Fill.Color = clLime

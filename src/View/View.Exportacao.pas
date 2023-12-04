@@ -85,7 +85,7 @@ uses
   dxShellDialogs,
   FireDAC.Comp.DataSet,
   FireDAC.Comp.Client,
-  dxmdaset;
+  dxmdaset, dxSkinOffice2019Colorful;
 
 type
   TformExportacao = class(TformPesquisaGrade)

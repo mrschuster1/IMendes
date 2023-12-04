@@ -1,201 +1,20 @@
 inherited formImportacao: TformImportacao
   Caption = 'Importa'#231#227'o'
-  ClientHeight = 667
-  ClientWidth = 1082
+  ExplicitLeft = 3
+  ExplicitTop = 3
   TextHeight = 15
   inherited pnlMain: TdxPanel
-    Width = 1082
-    Height = 667
     inherited Grid: TcxGrid
-      Width = 1042
-      Height = 570
       inherited TableView: TcxGridDBTableView
         DataController.DataSource = DataSource
         DataController.KeyFieldNames = 'ID'
-        OptionsView.ColumnAutoWidth = False
-        object TableViewRecId: TcxGridDBColumn
-          DataBinding.FieldName = 'RecId'
-          Visible = False
-          Width = 74
-        end
-        object TableViewID: TcxGridDBColumn
-          DataBinding.FieldName = 'ID'
-          Width = 144
-        end
-        object TableViewEAN: TcxGridDBColumn
-          DataBinding.FieldName = 'EAN'
-          Width = 144
-        end
-        object TableViewCodigoInterno: TcxGridDBColumn
-          DataBinding.FieldName = 'CodigoInterno'
-          Width = 144
-        end
-        object TableViewCodigoIMendes: TcxGridDBColumn
-          DataBinding.FieldName = 'CodigoIMendes'
-          Width = 144
-        end
-        object TableViewStatus: TcxGridDBColumn
-          DataBinding.FieldName = 'Status'
-          Width = 144
-        end
-        object TableViewDescricao: TcxGridDBColumn
-          DataBinding.FieldName = 'Descricao'
-          Width = 144
-        end
-        object TableViewNCM: TcxGridDBColumn
-          DataBinding.FieldName = 'NCM'
-          Width = 144
-        end
-        object TableViewCEST: TcxGridDBColumn
-          DataBinding.FieldName = 'CEST'
-          Width = 144
-        end
-        object TableViewPercIPI: TcxGridDBColumn
-          DataBinding.FieldName = 'PercIPI'
-          Width = 144
-        end
-        object TableViewCSTIPI: TcxGridDBColumn
-          DataBinding.FieldName = 'CSTIPI'
-          Width = 144
-        end
-        object TableViewCSTPisCofinsEnt: TcxGridDBColumn
-          DataBinding.FieldName = 'CSTPisCofinsEnt'
-          Width = 144
-        end
-        object TableViewCSTPisCofinsSai: TcxGridDBColumn
-          DataBinding.FieldName = 'CSTPisCofinsSai'
-          Width = 144
-        end
-        object TableViewNatRecIsentaPisCofins: TcxGridDBColumn
-          DataBinding.FieldName = 'NatRecIsentaPisCofins'
-          Width = 144
-        end
-        object TableViewLista: TcxGridDBColumn
-          DataBinding.FieldName = 'Lista'
-          Width = 144
-        end
-        object TableViewTipo: TcxGridDBColumn
-          DataBinding.FieldName = 'Tipo'
-          Width = 144
-        end
-        object TableViewPercPIS: TcxGridDBColumn
-          DataBinding.FieldName = 'PercPIS'
-          Width = 144
-        end
-        object TableViewPercCOFINS: TcxGridDBColumn
-          DataBinding.FieldName = 'PercCOFINS'
-          Width = 144
-        end
-        object TableViewCFOPCompra: TcxGridDBColumn
-          DataBinding.FieldName = 'CFOPCompra'
-          Width = 144
-        end
-        object TableViewCFOPVenda: TcxGridDBColumn
-          DataBinding.FieldName = 'CFOPVenda'
-          Width = 144
-        end
-        object TableViewCST: TcxGridDBColumn
-          DataBinding.FieldName = 'CST'
-          Width = 144
-        end
-        object TableViewCSOSN: TcxGridDBColumn
-          DataBinding.FieldName = 'CSOSN'
-          Width = 144
-        end
-        object TableViewModBC: TcxGridDBColumn
-          DataBinding.FieldName = 'ModBC'
-          Width = 144
-        end
-        object TableViewPercICMS: TcxGridDBColumn
-          DataBinding.FieldName = 'PercICMS'
-          Width = 144
-        end
-        object TableViewPercICMSPDV: TcxGridDBColumn
-          DataBinding.FieldName = 'PercICMSPDV'
-          Width = 144
-        end
-        object TableViewSimbPDV: TcxGridDBColumn
-          DataBinding.FieldName = 'SimbPDV'
-          Width = 144
-        end
-        object TableViewPercRedBCICMS: TcxGridDBColumn
-          DataBinding.FieldName = 'PercRedBCICMS'
-          Width = 144
-        end
-        object TableViewPercRedBCICMSST: TcxGridDBColumn
-          DataBinding.FieldName = 'PercRedBCICMSST'
-          Width = 144
-        end
-        object TableViewModBCST: TcxGridDBColumn
-          DataBinding.FieldName = 'ModBCST'
-          Width = 144
-        end
-        object TableViewPercICMSST: TcxGridDBColumn
-          DataBinding.FieldName = 'PercICMSST'
-          Width = 144
-        end
-        object TableViewIVA: TcxGridDBColumn
-          DataBinding.FieldName = 'IVA'
-          Width = 144
-        end
-        object TableViewPautaST: TcxGridDBColumn
-          DataBinding.FieldName = 'PautaST'
-          Width = 144
-        end
-        object TableViewPercFCP: TcxGridDBColumn
-          DataBinding.FieldName = 'PercFCP'
-          Width = 144
-        end
-        object TableViewAntecipado: TcxGridDBColumn
-          DataBinding.FieldName = 'Antecipado'
-          Width = 144
-        end
-        object TableViewPercDesoneracao: TcxGridDBColumn
-          DataBinding.FieldName = 'PercDesoneracao'
-          Width = 144
-        end
-        object TableViewPercDiferimento: TcxGridDBColumn
-          DataBinding.FieldName = 'PercDiferimento'
-          Width = 144
-        end
-        object TableViewPercIsencao: TcxGridDBColumn
-          DataBinding.FieldName = 'PercIsencao'
-          Width = 144
-        end
-        object TableViewaDRemICMS: TcxGridDBColumn
-          DataBinding.FieldName = 'aDRemICMS'
-          Width = 144
-        end
-        object TableViewCodANP: TcxGridDBColumn
-          DataBinding.FieldName = 'CodANP'
-          Width = 144
-        end
-        object TableViewCodBeneficio: TcxGridDBColumn
-          DataBinding.FieldName = 'CodBeneficio'
-          Width = 144
-        end
-        object TableViewDataAlteracao: TcxGridDBColumn
-          DataBinding.FieldName = 'DataAlteracao'
-          Width = 144
-        end
-        object TableViewDataRevisao: TcxGridDBColumn
-          DataBinding.FieldName = 'DataRevisao'
-          Width = 144
-        end
-        object TableViewDataUltimoConsumo: TcxGridDBColumn
-          DataBinding.FieldName = 'DataUltimoConsumo'
-          Width = 144
-        end
-        object TableViewCodigoGPC: TcxGridDBColumn
-          DataBinding.FieldName = 'CodigoGPC'
-          Width = 144
-        end
+      end
+      inherited GridLevel1: TcxGridLevel
+        Visible = False
       end
     end
     inherited pnlTop: TdxPanel
-      Width = 1082
       inherited lblRegistros: TcxLabel
-        Left = 1053
         AnchorX = 1062
         AnchorY = 29
       end
@@ -203,7 +22,6 @@ inherited formImportacao: TformImportacao
         Left = 273
         ExplicitLeft = 273
         ExplicitWidth = 764
-        ExplicitHeight = 37
         Width = 770
       end
       inherited buttonImprimirGrade: TcxButton

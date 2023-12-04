@@ -48,7 +48,7 @@ uses
   VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCCustomControl,
-  VCL.TMSFNCStatusBar;
+  VCL.TMSFNCStatusBar, dxSkinOffice2019Colorful;
 
 type
   TformMain = class(TdxRibbonForm)
@@ -98,7 +98,7 @@ uses
   utils.Dialogs,
   View.Empresas,
   View.Importacao,
-  Services.Empresas;
+  Services.Empresas, View.Importar;
 
 { TFormMain }
 
@@ -121,7 +121,7 @@ end;
 
 procedure TformMain.buttonImportarClick(Sender: TObject);
 begin
-  TFormHelper.CreateTabForm<TformImportacao>(self, true)
+  TFormHelper.CreateTabForm<TformImportar>(self, true)
 end;
 
 procedure TformMain.CarregarIdioma;

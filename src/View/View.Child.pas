@@ -23,7 +23,7 @@ uses
   dxSkinOffice2019Black,
   cxGeometry,
   dxFramedControl,
-  dxPanel;
+  dxPanel, dxSkinOffice2019Colorful;
 
 type
   TformChild = class(TForm)

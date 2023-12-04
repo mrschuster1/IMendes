@@ -74,7 +74,13 @@ uses
   dxmdaset,
   QImport3,
   QImport3ASCII,
-  dxShellDialogs;
+  dxShellDialogs,
+  dxSkinOffice2019Colorful,
+  cxGridLayoutView,
+  cxGridDBLayoutView,
+  dxLayoutContainer,
+  cxGridViewLayoutContainer,
+  cxGridCustomLayoutView;
 
 type
   TformImportacao = class(TformPesquisaGrade)
@@ -125,56 +131,12 @@ type
     DataRevisao: TStringField;
     DataUltimoConsumo: TStringField;
     CodigoGPC: TStringField;
-    TableViewRecId: TcxGridDBColumn;
-    TableViewID: TcxGridDBColumn;
-    TableViewEAN: TcxGridDBColumn;
-    TableViewCodigoInterno: TcxGridDBColumn;
-    TableViewCodigoIMendes: TcxGridDBColumn;
-    TableViewStatus: TcxGridDBColumn;
-    TableViewDescricao: TcxGridDBColumn;
-    TableViewNCM: TcxGridDBColumn;
-    TableViewCEST: TcxGridDBColumn;
-    TableViewPercIPI: TcxGridDBColumn;
-    TableViewCSTIPI: TcxGridDBColumn;
-    TableViewCSTPisCofinsEnt: TcxGridDBColumn;
-    TableViewCSTPisCofinsSai: TcxGridDBColumn;
-    TableViewNatRecIsentaPisCofins: TcxGridDBColumn;
-    TableViewLista: TcxGridDBColumn;
-    TableViewTipo: TcxGridDBColumn;
-    TableViewPercPIS: TcxGridDBColumn;
-    TableViewPercCOFINS: TcxGridDBColumn;
-    TableViewCFOPCompra: TcxGridDBColumn;
-    TableViewCFOPVenda: TcxGridDBColumn;
-    TableViewCST: TcxGridDBColumn;
-    TableViewCSOSN: TcxGridDBColumn;
-    TableViewModBC: TcxGridDBColumn;
-    TableViewPercICMS: TcxGridDBColumn;
-    TableViewPercICMSPDV: TcxGridDBColumn;
-    TableViewSimbPDV: TcxGridDBColumn;
-    TableViewPercRedBCICMS: TcxGridDBColumn;
-    TableViewPercRedBCICMSST: TcxGridDBColumn;
-    TableViewModBCST: TcxGridDBColumn;
-    TableViewPercICMSST: TcxGridDBColumn;
-    TableViewIVA: TcxGridDBColumn;
-    TableViewPautaST: TcxGridDBColumn;
-    TableViewPercFCP: TcxGridDBColumn;
-    TableViewAntecipado: TcxGridDBColumn;
-    TableViewPercDesoneracao: TcxGridDBColumn;
-    TableViewPercDiferimento: TcxGridDBColumn;
-    TableViewPercIsencao: TcxGridDBColumn;
-    TableViewaDRemICMS: TcxGridDBColumn;
-    TableViewCodANP: TcxGridDBColumn;
-    TableViewCodBeneficio: TcxGridDBColumn;
-    TableViewDataAlteracao: TcxGridDBColumn;
-    TableViewDataRevisao: TcxGridDBColumn;
-    TableViewDataUltimoConsumo: TcxGridDBColumn;
-    TableViewCodigoGPC: TcxGridDBColumn;
     btnImportar: TcxButton;
     procedure btnImportarClick(Sender: TObject);
     procedure ImportCSVAfterImport(Sender: TObject);
   private
     procedure Importar;
-    procedure SalvarGridExcel(Caminho: string);
+    procedure ImportarCSV(Caminho: string);
     { Private declarations }
   public
     { Public declarations }
@@ -204,7 +166,7 @@ begin
 
   if (TIniHelper.GetValue('importacao', 'buscar-automatico', false) = true) and
     (TIniHelper.GetValue('importacao', 'diretorio', '') <> '') then
-    SalvarGridExcel(TIniHelper.GetValue('importacao', 'diretorio', ''))
+    ImportarCSV(TIniHelper.GetValue('importacao', 'diretorio', ''))
   else
   begin
     if TIniHelper.GetValue('importacao', 'diretorio', '') = '' then
@@ -214,7 +176,7 @@ begin
         'diretorio', '');
 
     if dialogExcel.Execute then
-      SalvarGridExcel(dialogExcel.FileName)
+      ImportarCSV(dialogExcel.FileName)
   end;
   StyledForm.HideClientInActiveEffect;
 end;
@@ -226,7 +188,7 @@ begin
     [MemData.RecordCount.ToString]);
 end;
 
-procedure TformImportacao.SalvarGridExcel(Caminho: string);
+procedure TformImportacao.ImportarCSV(Caminho: string);
 begin
   ImportCSV.Map.LoadFromFile(TIniHelper.GetValue('importacao', 'mapeamento',
     'resource/posicoes.map'));

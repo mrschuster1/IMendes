@@ -1,11 +1,11 @@
 inherited formPesquisaGrade: TformPesquisaGrade
   Caption = 'Pesquisa'
-  ExplicitLeft = 3
-  ExplicitTop = 3
-  ExplicitWidth = 1094
-  ExplicitHeight = 705
+  ClientHeight = 667
+  ClientWidth = 1082
   TextHeight = 15
   inherited pnlMain: TdxPanel
+    Width = 1082
+    Height = 667
     ExplicitWidth = 1076
     ExplicitHeight = 658
     object Grid: TcxGrid
@@ -128,7 +128,7 @@ inherited formPesquisaGrade: TformPesquisaGrade
         Style.BorderStyle = ebsNone
         TabOrder = 1
         TextHint = ' Pesquisar'
-        ExplicitWidth = 878
+        ExplicitWidth = 888
         Width = 894
       end
       object buttonImprimirGrade: TcxButton
@@ -180,7 +180,7 @@ inherited formPesquisaGrade: TformPesquisaGrade
       PrinterPage._dxMeasurementUnits_ = 0
       PrinterPage._dxLastMU_ = 2
       ReportDocument.Caption = 'Imrpess'#227'o - IMendes'
-      ReportDocument.CreationDate = 45259.492557858790000000
+      ReportDocument.CreationDate = 45264.477312048610000000
       ReportDocument.Creator = 'IMendes'
       OptionsOnEveryPage.Footers = False
       OptionsOnEveryPage.Caption = False
