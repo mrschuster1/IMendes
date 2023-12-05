@@ -149,10 +149,6 @@
             <Form>formExportacao</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="src\View\View.Importacao.pas">
-            <Form>formImportacao</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="src\Services\Services.Empresas.pas">
             <Form>ServiceEmpresas</Form>
             <FormType>dfm</FormType>

@@ -39,6 +39,8 @@ inherited formImportar: TformImportar
         Navigator.Buttons.SaveBookmark.Visible = True
         Navigator.Buttons.GotoBookmark.Visible = True
         Navigator.Buttons.Filter.Visible = False
+        Navigator.InfoPanel.DisplayMask = '[RecordIndex] de [RecordCount]'
+        Navigator.InfoPanel.Visible = True
         Navigator.Visible = True
         FilterBox.Visible = fvNever
         ScrollbarAnnotations.CustomAnnotations = <>
@@ -55,7 +57,6 @@ inherited formImportar: TformImportar
         OptionsData.CancelOnExit = False
         OptionsData.Deleting = False
         OptionsData.DeletingConfirmation = False
-        OptionsData.Editing = False
         OptionsData.Inserting = False
         OptionsSelection.MultiSelect = True
         OptionsSelection.CellMultiSelect = True
@@ -66,32 +67,45 @@ inherited formImportar: TformImportar
         OptionsView.GroupByBox = False
         OptionsView.HeaderFilterButtonShowMode = fbmSmartTag
         OptionsView.ShowColumnFilterButtons = sfbWhenSelected
+        object TableViewMarcado: TcxGridDBColumn
+          DataBinding.FieldName = 'Marcado'
+          PropertiesClassName = 'TcxCheckBoxProperties'
+          Properties.NullStyle = nssUnchecked
+          OnHeaderClick = TableViewMarcadoHeaderClick
+        end
         object TableViewCodigoInterno: TcxGridDBColumn
           DataBinding.FieldName = 'CodigoInterno'
+          Options.Editing = False
           Width = 133
         end
         object TableViewDescricao: TcxGridDBColumn
           DataBinding.FieldName = 'Descricao'
+          Options.Editing = False
           Width = 133
         end
         object TableViewEAN: TcxGridDBColumn
           DataBinding.FieldName = 'EAN'
+          Options.Editing = False
           Width = 133
         end
         object TableViewID: TcxGridDBColumn
           DataBinding.FieldName = 'ID'
+          Options.Editing = False
           Width = 133
         end
         object TableViewNCM: TcxGridDBColumn
           DataBinding.FieldName = 'NCM'
+          Options.Editing = False
           Width = 133
         end
         object TableViewCodigoIMendes: TcxGridDBColumn
           DataBinding.FieldName = 'CodigoIMendes'
+          Options.Editing = False
           Width = 133
         end
         object TableViewStatus: TcxGridDBColumn
           DataBinding.FieldName = 'Status'
+          Options.Editing = False
           Width = 133
         end
       end
@@ -126,11 +140,17 @@ inherited formImportar: TformImportar
         DataController.Summary.FooterSummaryItems = <>
         DataController.Summary.SummaryGroups = <>
         OptionsCustomize.ItemFiltering = False
+        OptionsData.CancelOnExit = False
+        OptionsData.Deleting = False
+        OptionsData.DeletingConfirmation = False
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
         OptionsView.CellEndEllipsis = True
         OptionsView.ShowItemFilterButtons = sfbWhenSelected
-        OptionsView.SingleRecordStretch = srsClient
+        OptionsView.SingleRecordStretch = srsHorizontal
         object LayoutViewDBLayoutViewItem1: TcxGridDBLayoutViewItem
           DataBinding.FieldName = 'CEST'
+          Visible = False
           LayoutItem = LayoutViewLayoutItem1
         end
         object LayoutViewDBLayoutViewItem2: TcxGridDBLayoutViewItem
@@ -247,141 +267,170 @@ inherited formImportar: TformImportar
         end
         object LayoutViewGroup_Root: TdxLayoutGroup
           AlignHorz = ahClient
-          AlignVert = avClient
+          AlignVert = avTop
           CaptionOptions.Text = 'Template Layout'
           Hidden = True
-          ItemIndex = 1
           LayoutDirection = ldTabbed
           ScrollOptions.Horizontal = smAuto
-          ScrollOptions.Vertical = smAuto
           ShowBorder = False
           Index = -1
         end
         object LayoutViewLayoutItem1: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 0
+          AlignVert = avClient
+          Index = -1
         end
         object LayoutViewLayoutItem2: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          AlignVert = avClient
-          Index = 3
+          Parent = LayoutViewGroup2
+          Index = 1
         end
         object LayoutViewLayoutItem3: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 2
+          Parent = LayoutViewGroup2
+          Index = 0
         end
         object LayoutViewLayoutItem4: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 4
+          Parent = LayoutViewGroup3
+          Index = 0
         end
         object LayoutViewLayoutItem5: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 5
+          Parent = LayoutViewGroup3
+          Index = 1
         end
         object LayoutViewLayoutItem6: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 6
+          Parent = LayoutViewGroup3
+          Index = 4
         end
         object LayoutViewLayoutItem7: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 7
+          Index = 4
         end
         object LayoutViewLayoutItem8: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 8
+          Index = 5
         end
         object LayoutViewLayoutItem9: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 9
+          Parent = LayoutViewGroup3
+          Index = 2
         end
         object LayoutViewLayoutItem10: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 10
+          Parent = LayoutViewGroup3
+          Index = 3
         end
         object LayoutViewLayoutItem11: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 11
+          Parent = LayoutViewGroup4
+          Index = 3
         end
         object LayoutViewLayoutItem12: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 12
+          Parent = LayoutViewGroup4
+          Index = 0
         end
         object LayoutViewLayoutItem13: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 13
+          Parent = LayoutViewGroup4
+          Index = 1
         end
         object LayoutViewLayoutItem14: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 14
+          Parent = LayoutViewGroup4
+          Index = 2
         end
         object LayoutViewLayoutItem15: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 15
+          Parent = LayoutViewGroup1
+          Index = 8
         end
         object LayoutViewLayoutItem16: TcxGridLayoutItem
           Parent = LayoutViewGroup1
           AlignHorz = ahLeft
-          Index = 0
+          AlignVert = avTop
+          Index = 1
         end
         object LayoutViewLayoutItem17: TcxGridLayoutItem
           Parent = LayoutViewGroup1
-          Index = 1
+          Index = 2
         end
         object LayoutViewLayoutItem18: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 16
+          Index = 6
         end
         object LayoutViewLayoutItem19: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 17
+          Parent = LayoutViewGroup1
+          Index = 6
         end
         object LayoutViewLayoutItem20: TcxGridLayoutItem
           Parent = LayoutViewGroup1
-          Index = 3
+          Index = 4
         end
         object LayoutViewLayoutItem21: TcxGridLayoutItem
           Parent = LayoutViewGroup1
-          Index = 4
+          Index = 5
         end
         object LayoutViewLayoutItem22: TcxGridLayoutItem
           Parent = LayoutViewGroup1
-          Index = 2
+          Index = 3
         end
         object LayoutViewLayoutItem23: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 18
+          Index = 7
         end
         object LayoutViewLayoutItem24: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 19
+          Parent = LayoutViewAutoCreatedGroup1
+          AlignHorz = ahLeft
+          Index = 0
         end
         object LayoutViewLayoutItem25: TcxGridLayoutItem
           Parent = LayoutViewGroup_Root
-          Index = 20
+          Index = 8
         end
         object LayoutViewLayoutItem26: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 21
+          Parent = LayoutViewAutoCreatedGroup1
+          AlignVert = avClient
+          Index = 1
         end
         object LayoutViewLayoutItem27: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 22
+          Parent = LayoutViewGroup1
+          Index = 7
         end
         object LayoutViewLayoutItem28: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 23
+          Parent = LayoutViewGroup1
+          Index = 0
         end
         object LayoutViewLayoutItem29: TcxGridLayoutItem
-          Parent = LayoutViewGroup_Root
-          Index = 24
+          Parent = LayoutViewAutoCreatedGroup1
+          Index = 2
         end
         object LayoutViewGroup1: TdxLayoutGroup
           Parent = LayoutViewGroup_Root
           CaptionOptions.Text = 'ICMS'
-          ButtonOptions.DefaultHeight = 20
-          ButtonOptions.DefaultWidth = 20
-          ItemIndex = 4
+          ButtonOptions.DefaultHeight = 39
+          ButtonOptions.DefaultWidth = 39
+          ItemIndex = 9
+          Index = 0
+        end
+        object LayoutViewGroup2: TdxLayoutGroup
+          Parent = LayoutViewGroup_Root
+          CaptionOptions.Text = 'IPI'
+          ButtonOptions.DefaultHeight = 31
+          ButtonOptions.DefaultWidth = 31
+          ItemIndex = 1
           Index = 1
+        end
+        object LayoutViewGroup3: TdxLayoutGroup
+          Parent = LayoutViewGroup_Root
+          CaptionOptions.Text = 'PIS/COFINS'
+          ButtonOptions.DefaultHeight = 31
+          ButtonOptions.DefaultWidth = 31
+          ItemIndex = 4
+          Index = 2
+        end
+        object LayoutViewGroup4: TdxLayoutGroup
+          Parent = LayoutViewGroup_Root
+          CaptionOptions.Text = 'CST/CFOP/CSOSN'
+          ButtonOptions.DefaultHeight = 25
+          ButtonOptions.DefaultWidth = 25
+          ItemIndex = 2
+          Index = 3
+        end
+        object LayoutViewAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+          Parent = LayoutViewGroup1
+          LayoutDirection = ldHorizontal
+          Index = 9
         end
       end
       object GridLevel1: TcxGridLevel
@@ -532,7 +581,7 @@ inherited formImportar: TformImportar
       PrinterPage._dxMeasurementUnits_ = 0
       PrinterPage._dxLastMU_ = 2
       ReportDocument.Caption = 'Imrpess'#227'o - IMendes'
-      ReportDocument.CreationDate = 45264.698963067130000000
+      ReportDocument.CreationDate = 45265.369150243050000000
       ReportDocument.Creator = 'IMendes'
       OptionsOnEveryPage.Footers = False
       OptionsOnEveryPage.Caption = False
@@ -566,6 +615,7 @@ inherited formImportar: TformImportar
     FieldFormats = <>
     ErrorLogFileName = 'error.log'
     AddType = qatInsert
+    OnAfterImport = ImportCSVAfterImport
     Comma = ';'
     Quote = '"'
     Left = 576
@@ -745,6 +795,9 @@ inherited formImportar: TformImportar
     object CodigoGPC: TStringField
       DisplayLabel = 'C'#243'digo GPC'
       FieldName = 'CodigoGPC'
+    end
+    object Marcado: TBooleanField
+      FieldName = 'Marcado'
     end
   end
   object DataSource: TDataSource

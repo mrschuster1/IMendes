@@ -31,9 +31,11 @@ procedure Aviso(Mensagem: string);
 begin
   MostrarMsg('Aviso', Mensagem, 'Ok', '', '', '', COR_PRINCIPAL);
 end;
+
 procedure Erro(Mensagem: string);
 begin
-  MostrarMsg('Aviso de erro', Mensagem, 'Ok', '', '', '', COR_ERRO);
+  MostrarMsg('Aviso de erro', 'Aconteceu um erro, mas não se preocupe, já avisamos a equipe do suporte!'
+    + #13 + Mensagem, 'Ok', '', '', '', COR_ERRO);
 end;
 
 procedure MensagemSucesso(Mensagem: string);

@@ -14,7 +14,6 @@ uses
   Helpers.Excel in 'src\Helpers\Helpers.Excel.pas',
   View.PesquisaGrade in 'src\View\View.PesquisaGrade.pas' {formPesquisaGrade},
   View.Exportacao in 'src\View\View.Exportacao.pas' {formExportacao},
-  View.Importacao in 'src\View\View.Importacao.pas' {formImportacao},
   Services.Empresas in 'src\Services\Services.Empresas.pas' {ServiceEmpresas: TDataModule},
   Services.Produtos in 'src\Services\Services.Produtos.pas' {ServiceProdutos: TDataModule},
   View.Importar in 'src\View\View.Importar.pas' {formImportar};

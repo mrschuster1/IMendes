@@ -85,7 +85,8 @@ uses
   dxShellDialogs,
   FireDAC.Comp.DataSet,
   FireDAC.Comp.Client,
-  dxmdaset, dxSkinOffice2019Colorful;
+  dxmdaset,
+  dxSkinOffice2019Colorful;
 
 type
   TformExportacao = class(TformPesquisaGrade)
@@ -134,6 +135,8 @@ begin
     MemData.CopyFromDataSet(lProdutos.Get);
     lblRegistros.Caption := format('Total de registros: %s',
       [MemData.RecordCount.ToString]);
+    MemData.First;
+    TableView.ViewData.Collapse(True)
   finally
     lProdutos.Free
   end;
@@ -149,7 +152,7 @@ procedure TformExportacao.ExportarGridExcel;
 begin
   StyledForm.ShowClientInActiveEffect;
 
-  if (TIniHelper.GetValue('exportacao', 'salvar-automatico', false) = true) and
+  if (TIniHelper.GetValue('exportacao', 'salvar-automatico', false) = True) and
     (TIniHelper.GetValue('exportacao', 'diretorio', '') <> '') then
     SalvarGridExcel(TIniHelper.GetValue('exportacao', 'diretorio', ''))
   else
@@ -175,21 +178,30 @@ end;
 procedure TformExportacao.MemDataAfterOpen(DataSet: TDataSet);
 begin
   inherited;
-  TableView.DataController.CreateAllItems(true);
+  TableView.DataController.CreateAllItems(True);
 end;
 
 procedure TformExportacao.SalvarGridExcel(Caminho: string);
 begin
   TableView.OptionsView.Header := false;
-  ExportGridToXLSX(Caminho, Grid, true,
-    true, false);
+  try
+    ExportGridToXLSX(Caminho, Grid, True,
+      True, false);
+    if MostrarMsg('Planilha salva em "' + Caminho + '"',
+      ' Desja abrir o arquivo agora?',
+      'Sim', 'Não', '', '', COR_SUCESSO, 10) = 1 then
+      ShellExecute(0, 'open', PChar(Caminho), nil, nil,
+        SW_SHOWNORMAL);
+    TableView.OptionsView.Header := True;
+  except
+    on E: Exception do
+    begin
+      Erro(E.Message);
+      StyledForm.HideClientInActiveEffect;
+    end;
 
-  if MostrarMsg('Planilha salva em "' + Caminho + '"',
-    ' Desja abrir o arquivo agora?',
-    'Sim', 'Não', '', '', COR_SUCESSO, 10) = 1 then
-    ShellExecute(0, 'open', PChar(Caminho), nil, nil,
-      SW_SHOWNORMAL);
-  TableView.OptionsView.Header := true;
+  end;
+
 end;
 
 end.

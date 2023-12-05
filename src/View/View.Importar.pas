@@ -43,6 +43,7 @@ uses
   cxButtons,
   cxTextEdit,
   cxLabel,
+  dxCore,
   cxGridLevel,
   cxGridCustomView,
   cxGridCustomTableView,
@@ -75,8 +76,13 @@ uses
   dxmdaset,
   dxShellDialogs,
   QImport3,
-  QImport3ASCII, cxGridLayoutView, cxGridDBLayoutView, dxLayoutContainer,
-  cxGridViewLayoutContainer, cxGridCustomLayoutView;
+  QImport3ASCII,
+  cxGridLayoutView,
+  cxGridDBLayoutView,
+  dxLayoutContainer,
+  cxGridViewLayoutContainer,
+  cxGridCustomLayoutView,
+  cxCheckBox;
 
 type
   TformImportar = class(TformChild)
@@ -207,12 +213,20 @@ type
     LayoutViewDBLayoutViewItem28: TcxGridDBLayoutViewItem;
     LayoutViewDBLayoutViewItem29: TcxGridDBLayoutViewItem;
     LayoutViewGroup1: TdxLayoutGroup;
+    LayoutViewGroup2: TdxLayoutGroup;
+    LayoutViewGroup3: TdxLayoutGroup;
+    Marcado: TBooleanField;
+    TableViewMarcado: TcxGridDBColumn;
+    LayoutViewGroup4: TdxLayoutGroup;
+    LayoutViewAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     procedure buttonImprimirGradeClick(Sender: TObject);
     procedure edtPesquisaPropertiesChange(Sender: TObject);
     procedure btnImportarClick(Sender: TObject);
     procedure TableViewCustomDrawCell(Sender: TcxCustomGridTableView;
       ACanvas: TcxCanvas; AViewInfo: TcxGridTableDataCellViewInfo;
       var ADone: Boolean);
+    procedure TableViewMarcadoHeaderClick(Sender: TObject);
+    procedure ImportCSVAfterImport(Sender: TObject);
   private
     { Private declarations }
     FLockFilter: Boolean;
@@ -320,9 +334,27 @@ begin
   finally
     HideHourglassCursor;
   end;
+end;
 
-  if Grid.ActiveView = TableView then
-    TableView.DataController.Groups.FullExpand;
+procedure TformImportar.TableViewMarcadoHeaderClick(Sender: TObject);
+begin
+  inherited;
+  MemData.DisableControls;
+  MemData.First;
+
+  while not MemData.Eof do
+  begin
+    MemData.Edit;
+
+    Marcado.Value := TableViewMarcado.SortOrder = soascending;
+
+    MemData.Post;
+    MemData.Next;
+  end;
+
+  MemData.First;
+  MemData.EnableControls;
+  TableView.ViewData.Collapse(true);
 end;
 
 procedure TformImportar.TableViewCustomDrawCell(Sender: TcxCustomGridTableView;
@@ -376,8 +408,19 @@ begin
   ImportCSV.Map.LoadFromFile(TIniHelper.GetValue('importacao', 'mapeamento',
     'resource/posicoes.map'));
   ImportCSV.FileName := Caminho;
+  MemData.DisableControls;
   MemData.Open;
   ImportCSV.Execute;
+  MemData.First;
+  MemData.EnableControls;
+  TableView.ViewData.Collapse(true);
+end;
+
+procedure TformImportar.ImportCSVAfterImport(Sender: TObject);
+begin
+  inherited;
+  lblRegistros.Caption := format('Total de registros: %s',
+    [MemData.RecordCount.ToString]);
 end;
 
 end.

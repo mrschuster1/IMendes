@@ -48,7 +48,8 @@ uses
   VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCCustomControl,
-  VCL.TMSFNCStatusBar, dxSkinOffice2019Colorful;
+  VCL.TMSFNCStatusBar,
+  dxSkinOffice2019Colorful;
 
 type
   TformMain = class(TdxRibbonForm)
@@ -97,8 +98,8 @@ uses
   View.Exportacao,
   utils.Dialogs,
   View.Empresas,
-  View.Importacao,
-  Services.Empresas, View.Importar;
+  Services.Empresas,
+  View.Importar;
 
 { TFormMain }
 
@@ -139,7 +140,6 @@ begin
 
     if TFormHelper.CreateModalForm<TformConfig> = mrOk then
     begin
-      dm.Conectar;
       TformEmpresas.SelecionarEmpresa;
       AtualizarStatusBar;
     end;

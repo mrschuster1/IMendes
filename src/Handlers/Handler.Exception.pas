@@ -28,8 +28,7 @@ uses
 class procedure TException.DoHandlerException(Sender: TObject;
   E: Exception);
 begin
-  Erro('Aconteceu um erro, mas não se preocupe, já avisamos a equipe do suporte!'
-    + #13 + E.Message);
+  Erro(E.Message);
 end;
 
 
