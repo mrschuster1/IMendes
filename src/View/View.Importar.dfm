@@ -64,13 +64,14 @@ inherited formImportar: TformImportar
         OptionsView.CellEndEllipsis = True
         OptionsView.ColumnAutoWidth = True
         OptionsView.GridLines = glNone
-        OptionsView.GroupByBox = False
         OptionsView.HeaderFilterButtonShowMode = fbmSmartTag
         OptionsView.ShowColumnFilterButtons = sfbWhenSelected
         object TableViewMarcado: TcxGridDBColumn
           DataBinding.FieldName = 'Marcado'
           PropertiesClassName = 'TcxCheckBoxProperties'
           Properties.NullStyle = nssUnchecked
+          SortIndex = 0
+          SortOrder = soAscending
           OnHeaderClick = TableViewMarcadoHeaderClick
         end
         object TableViewCodigoInterno: TcxGridDBColumn

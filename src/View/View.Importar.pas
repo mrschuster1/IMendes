@@ -334,6 +334,8 @@ begin
   finally
     HideHourglassCursor;
   end;
+  if Grid.ActiveView = TableView then
+    TableView.DataController.Groups.FullExpand;
 end;
 
 procedure TformImportar.TableViewMarcadoHeaderClick(Sender: TObject);
@@ -409,6 +411,7 @@ begin
     'resource/posicoes.map'));
   ImportCSV.FileName := Caminho;
   MemData.DisableControls;
+  MemData.Close;
   MemData.Open;
   ImportCSV.Execute;
   MemData.First;

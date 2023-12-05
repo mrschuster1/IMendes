@@ -163,6 +163,12 @@
             <Form>formImportar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\Services\Services.Tributos.pas">
+            <Form>ServiceTributos</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\Model\Model.Produto.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
