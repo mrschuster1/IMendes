@@ -1,17 +1,19 @@
 inherited formImportar: TformImportar
   Caption = 'Importa'#231#227'o'
-  ExplicitWidth = 1082
-  ExplicitHeight = 687
+  ClientHeight = 658
+  ClientWidth = 1076
   TextHeight = 15
   inherited pnlMain: TdxPanel
-    ExplicitWidth = 1064
-    ExplicitHeight = 640
+    Width = 1076
+    Height = 658
+    ExplicitWidth = 1070
+    ExplicitHeight = 649
     object Grid: TcxGrid
       AlignWithMargins = True
       Left = 20
       Top = 77
-      Width = 1030
-      Height = 552
+      Width = 1036
+      Height = 504
       Margins.Left = 20
       Margins.Top = 20
       Margins.Right = 20
@@ -19,8 +21,8 @@ inherited formImportar: TformImportar
       Align = alClient
       BorderStyle = cxcbsNone
       TabOrder = 0
-      ExplicitWidth = 1024
-      ExplicitHeight = 543
+      ExplicitWidth = 1030
+      ExplicitHeight = 495
       object TableView: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
         Navigator.Buttons.First.Visible = True
@@ -70,8 +72,7 @@ inherited formImportar: TformImportar
           DataBinding.FieldName = 'Marcado'
           PropertiesClassName = 'TcxCheckBoxProperties'
           Properties.NullStyle = nssUnchecked
-          SortIndex = 0
-          SortOrder = soAscending
+          Options.Sorting = False
           OnHeaderClick = TableViewMarcadoHeaderClick
         end
         object TableViewCodigoInterno: TcxGridDBColumn
@@ -449,16 +450,16 @@ inherited formImportar: TformImportar
     object pnlTop: TdxPanel
       Left = 0
       Top = 0
-      Width = 1070
+      Width = 1076
       Height = 57
       Align = alTop
       Frame.Borders = [bBottom]
       Frame.Visible = False
       TabOrder = 1
-      ExplicitWidth = 1064
+      ExplicitWidth = 1070
       object lblRegistros: TcxLabel
         AlignWithMargins = True
-        Left = 1041
+        Left = 1047
         Top = 0
         Margins.Left = 0
         Margins.Top = 0
@@ -476,8 +477,8 @@ inherited formImportar: TformImportar
         Properties.Alignment.Horz = taRightJustify
         Properties.Alignment.Vert = taVCenter
         Transparent = True
-        ExplicitLeft = 1035
-        AnchorX = 1050
+        ExplicitLeft = 1041
+        AnchorX = 1056
         AnchorY = 29
       end
       object edtPesquisa: TcxTextEdit
@@ -493,8 +494,8 @@ inherited formImportar: TformImportar
         Style.BorderStyle = ebsNone
         TabOrder = 1
         TextHint = ' Pesquisar'
-        ExplicitWidth = 752
-        Width = 758
+        ExplicitWidth = 758
+        Width = 764
       end
       object buttonImprimirGrade: TcxButton
         AlignWithMargins = True
@@ -551,6 +552,92 @@ inherited formImportar: TformImportar
         OnClick = btnImportarClick
       end
     end
+    object pnlBottom: TdxPanel
+      Left = 0
+      Top = 601
+      Width = 1076
+      Height = 57
+      Align = alBottom
+      Frame.Borders = [bBottom]
+      Frame.Visible = False
+      TabOrder = 2
+      ExplicitTop = 592
+      ExplicitWidth = 1070
+      object cxLabel1: TcxLabel
+        AlignWithMargins = True
+        Left = 1047
+        Top = 0
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 20
+        Margins.Bottom = 0
+        Align = alRight
+        ParentFont = False
+        Style.Font.Charset = DEFAULT_CHARSET
+        Style.Font.Color = clWindowText
+        Style.Font.Height = -17
+        Style.Font.Name = 'Segoe UI Semibold'
+        Style.Font.Style = []
+        Style.Font.Quality = fqClearType
+        Style.IsFontAssigned = True
+        Properties.Alignment.Horz = taRightJustify
+        Properties.Alignment.Vert = taVCenter
+        Transparent = True
+        ExplicitLeft = 1041
+        AnchorX = 1056
+        AnchorY = 29
+      end
+      object btnProcessar: TcxButton
+        AlignWithMargins = True
+        Left = 20
+        Top = 10
+        Width = 109
+        Height = 37
+        Margins.Left = 20
+        Margins.Top = 10
+        Margins.Right = 5
+        Margins.Bottom = 10
+        Align = alLeft
+        Caption = 'Processar'
+        Enabled = False
+        OptionsImage.Glyph.SourceDPI = 96
+        OptionsImage.Glyph.Data = {
+          89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+          F8000000097048597300000B1300000B1301009A9C180000007449444154789C
+          EDD4BD09C2601485E190466C22B88653388E9B3887BB648A805921758A3C728B
+          4006C869E47BE1B4F785FBD7758D066E9558273063C10B7D427064C423292856
+          BC71490976263C938262C307F79460A716E19A147C53822DD9A22935E435B9A6
+          63E2D0E6F4AB182AA7176EFC0F3F214363C716400BB10000000049454E44AE42
+          6082}
+        TabOrder = 1
+        OnClick = btnProcessarClick
+      end
+      object btnCancelar: TcxButton
+        AlignWithMargins = True
+        Left = 144
+        Top = 10
+        Width = 109
+        Height = 37
+        Margins.Left = 10
+        Margins.Top = 10
+        Margins.Right = 5
+        Margins.Bottom = 10
+        Align = alLeft
+        Caption = 'Cancelar'
+        Enabled = False
+        OptionsImage.Glyph.SourceDPI = 96
+        OptionsImage.Glyph.Data = {
+          89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+          F8000000097048597300000B1300000B1301009A9C180000009049444154789C
+          ED94411240300C457B091DEE7F123646D58685E33CD361C32809B5C15F75A6C9
+          7F6992A931BFBE29A0023C6005B116E880520370CC1A8E208B7988096A34800C
+          E897C411280431B9187006E1AEF9118454E6913E0F9BF3E9125C79499ACA0580
+          2295B97DAC457B0395ACF0657313BFD34124ABC81D08D04AFACC7A3E4E03A895
+          9F9D0F3962C0AF776902E6C4A0AD55D6C2480000000049454E44AE426082}
+        TabOrder = 2
+        OnClick = btnCancelarClick
+      end
+    end
   end
   inherited Localizer: TcxLocalizer
     Left = 692
@@ -582,7 +669,7 @@ inherited formImportar: TformImportar
       PrinterPage._dxMeasurementUnits_ = 0
       PrinterPage._dxLastMU_ = 2
       ReportDocument.Caption = 'Imrpess'#227'o - IMendes'
-      ReportDocument.CreationDate = 45265.369150243050000000
+      ReportDocument.CreationDate = 45267.638470682870000000
       ReportDocument.Creator = 'IMendes'
       OptionsOnEveryPage.Footers = False
       OptionsOnEveryPage.Caption = False
@@ -666,7 +753,7 @@ inherited formImportar: TformImportar
     object CEST: TStringField
       FieldName = 'CEST'
     end
-    object IPI: TStringField
+    object IPI: TFloatField
       DisplayLabel = '% IPI'
       FieldName = 'PercIPI'
     end
@@ -692,11 +779,11 @@ inherited formImportar: TformImportar
     object Tipo: TStringField
       FieldName = 'Tipo'
     end
-    object PIS: TStringField
+    object PIS: TFloatField
       DisplayLabel = '% PIS'
       FieldName = 'PercPIS'
     end
-    object Cofins: TStringField
+    object Cofins: TFloatField
       DisplayLabel = '% COFINS'
       FieldName = 'PercCOFINS'
     end
@@ -718,59 +805,55 @@ inherited formImportar: TformImportar
       DisplayLabel = 'Mod. BC'
       FieldName = 'ModBC'
     end
-    object ICMS: TStringField
+    object ICMS: TFloatField
       DisplayLabel = '% ICMS'
       FieldName = 'PercICMS'
     end
-    object ICMSPDV: TStringField
+    object ICMSPDV: TFloatField
       DisplayLabel = '% ICMS PDV'
       FieldName = 'PercICMSPDV'
     end
     object SimbPDV: TStringField
       FieldName = 'SimbPDV'
     end
-    object RedBCICMS: TStringField
+    object RedBCICMS: TFloatField
       DisplayLabel = '% Redu'#231#227'o BC ICMS'
       FieldName = 'PercRedBCICMS'
     end
-    object RedBCICMSST: TStringField
+    object RedBCICMSST: TFloatField
       DisplayLabel = '% Redu'#231#227'o BC ICMS ST'
       FieldName = 'PercRedBCICMSST'
     end
-    object ModBCST: TStringField
+    object ModBCST: TFloatField
       DisplayLabel = 'Mod. BC ST'
       FieldName = 'ModBCST'
     end
-    object ICMSST: TStringField
+    object ICMSST: TFloatField
       DisplayLabel = '% ICMS ST'
       FieldName = 'PercICMSST'
     end
-    object IVA: TStringField
+    object IVA: TFloatField
       FieldName = 'IVA'
     end
-    object PautaST: TStringField
+    object PautaST: TFloatField
       FieldName = 'PautaST'
     end
-    object FCP: TStringField
+    object FCP: TFloatField
       DisplayLabel = '% FCP'
       FieldName = 'PercFCP'
     end
     object Antecipado: TStringField
       FieldName = 'Antecipado'
     end
-    object Desoneracao: TStringField
+    object Desoneracao: TFloatField
       DisplayLabel = '% Desoneracao'
       FieldName = 'PercDesoneracao'
     end
-    object Diferimento: TStringField
+    object Diferimento: TFloatField
       DisplayLabel = '% Diferimento'
       FieldName = 'PercDiferimento'
     end
-    object Isencao: TStringField
-      DisplayLabel = '% Isencao'
-      FieldName = 'PercIsencao'
-    end
-    object aDRemICMS: TStringField
+    object aDRemICMS: TFloatField
       FieldName = 'aDRemICMS'
     end
     object ANP: TStringField
@@ -800,9 +883,13 @@ inherited formImportar: TformImportar
     object Marcado: TBooleanField
       FieldName = 'Marcado'
     end
+    object Isencao: TFloatField
+      FieldName = 'PercIsencao'
+    end
   end
   object DataSource: TDataSource
     DataSet = MemData
+    OnStateChange = DataSourceStateChange
     Left = 832
     Top = 208
   end

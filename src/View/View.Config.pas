@@ -41,7 +41,9 @@ uses
   scStyledForm,
   Helper.Forms,
   cxCheckBox,
-  cxShellBrowserDialog;
+  cxShellBrowserDialog,
+  dxSkinOffice2019Colorful,
+  cxDropDownEdit;
 
 type
   TformConfig = class(TForm)
@@ -86,6 +88,10 @@ type
     edtMapeamento: TcxButtonEdit;
     dialogMapeamento: TdxOpenFileDialog;
     LocalizarMapeamento: TAction;
+    dxLayoutItem10: TdxLayoutItem;
+    comboEstado: TcxComboBox;
+    dxLayoutItem11: TdxLayoutItem;
+    lblEmpresa: TcxLabel;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure LocalizarBancoEcoExecute(Sender: TObject);
@@ -101,9 +107,13 @@ type
       Secao, Parametro: string); overload;
     procedure SalvarParametro(Checkbox: TcxCheckBox;
       Secao, Parametro: string); overload;
+    procedure SalvarParametro(Combobox: TcxComboBox;
+      Secao, Parametro: string); overload;
     procedure CarregarParametro(Edit: TcxCustomTextEdit; Secao,
       Parametro: string); overload;
     procedure CarregarParametro(Checkbox: TcxCheckBox;
+      Secao, Parametro: string); overload;
+    procedure CarregarParametro(Combobox: TcxComboBox;
       Secao, Parametro: string); overload;
     procedure CarregarParametros;
     procedure LocalizarArquivo(Dialog: TdxOpenFileDialog;
@@ -159,12 +169,20 @@ begin
     'salvar-automatico');
   SalvarParametro(checkBuscarAutomatico, 'importacao',
     'buscar-automatico');
-  modalresult := mrok;
+
+  SalvarParametro(comboEstado, 'empresa', 'uf');
+  ModalResult := mrOk;
+end;
+
+procedure TformConfig.SalvarParametro(Combobox: TcxComboBox; Secao,
+  Parametro: string);
+begin
+  TIniHelper.SetValue(Secao, Parametro, Combobox.Text)
 end;
 
 procedure TformConfig.Cancelar;
 begin
-  modalresult := mrCancel;
+  ModalResult := mrCancel;
 end;
 
 procedure TformConfig.CarregarParametro(Edit: TcxCustomTextEdit; Secao,
@@ -179,6 +197,12 @@ begin
   Checkbox.Checked := TIniHelper.GetValue(Secao, Parametro, Checkbox.Checked)
 end;
 
+procedure TformConfig.CarregarParametro(Combobox: TcxComboBox; Secao,
+  Parametro: string);
+begin
+  Combobox.Text := TIniHelper.GetValue(Secao, Parametro, Combobox.Text)
+end;
+
 procedure TformConfig.CarregarParametros;
 begin
   CarregarParametro(edtFBClient, 'conexao', 'firebird');
@@ -191,6 +215,8 @@ begin
     'buscar-automatico');
   CarregarParametro(checkSalvarAutomatico, 'exportacao',
     'salvar-automatico');
+
+  CarregarParametro(comboEstado, 'empresa', 'uf');
 end;
 
 procedure TformConfig.FormCreate(Sender: TObject);

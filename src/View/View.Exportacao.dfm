@@ -2,13 +2,15 @@ inherited formExportacao: TformExportacao
   Caption = 'Exporta'#231#227'o'
   ClientHeight = 667
   ClientWidth = 1082
+  ExplicitLeft = 3
+  ExplicitTop = 3
   TextHeight = 15
   inherited pnlMain: TdxPanel
     Width = 1082
     Height = 667
+    ExplicitWidth = 1076
+    ExplicitHeight = 658
     inherited Grid: TcxGrid
-      Width = 1042
-      Height = 570
       inherited TableView: TcxGridDBTableView
         DataController.DataSource = ds
         object TableViewCODIGO: TcxGridDBColumn
@@ -59,9 +61,9 @@ inherited formExportacao: TformExportacao
       end
     end
     inherited pnlTop: TdxPanel
-      Width = 1082
+      ExplicitWidth = 1076
       inherited lblRegistros: TcxLabel
-        Left = 1053
+        ExplicitLeft = 1047
         AnchorX = 1062
         AnchorY = 29
       end

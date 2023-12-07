@@ -101,7 +101,7 @@ object formMain: TformMain
     TabOrder = 2
     Panels = <
       item
-        Text = '04/12/2023'
+        Text = '06/12/2023'
         Style = spsDate
         Width = 80
         Progress.Level0Fill.Color = clLime
@@ -111,7 +111,7 @@ object formMain: TformMain
         Progress.Position = 0
       end
       item
-        Text = '11:48:33'
+        Text = '17:19:34'
         Style = spsTime
         Width = 70
         Progress.Level0Fill.Color = clLime

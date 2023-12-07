@@ -4,7 +4,7 @@ object formConfig: TformConfig
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Configura'#231#245'es'
-  ClientHeight = 473
+  ClientHeight = 554
   ClientWidth = 892
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object formConfig: TformConfig
     Left = 0
     Top = 0
     Width = 892
-    Height = 473
+    Height = 554
     Align = alClient
     Frame.Visible = False
     TabOrder = 0
@@ -28,7 +28,7 @@ object formConfig: TformConfig
     ExplicitHeight = 464
     object pnlBottom: TdxPanel
       Left = 0
-      Top = 416
+      Top = 497
       Width = 892
       Height = 57
       Align = alBottom
@@ -114,7 +114,7 @@ object formConfig: TformConfig
       Left = 0
       Top = 0
       Width = 892
-      Height = 416
+      Height = 497
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -219,6 +219,7 @@ object formConfig: TformConfig
         Left = 664
         Top = 243
         Caption = 'Salvar automaticamente'
+        Properties.Alignment = taLeftJustify
         State = cbsChecked
         Style.HotTrack = False
         Style.TransparentBorder = False
@@ -249,11 +250,65 @@ object formConfig: TformConfig
         TabOrder = 4
         Width = 687
       end
+      object comboEstado: TcxComboBox
+        Left = 186
+        Top = 365
+        Properties.DropDownListStyle = lsFixedList
+        Properties.Items.Strings = (
+          'AC'
+          'AL'
+          'AM'
+          'AP'
+          'BA'
+          'CE'
+          'DF'
+          'ES'
+          'GO'
+          'MA'
+          'MG'
+          'MS'
+          'MT'
+          'PA'
+          'PB'
+          'PE'
+          'PI'
+          'PR'
+          'RJ'
+          'RN'
+          'RO'
+          'RR'
+          'RS'
+          'SC'
+          'SE'
+          'SP'
+          'TO')
+        Properties.Sorted = True
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        TabOrder = 10
+        Width = 687
+      end
+      object lblEmpresa: TcxLabel
+        Left = 19
+        Top = 323
+        Caption = 'Empresa'
+        ParentFont = False
+        Style.Font.Charset = DEFAULT_CHARSET
+        Style.Font.Color = clWindowText
+        Style.Font.Height = -23
+        Style.Font.Name = 'Segoe UI Semibold'
+        Style.Font.Style = []
+        Style.Font.Quality = fqClearType
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        Style.IsFontAssigned = True
+        Transparent = True
+      end
       object LayoutGroup_Root: TdxLayoutGroup
         AlignHorz = ahClient
         AlignVert = avTop
         Hidden = True
-        ItemIndex = 4
+        ItemIndex = 7
         ShowBorder = False
         Index = -1
       end
@@ -358,6 +413,24 @@ object formConfig: TformConfig
         ControlOptions.ShowBorder = False
         Index = 4
       end
+      object dxLayoutItem10: TdxLayoutItem
+        Parent = LayoutGroup_Root
+        CaptionOptions.Text = 'UF'
+        Control = comboEstado
+        ControlOptions.OriginalHeight = 29
+        ControlOptions.OriginalWidth = 121
+        ControlOptions.ShowBorder = False
+        Index = 8
+      end
+      object dxLayoutItem11: TdxLayoutItem
+        Parent = LayoutGroup_Root
+        CaptionOptions.Visible = False
+        Control = lblEmpresa
+        ControlOptions.OriginalHeight = 31
+        ControlOptions.OriginalWidth = 91
+        ControlOptions.ShowBorder = False
+        Index = 7
+      end
     end
   end
   object dxLayoutLookAndFeelList1: TdxLayoutLookAndFeelList
@@ -395,15 +468,15 @@ object formConfig: TformConfig
     FileName = 'c:\ecosis\dados\ecodados.eco'
     Filter = 'Banco de dados|*.eco;*.fdb|Todos os arquivos|*'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
-    Left = 256
-    Top = 328
+    Left = 232
+    Top = 464
   end
   object dlgFBClient: TdxOpenFileDialog
     FileName = 'c:\ecosis\windows\fbclient.dll'
     Filter = 'DLL|*.dll'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
-    Left = 336
-    Top = 328
+    Left = 312
+    Top = 464
   end
   object StyledForm: TscStyledForm
     FluentUIBackground = scfuibNone
@@ -461,19 +534,19 @@ object formConfig: TformConfig
   object dialogExportacao: TdxOpenFileDialog
     Filter = 'Planilha excel|*.xlsx'
     Options = [ofPathMustExist, ofEnableSizing]
-    Left = 48
-    Top = 328
+    Left = 24
+    Top = 464
   end
   object dialogImportacao: TdxOpenFileDialog
     Filter = 'Planilha excel|*.xlsx;*.csv'
     Options = [ofPathMustExist, ofEnableSizing]
-    Left = 152
-    Top = 328
+    Left = 128
+    Top = 464
   end
   object dialogMapeamento: TdxOpenFileDialog
     Filter = 'Arquivo de mapeamento de posi'#231#245'es|*.map'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
-    Left = 432
-    Top = 336
+    Left = 408
+    Top = 472
   end
 end

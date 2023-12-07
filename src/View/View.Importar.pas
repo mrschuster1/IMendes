@@ -17,6 +17,7 @@ uses
   cxControls,
   cxLookAndFeels,
   cxLookAndFeelPainters,
+  System.Generics.Collections,
   dxSkinsCore,
   dxSkinOffice2019Black,
   dxSkinOffice2019Colorful,
@@ -105,35 +106,34 @@ type
     Descricao: TStringField;
     NCM: TStringField;
     CEST: TStringField;
-    IPI: TStringField;
+    IPI: TFloatField;
     CSTIPI: TStringField;
     CSTPisCofinsEntrada: TStringField;
     CSTPisCofinsSaida: TStringField;
     NatRecIsentaPisCofins: TStringField;
     LIsta: TStringField;
     Tipo: TStringField;
-    PIS: TStringField;
-    Cofins: TStringField;
+    PIS: TFloatField;
+    Cofins: TFloatField;
     CFOPCompra: TStringField;
     CFOPVenda: TStringField;
     CST: TStringField;
     CSOSN: TStringField;
     ModBC: TStringField;
-    ICMS: TStringField;
-    ICMSPDV: TStringField;
+    ICMS: TFloatField;
+    ICMSPDV: TFloatField;
     SimbPDV: TStringField;
-    RedBCICMS: TStringField;
-    RedBCICMSST: TStringField;
-    ModBCST: TStringField;
-    ICMSST: TStringField;
-    IVA: TStringField;
-    PautaST: TStringField;
-    FCP: TStringField;
+    RedBCICMS: TFloatField;
+    RedBCICMSST: TFloatField;
+    ModBCST: TFloatField;
+    ICMSST: TFloatField;
+    IVA: TFloatField;
+    PautaST: TFloatField;
+    FCP: TFloatField;
     Antecipado: TStringField;
-    Desoneracao: TStringField;
-    Diferimento: TStringField;
-    Isencao: TStringField;
-    aDRemICMS: TStringField;
+    Desoneracao: TFloatField;
+    Diferimento: TFloatField;
+    aDRemICMS: TFloatField;
     ANP: TStringField;
     CodigoBeneficio: TStringField;
     DataAlteracao: TStringField;
@@ -219,6 +219,11 @@ type
     TableViewMarcado: TcxGridDBColumn;
     LayoutViewGroup4: TdxLayoutGroup;
     LayoutViewAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    pnlBottom: TdxPanel;
+    cxLabel1: TcxLabel;
+    btnProcessar: TcxButton;
+    btnCancelar: TcxButton;
+    Isencao: TFloatField;
     procedure buttonImprimirGradeClick(Sender: TObject);
     procedure edtPesquisaPropertiesChange(Sender: TObject);
     procedure btnImportarClick(Sender: TObject);
@@ -227,9 +232,14 @@ type
       var ADone: Boolean);
     procedure TableViewMarcadoHeaderClick(Sender: TObject);
     procedure ImportCSVAfterImport(Sender: TObject);
+    procedure btnProcessarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure DataSourceStateChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FLockFilter: Boolean;
+    FMarcarTodos: Boolean;
     procedure Imprimir;
     procedure Pesquisar;
     procedure ClearLikeFilter;
@@ -238,6 +248,8 @@ type
       AColumn: TcxCustomGridTableItem; const ALike: string);
     procedure ImportarCSV(Caminho: string);
     procedure Importar;
+    procedure Processar;
+    procedure Cancelar;
   public
     { Public declarations }
   end;
@@ -251,7 +263,11 @@ implementation
 
 
 uses
-  Helpers.Ini;
+  Helpers.Ini,
+  Model.Produto,
+  Services.Tributos,
+  Services.Empresas,
+  Utils.Dialogs;
 
 { TformChild1 }
 
@@ -277,16 +293,33 @@ begin
     AddLikeCondition(AItemList, TableView.Columns[i], ALike);
 end;
 
+procedure TformImportar.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  Cancelar
+end;
+
 procedure TformImportar.btnImportarClick(Sender: TObject);
 begin
   inherited;
   Importar
 end;
 
+procedure TformImportar.btnProcessarClick(Sender: TObject);
+begin
+  inherited;
+  Processar
+end;
+
 procedure TformImportar.buttonImprimirGradeClick(Sender: TObject);
 begin
   inherited;
   Imprimir
+end;
+
+procedure TformImportar.Cancelar;
+begin
+  MemData.Close
 end;
 
 procedure TformImportar.ClearLikeFilter;
@@ -300,10 +333,23 @@ begin
       ARoot.Items[i].Free;
 end;
 
+procedure TformImportar.DataSourceStateChange(Sender: TObject);
+begin
+  inherited;
+  btnCancelar.Enabled := MemData.Active;
+  btnProcessar.Enabled := MemData.Active
+end;
+
 procedure TformImportar.edtPesquisaPropertiesChange(Sender: TObject);
 begin
   inherited;
   Pesquisar
+end;
+
+procedure TformImportar.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FMarcarTodos := false
 end;
 
 procedure TformImportar.Imprimir;
@@ -338,17 +384,80 @@ begin
     TableView.DataController.Groups.FullExpand;
 end;
 
+procedure TformImportar.Processar;
+begin
+  var
+  Produtos := TList<iProduto>.Create;
+  MemData.DisableControls;
+  MemData.First;
+  while not MemData.Eof do
+  begin
+    if Marcado.AsBoolean = true then
+    begin
+      Produtos.Add(TProduto.New
+        .Empresa(TServiceEmpresas.GetEmpresa)
+        .Codigo(CodigoInterno.AsString)
+        .EAN(EAN.AsString)
+        .Nome(Descricao.AsString)
+        .CFOPVenda(CFOPVenda.AsString)
+        .CFOPCompra(CFOPCompra.AsString)
+        .CST(CST.AsString)
+        .CSOSN(CSOSN.AsString)
+        .PercICMS(ICMS.AsSingle)
+        .PercICMSST(ICMSST.AsSingle)
+        .NCM(NCM.AsString)
+        .CEST(CEST.AsString)
+        .CSTIPI(CSTIPI.AsString)
+        .PercIPI(IPI.AsSingle)
+        .CSTPisCofinsEntrada(CSTPisCofinsEntrada.AsString)
+        .CSTPisCofinsSaida(CSTPisCofinsSaida.AsString)
+        .NatReceitaIsentaPisCofins(NatRecIsentaPisCofins.AsString)
+        .PercPIS(PIS.AsSingle)
+        .PercCofins(Cofins.AsSingle)
+        .ModBC(ModBC.AsString)
+        .PercICMSPDV(ICMSPDV.AsSingle)
+        .PercRedBCICMS(RedBCICMS.AsSingle)
+        .PercRedBCICMSST(RedBCICMSST.AsSingle)
+        .ModBCST(ModBCST.AsString)
+        .IVA(IVA.AsSingle)
+        .PautaST(PautaST.AsSingle)
+        .PercDeson(Desoneracao.AsSingle)
+        .PercDiferim(Diferimento.AsSingle)
+        .PercIsencao(Isencao.AsSingle)
+        .AdRem(aDRemICMS.AsSingle)
+        .FCP(FCP.AsSingle)
+        );
+    end;
+    MemData.Next
+  end;
+  if Produtos.Count > 0 then
+  begin
+    var
+    Retorno := TServiceTributos.Post(Produtos);
+    MensagemSucesso(Format('%d produto(s) com ICMS processado(s) pela primeira vez.'
+      + #13 + '%d produto(s) com ICMS alterado(s).'
+      + #13 + '%d produto(s) com NCM alterados(s).',
+      [Retorno.ICMSAdicionados, Retorno.ICMSAlterados, Retorno.NCMAlterados]))
+  end
+  else
+    Produtos.Free;
+  MemData.First;
+  MemData.EnableControls;
+  TableView.ViewData.Collapse(true);
+end;
+
 procedure TformImportar.TableViewMarcadoHeaderClick(Sender: TObject);
 begin
   inherited;
   MemData.DisableControls;
   MemData.First;
+  FMarcarTodos := not FMarcarTodos;
 
   while not MemData.Eof do
   begin
     MemData.Edit;
 
-    Marcado.Value := TableViewMarcado.SortOrder = soascending;
+    Marcado.Value := FMarcarTodos;
 
     MemData.Post;
     MemData.Next;
@@ -422,7 +531,7 @@ end;
 procedure TformImportar.ImportCSVAfterImport(Sender: TObject);
 begin
   inherited;
-  lblRegistros.Caption := format('Total de registros: %s',
+  lblRegistros.Caption := Format('Total de registros: %s',
     [MemData.RecordCount.ToString]);
 end;
 
