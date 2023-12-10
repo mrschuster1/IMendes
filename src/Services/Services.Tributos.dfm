@@ -456,7 +456,7 @@ inherited ServiceTributos: TServiceTributos
         Size = 6
       end>
   end
-  object ComparaIPI: TFDQuery
+  object ComparaPercIPI: TFDQuery
     Connection = Connection
     SQL.Strings = (
       'select ipi from testprodutogeral '
@@ -472,7 +472,7 @@ inherited ServiceTributos: TServiceTributos
         Value = Null
       end>
   end
-  object UpdateIPI: TFDQuery
+  object UpdatePercIPI: TFDQuery
     Connection = Connection
     SQL.Strings = (
       'update testprodutogeral set ipi = :ipi'

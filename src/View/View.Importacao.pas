@@ -441,11 +441,13 @@ begin
     MensagemSucesso(Format('%d produto(s) com ICMS processado(s) pela primeira vez.'
       + #13 + '%d produto(s) com ICMS alterado(s).'
       + #13 + '%d produto(s) com NCM alterados(s).'
-      + #13 + '%d produto(s) com CEST alterados(s).',
+      + #13 + '%d produto(s) com CEST alterados(s).'
+      + #13 + '%d produto(s) com IPI alterados(s).',
       [Retorno.ICMSAdicionados,
       Retorno.ICMSAlterados,
       Retorno.NCMAlterados,
-      Retorno.CESTAlterados]))
+      Retorno.CESTAlterados,
+      Retorno.IPIAlterados]))
   end
   else
     Produtos.Free;

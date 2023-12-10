@@ -38,6 +38,7 @@ type
     ICMSAlterados: integer;
     NCMAlterados: integer;
     CESTAlterados: integer;
+    IPIAlterados: integer;
   end;
 
 type
@@ -111,13 +112,14 @@ type
     SelectCEST: TFDQuery;
     SelectCESTIDCEST: TIntegerField;
     UpdateCEST: TFDQuery;
-    ComparaIPI: TFDQuery;
-    UpdateIPI: TFDQuery;
+    ComparaPercIPI: TFDQuery;
+    UpdatePercIPI: TFDQuery;
   private
     { Private declarations }
     function AtualizarICMS(Produto: iProduto): boolean;
     function AtualizarNCM(Produto: iProduto): boolean;
     function AtualizarCEST(Produto: iProduto): boolean;
+    function AtualizarIPI(Produto: iProduto): boolean;
   public
     { Public declarations }
     class function Post(var Produtos: TList<iProduto>): TRetornoProcessamento;
@@ -170,7 +172,6 @@ end;
 
 function TServiceTributos.AtualizarICMS(Produto: iProduto): boolean;
 begin
-  ICMS.Close;
   ICMS.ParamByName('Empresa').AsString := TServiceEmpresas.GetEmpresa;
   ICMS.ParamByName('Produto').AsString := Produto.Codigo;
   ICMS.ParamByName('Estado').AsString := TIniHelper.GetValue('empresa',
@@ -212,14 +213,30 @@ begin
     ICMS.Post
   end
   else
-    Result := False
+    Result := False;
 
+  ICMS.Close;
+end;
+
+function TServiceTributos.AtualizarIPI(Produto: iProduto): boolean;
+begin
+  ComparaPercIPI.ParamByName('Produto').AsString := Produto.Codigo;
+  ComparaPercIPI.Open;
+  if ComparaPercIPI.FieldByName('IPI').AsFloat = Produto.PercIPI then
+    Result := False
+  else
+  begin
+    UpdatePercIPI.ParamByName('Produto').AsString := Produto.Codigo;
+    UpdatePercIPI.ParamByName('IPI').AsFloat := Produto.PercIPI;
+    UpdatePercIPI.ExecSQL;
+    Result := True;
+  end;
+  ComparaPercIPI.Close;
 end;
 
 function TServiceTributos.AtualizarNCM(Produto: iProduto): boolean;
 begin
 
-  NCM.Close;
   NCM.ParamByName('Produto').AsString := Produto.Codigo;
   NCM.Open;
 
@@ -231,7 +248,9 @@ begin
     NCM.Post
   end
   else
-    Result := False
+    Result := False;
+
+  NCM.Close;
 end;
 
 class function TServiceTributos.Post(var Produtos: TList<iProduto>)
@@ -241,6 +260,7 @@ begin
   Result.ICMSAlterados := 0;
   Result.NCMAlterados := 0;
   Result.CESTAlterados := 0;
+  Result.IPIAlterados := 0;
   var
   lTributos := TServiceTributos.Create;
   try
@@ -259,6 +279,10 @@ begin
       // CEST
       if lTributos.AtualizarCEST(Produto) then
         Inc(Result.CESTAlterados);
+
+      // IPI
+      if lTributos.AtualizarIPI(Produto) then
+        Inc(Result.IPIAlterados);
     end;
   finally
     Produtos.Free;
