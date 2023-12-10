@@ -1,6 +1,6 @@
 inherited ServiceTributos: TServiceTributos
-  Height = 304
-  Width = 533
+  Height = 439
+  Width = 691
   PixelsPerInch = 120
   inherited DBWaitCursor: TFDGUIxWaitCursor
     Left = 360
@@ -351,5 +351,148 @@ inherited ServiceTributos: TServiceTributos
       FieldName = 'DIFAL_CONVICMS5291'
       Origin = 'DIFAL_CONVICMS5291'
     end
+  end
+  object NCM: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      
+        'select codigo, classificacaofiscal from testprodutogeral where c' +
+        'odigo = :produto')
+    Left = 232
+    Top = 296
+    ParamData = <
+      item
+        Name = 'PRODUTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 6
+        Value = Null
+      end>
+    object NCMCodigoProduto: TStringField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 6
+    end
+    object NCMClassificacaoFiscal: TStringField
+      FieldName = 'CLASSIFICACAOFISCAL'
+      Origin = 'CLASSIFICACAOFISCAL'
+    end
+  end
+  object ComparaCEST: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'select P.CODIGO PRODUTO,'
+      '       C.CEST'
+      'from TESTPRODUTOGERAL P'
+      'inner join TESTCEST C on C.IDCEST = P.IDCEST'
+      'where P.CODIGO = :PRODUTO   ')
+    Left = 376
+    Top = 312
+    ParamData = <
+      item
+        Name = 'PRODUTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 6
+        Value = Null
+      end>
+    object ComparaCESTPRODUTO: TStringField
+      FieldName = 'PRODUTO'
+      Origin = 'CODIGO'
+      Required = True
+      Size = 6
+    end
+    object ComparaCESTCEST: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CEST'
+      Origin = 'CEST'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 10
+    end
+  end
+  object SelectCEST: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'select IDCEST from TESTCEST where CEST = :CEST')
+    Left = 496
+    Top = 312
+    ParamData = <
+      item
+        Name = 'CEST'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 10
+        Value = Null
+      end>
+    object SelectCESTIDCEST: TIntegerField
+      FieldName = 'IDCEST'
+      Origin = 'IDCEST'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+  end
+  object UpdateCEST: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'update TESTPRODUTOGERAL'
+      'set IDCEST = :CEST'
+      'where CODIGO = :PRODUTO   ')
+    Left = 616
+    Top = 320
+    ParamData = <
+      item
+        Name = 'CEST'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PRODUTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 6
+      end>
+  end
+  object ComparaIPI: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'select ipi from testprodutogeral '
+      'where codigo = :produto')
+    Left = 368
+    Top = 176
+    ParamData = <
+      item
+        Name = 'PRODUTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 6
+        Value = Null
+      end>
+  end
+  object UpdateIPI: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'update testprodutogeral set ipi = :ipi'
+      'where codigo = :produto')
+    Left = 480
+    Top = 184
+    ParamData = <
+      item
+        Name = 'IPI'
+        DataType = ftCurrency
+        Precision = 9
+        NumericScale = 3
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PRODUTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 6
+      end>
   end
 end

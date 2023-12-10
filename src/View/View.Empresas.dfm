@@ -4,8 +4,8 @@ object formEmpresas: TformEmpresas
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Empresas'
-  ClientHeight = 260
-  ClientWidth = 585
+  ClientHeight = 251
+  ClientWidth = 579
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,13 +19,13 @@ object formEmpresas: TformEmpresas
   object pnlMain: TdxPanel
     Left = 0
     Top = 0
-    Width = 585
-    Height = 260
+    Width = 579
+    Height = 251
     Align = alClient
     Frame.Visible = False
     TabOrder = 0
-    ExplicitWidth = 579
-    ExplicitHeight = 251
+    ExplicitWidth = 591
+    ExplicitHeight = 260
     object pnlBottom: TdxPanel
       Left = 0
       Top = 203
@@ -35,8 +35,7 @@ object formEmpresas: TformEmpresas
       Frame.Borders = [bBottom]
       Frame.Visible = False
       TabOrder = 0
-      ExplicitTop = 194
-      ExplicitWidth = 579
+      ExplicitWidth = 591
       object btnConfirmar: TcxButton
         AlignWithMargins = True
         Left = 345
@@ -87,7 +86,7 @@ object formEmpresas: TformEmpresas
       end
       object btnCancelar: TcxButton
         AlignWithMargins = True
-        Left = 465
+        Left = 459
         Top = 10
         Width = 100
         Height = 37
@@ -108,14 +107,13 @@ object formEmpresas: TformEmpresas
           9F9D0F3962C0AF776902E6C4A0AD55D6C2480000000049454E44AE426082}
         TabOrder = 2
         OnClick = btnCancelarClick
-        ExplicitLeft = 459
       end
     end
     object Layout: TdxLayoutControl
       Left = 0
       Top = 0
-      Width = 585
-      Height = 203
+      Width = 579
+      Height = 194
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -126,8 +124,8 @@ object formEmpresas: TformEmpresas
       ParentFont = False
       TabOrder = 1
       LayoutLookAndFeel = dxLayoutCxLookAndFeel1
-      ExplicitWidth = 579
-      ExplicitHeight = 194
+      ExplicitWidth = 591
+      ExplicitHeight = 203
       object lblEmpresas: TcxLabel
         Left = 19
         Top = 19

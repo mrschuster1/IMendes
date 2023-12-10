@@ -114,8 +114,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="src\Model\Model.Connection.pas">
-            <Form>DM</Form>
+        <DCCReference Include="src\Providers\Provider.Connection.pas">
+            <Form>ProviderConnection</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
@@ -140,7 +140,6 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\Handlers\Handler.Exception.pas"/>
-        <DCCReference Include="src\Helpers\Helpers.Excel.pas"/>
         <DCCReference Include="src\View\View.PesquisaGrade.pas">
             <Form>formPesquisaGrade</Form>
             <FormType>dfm</FormType>
@@ -159,8 +158,8 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="src\View\View.Importar.pas">
-            <Form>formImportar</Form>
+        <DCCReference Include="src\View\View.Importacao.pas">
+            <Form>formImportacao</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\Services\Services.Tributos.pas">
@@ -195,13 +194,13 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
-                <DeployFile LocalName="..\ExportaMendes\bin\IMendes.exe" Configuration="Release" Class="ProjectOutput">
+                <DeployFile LocalName="bin\IMendes.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>IMendes.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="bin\IMendes.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="bin\IMendes.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>IMendes.exe</RemoteName>
                         <Overwrite>true</Overwrite>

@@ -1,4 +1,4 @@
-object DM: TDM
+object ProviderConnection: TProviderConnection
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   Height = 181

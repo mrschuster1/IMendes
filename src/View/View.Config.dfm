@@ -1,7 +1,7 @@
 object formConfig: TformConfig
   Left = 0
   Top = 0
-  BorderIcons = [biSystemMenu, biMinimize]
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Configura'#231#245'es'
   ClientHeight = 554
@@ -25,7 +25,7 @@ object formConfig: TformConfig
     Frame.Visible = False
     TabOrder = 0
     ExplicitWidth = 886
-    ExplicitHeight = 464
+    ExplicitHeight = 545
     object pnlBottom: TdxPanel
       Left = 0
       Top = 497
@@ -35,7 +35,7 @@ object formConfig: TformConfig
       Frame.Borders = [bBottom]
       Frame.Visible = False
       TabOrder = 0
-      ExplicitTop = 407
+      ExplicitTop = 488
       ExplicitWidth = 886
       object btnSalvar: TcxButton
         AlignWithMargins = True
@@ -126,7 +126,7 @@ object formConfig: TformConfig
       TabOrder = 1
       LayoutLookAndFeel = dxLayoutCxLookAndFeel1
       ExplicitWidth = 886
-      ExplicitHeight = 407
+      ExplicitHeight = 488
       object edtBanco: TcxButtonEdit
         Left = 186
         Top = 61

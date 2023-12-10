@@ -77,7 +77,7 @@ implementation
 
 
 uses
-  Model.Connection,
+  Provider.Connection,
   Services.Empresas;
 
 { TformEmpresas }

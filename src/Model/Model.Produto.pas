@@ -104,7 +104,6 @@ type
     FPercIsencao: single;
     FAdRem: single;
     FFCP: single;
-    function &End: TProduto;
   protected
 
   public
@@ -372,11 +371,6 @@ function TProduto.PercRedBCICMSST(value: single): iProduto;
 begin
   FPercRedBCICMSST := value;
   Result := Self;
-end;
-
-function TProduto.&End: TProduto;
-begin
-
 end;
 
 function TProduto.AdRem: single;

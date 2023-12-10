@@ -1,4 +1,4 @@
-unit Model.Connection;
+unit Provider.Connection;
 
 interface
 
@@ -23,7 +23,7 @@ uses
   FireDAC.Comp.Client;
 
 type
-  TDM = class(TDataModule)
+  TProviderConnection = class(TDataModule)
     Connection: TFDConnection;
     FBClient: TFDPhysFBDriverLink;
     DBWaitCursor: TFDGUIxWaitCursor;
@@ -38,12 +38,11 @@ type
     constructor Create; reintroduce;
     procedure Conectar;
     procedure Desconectar;
-    procedure Reconectar;
     class function CaminhoDB: string;
   end;
 
 var
-  DM: TDM;
+  ProviderConnection: TProviderConnection;
 
 implementation
 
@@ -56,7 +55,7 @@ uses
 {$R *.dfm}
 
 
-class function TDM.CaminhoDB: string;
+class function TProviderConnection.CaminhoDB: string;
 begin
   var
   lDM := self.Create;
@@ -70,7 +69,7 @@ begin
   end;
 end;
 
-procedure TDM.CarregarConfiguracoes;
+procedure TProviderConnection.CarregarConfiguracoes;
 begin
   var
   Params := TFDPhysFBConnectionDefParams(Connection.Params);
@@ -83,38 +82,33 @@ begin
     ('conexao', 'banco', 'c:\ecosis\dados\ecodados.eco');
 end;
 
-procedure TDM.Reconectar;
-begin
-  Desconectar;
-  Conectar
-end;
 
-procedure TDM.Conectar;
+procedure TProviderConnection.Conectar;
 begin
   Connection.Connected := true
 end;
 
-procedure TDM.ConnectionBeforeConnect(Sender: TObject);
+procedure TProviderConnection.ConnectionBeforeConnect(Sender: TObject);
 begin
   CarregarConfiguracoes
 end;
 
-constructor TDM.Create;
+constructor TProviderConnection.Create;
 begin
   inherited Create(nil);
 end;
 
-procedure TDM.DataModuleCreate(Sender: TObject);
+procedure TProviderConnection.DataModuleCreate(Sender: TObject);
 begin
   Conectar
 end;
 
-procedure TDM.DataModuleDestroy(Sender: TObject);
+procedure TProviderConnection.DataModuleDestroy(Sender: TObject);
 begin
   Desconectar
 end;
 
-procedure TDM.Desconectar;
+procedure TProviderConnection.Desconectar;
 begin
   Connection.Connected := false
 end;

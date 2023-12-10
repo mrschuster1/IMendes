@@ -6,7 +6,7 @@ uses
   System.SysUtils,
   dialogs,
   System.Classes,
-  Model.Connection,
+  Provider.Connection,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Error,
@@ -37,10 +37,11 @@ type
     ICMSAdicionados: integer;
     ICMSAlterados: integer;
     NCMAlterados: integer;
+    CESTAlterados: integer;
   end;
 
 type
-  TServiceTributos = class(TDM)
+  TServiceTributos = class(TProviderConnection)
     ICMS: TFDQuery;
     Empresa: TStringField;
     Produto: TStringField;
@@ -101,12 +102,22 @@ type
     ICMSDIFAL_TIPOCALCULO: TIntegerField;
     ICMSDIFAL_ICMSSTCONTRIB: TIntegerField;
     ICMSDIFAL_CONVICMS5291: TIntegerField;
+    NCM: TFDQuery;
+    NCMCodigoProduto: TStringField;
+    NCMClassificacaoFiscal: TStringField;
+    ComparaCEST: TFDQuery;
+    ComparaCESTPRODUTO: TStringField;
+    ComparaCESTCEST: TStringField;
+    SelectCEST: TFDQuery;
+    SelectCESTIDCEST: TIntegerField;
+    UpdateCEST: TFDQuery;
+    ComparaIPI: TFDQuery;
+    UpdateIPI: TFDQuery;
   private
     { Private declarations }
-    class function ExisteICMS(Produto: string): boolean;
-    class function AtualizarICMS(Produto: iProduto): boolean;
-    class procedure AdicionarICMS(Produto: iProduto);
-    class function AtualizarNCM(Produto: iProduto): boolean;
+    function AtualizarICMS(Produto: iProduto): boolean;
+    function AtualizarNCM(Produto: iProduto): boolean;
+    function AtualizarCEST(Produto: iProduto): boolean;
   public
     { Public declarations }
     class function Post(var Produtos: TList<iProduto>): TRetornoProcessamento;
@@ -128,142 +139,130 @@ uses
 
 { TServiceTributos }
 
-class procedure TServiceTributos.AdicionarICMS(Produto: iProduto);
+function TServiceTributos.AtualizarCEST(Produto: iProduto): boolean;
 begin
+  ComparaCEST.ParamByName('Produto').AsString := Produto.Codigo;
+  ComparaCEST.Open;
+  if ComparaCEST.FieldByName('CEST').AsString = Produto.CEST then
+    Result := False
+  else
+  begin
+    SelectCEST.ParamByName('CEST').AsString := Produto.CEST;
+    SelectCEST.Open;
 
-end;
-
-class function TServiceTributos.AtualizarICMS(Produto: iProduto): boolean;
-begin
-  var
-  Tributos := Self.Create;
-  try
-    var
-    lICMS := Tributos.ICMS;
-    lICMS.ParamByName('Empresa').AsString := TServiceEmpresas.GetEmpresa;
-    lICMS.ParamByName('Produto').AsString := Produto.Codigo;
-    lICMS.ParamByName('Estado').AsString := TIniHelper.GetValue('empresa',
-      'uf', 'PA');
-    lICMS.Open;
-    if not lICMS.IsEmpty then
+    if not SelectCEST.IsEmpty then
     begin
-      Result := true;
-      lICMS.Edit;
-      // Alteração de dados
-      /// CFOP
-      Tributos.CFOPVendaContribuinte.AsString := Produto.CFOPVenda;
-      Tributos.CFOPVendaConsumidor.AsString := Produto.CFOPVenda;
+      var
+      CEST := SelectCEST.FieldByName('IDCEST').AsInteger;
 
-      /// UF
-      Tributos.Estado.AsString := TIniHelper.GetValue('empresa',
-        'uf', 'PA');
-
-      /// CST
-      Tributos.CSTCompra.AsString := Produto.CST;
-      Tributos.CSTContribuinte.AsString := Produto.CST;
-      Tributos.CSTConsumidor.AsString := Produto.CST;
-
-      /// Alíquotas de ICMS
-      Tributos.PercICMSCompra.AsSingle := Produto.PercICMS;
-      Tributos.PercICMSContribuinte.AsSingle := Produto.PercICMS;
-      Tributos.PercICMSConsumidor.AsSingle := Produto.PercICMS;
-      Tributos.PercICMSSTContribuinte.AsSingle := Produto.PercICMSST;
-      Tributos.PercICMSSTConsumidor.AsSingle := Produto.PercICMSST;
-
-      /// CSOSN
-      Tributos.CSOSNConsumidor.AsString := Produto.CSOSN;
-      Tributos.CSOSNContribuinte.AsString := Produto.CSOSN;
-
-      /// Outras alíquotas
-      Tributos.PercFCP.AsSingle := Produto.FCP;
-
-      // Fim da alteração de dados
-      lICMS.Post
+      UpdateCEST.ParamByName('Produto').AsString := Produto.Codigo;
+      UpdateCEST.ParamByName('CEST').AsInteger := CEST;
+      UpdateCEST.ExecSQL;
+      Result := True
     end
     else
-      Result := false
-
-  finally
-    Tributos.free
+      Result := False
   end;
+
+  ComparaCEST.Close;
+  SelectCEST.Close;
 end;
 
-class function TServiceTributos.AtualizarNCM(Produto: iProduto): boolean;
+function TServiceTributos.AtualizarICMS(Produto: iProduto): boolean;
 begin
-  var
-  Tributos := Self.Create;
-  try
-    var
-    Query := TFDQuery.Create(Tributos);
-    try
-      Query.Connection := Tributos.Connection;
-      Query.Sql.Add
-        ('select codigo, classificacaofiscal from testprodutogeral where codigo = :produto');
-      Query.ParamByName('Produto').AsString := Produto.Codigo;
-      Query.Open;
+  ICMS.Close;
+  ICMS.ParamByName('Empresa').AsString := TServiceEmpresas.GetEmpresa;
+  ICMS.ParamByName('Produto').AsString := Produto.Codigo;
+  ICMS.ParamByName('Estado').AsString := TIniHelper.GetValue('empresa',
+    'uf', 'PA');
+  ICMS.Open;
+  if not ICMS.IsEmpty then
+  begin
+    Result := True;
+    ICMS.Edit;
+    // Alteração de dados
+    /// CFOP
+    CFOPVendaContribuinte.AsString := Produto.CFOPVenda;
+    CFOPVendaConsumidor.AsString := Produto.CFOPVenda;
 
-      if Query.FieldByName('ClassificacaoFiscal').AsString <> Produto.NCM then
-      begin
-        Result := true;
-        Query.Edit;
-        Query.FieldByName('ClassificacaoFiscal').AsString := Produto.NCM;
-        Query.Post
-      end
-      else
-        Result := false
-    finally
-      Query.free
-    end;
-  finally
-    Tributos.free
-  end;
+    /// UF
+    Estado.AsString := TIniHelper.GetValue('empresa',
+      'uf', 'PA');
+
+    /// CST
+    CSTCompra.AsString := Produto.CST;
+    CSTContribuinte.AsString := Produto.CST;
+    CSTConsumidor.AsString := Produto.CST;
+
+    /// Alíquotas de ICMS
+    PercICMSCompra.AsSingle := Produto.PercICMS;
+    PercICMSContribuinte.AsSingle := Produto.PercICMS;
+    PercICMSConsumidor.AsSingle := Produto.PercICMS;
+    PercICMSSTContribuinte.AsSingle := Produto.PercICMSST;
+    PercICMSSTConsumidor.AsSingle := Produto.PercICMSST;
+
+    /// CSOSN
+    CSOSNConsumidor.AsString := Produto.CSOSN;
+    CSOSNContribuinte.AsString := Produto.CSOSN;
+
+    /// Outras alíquotas
+    PercFCP.AsSingle := Produto.FCP;
+
+    // Fim da alteração de dados
+    ICMS.Post
+  end
+  else
+    Result := False
+
 end;
 
-class function TServiceTributos.ExisteICMS(Produto: string): boolean;
+function TServiceTributos.AtualizarNCM(Produto: iProduto): boolean;
 begin
-  var
-  Tributos := Self.Create;
-  try
-    var
-    Query := TFDQuery.Create(Tributos);
-    try
-      Query.Connection := Tributos.Connection;
-      Query.Sql.Add
-        ('select * from testicms where empresa = :empresa and produto = :produto');
-      Query.ParamByName('Empresa').AsString := TServiceEmpresas.GetEmpresa;
-      Query.ParamByName('Produto').AsString := Produto;
-      Query.Open;
-      Result := not Query.IsEmpty
-    finally
-      Query.free
-    end;
-  finally
-    Tributos.free
-  end;
+
+  NCM.Close;
+  NCM.ParamByName('Produto').AsString := Produto.Codigo;
+  NCM.Open;
+
+  if NCMClassificacaoFiscal.AsString <> Produto.NCM then
+  begin
+    Result := True;
+    NCM.Edit;
+    NCMClassificacaoFiscal.AsString := Produto.NCM;
+    NCM.Post
+  end
+  else
+    Result := False
 end;
 
 class function TServiceTributos.Post(var Produtos: TList<iProduto>)
   : TRetornoProcessamento;
 begin
+  Result.ICMSAdicionados := 0;
+  Result.ICMSAlterados := 0;
+  Result.NCMAlterados := 0;
+  Result.CESTAlterados := 0;
+  var
+  lTributos := TServiceTributos.Create;
   try
-    Result.ICMSAdicionados := 0;
-    Result.ICMSAlterados := 0;
-    Result.NCMAlterados := 0;
-
     for var Produto in Produtos do
     begin
       // ICMS
-      if AtualizarICMS(Produto) then
+      if lTributos.AtualizarICMS(Produto) then
         Inc(Result.ICMSAlterados)
       else
         Inc(Result.ICMSAdicionados);
 
       // NCM
-      if AtualizarNCM(Produto) then
+      if lTributos.AtualizarNCM(Produto) then
         Inc(Result.NCMAlterados);
+
+      // CEST
+      if lTributos.AtualizarCEST(Produto) then
+        Inc(Result.CESTAlterados);
     end;
   finally
-    Produtos.free
+    Produtos.Free;
+    lTributos.Free
   end;
 end;
 

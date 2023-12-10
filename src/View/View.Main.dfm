@@ -62,6 +62,9 @@ object formMain: TformMain
       Caption = 'Geral'
       Groups = <
         item
+          ToolbarName = 'gpIntegracao'
+        end
+        item
           ToolbarName = 'groupExportaImporta'
         end>
       Index = 0
@@ -101,7 +104,7 @@ object formMain: TformMain
     TabOrder = 2
     Panels = <
       item
-        Text = '06/12/2023'
+        Text = '10/12/2023'
         Style = spsDate
         Width = 80
         Progress.Level0Fill.Color = clLime
@@ -111,7 +114,7 @@ object formMain: TformMain
         Progress.Position = 0
       end
       item
-        Text = '17:19:34'
+        Text = '18:19:55'
         Style = spsTime
         Width = 70
         Progress.Level0Fill.Color = clLime
@@ -207,9 +210,9 @@ object formMain: TformMain
       WholeRow = False
     end
     object groupExportaImporta: TdxBar
-      Caption = 'Exporta'#231#227'o/importa'#231#227'o'
+      Caption = 'Exporta'#231#227'o/importa'#231#227'o manual'
       CaptionButtons = <>
-      DockedLeft = 0
+      DockedLeft = 64
       DockedTop = 0
       FloatLeft = 1078
       FloatTop = 3
@@ -223,6 +226,26 @@ object formMain: TformMain
         item
           Visible = True
           ItemName = 'buttonImportar'
+        end>
+      OneOnRow = True
+      Row = 1
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object gpIntegracao: TdxBar
+      Caption = 'Integra'#231#227'o'
+      CaptionButtons = <>
+      DockedLeft = 0
+      DockedTop = 0
+      FloatLeft = 1072
+      FloatTop = 3
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton2'
         end>
       OneOnRow = True
       Row = 0
@@ -338,6 +361,12 @@ object formMain: TformMain
       OnClick = buttonImportarClick
     end
     object dxBarLargeButton1: TdxBarLargeButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+    object dxBarLargeButton2: TdxBarLargeButton
       Caption = 'New Button'
       Category = 0
       Hint = 'New Button'

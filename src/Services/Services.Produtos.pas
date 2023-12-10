@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils,
   System.Classes,
-  Model.Connection,
+  Provider.Connection,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Error,
@@ -30,7 +30,7 @@ uses
   ragna;
 
 type
-  TServiceProdutos = class(TDM)
+  TServiceProdutos = class(TProviderConnection)
     Produtos: TFDQuery;
     CodigoBarra: TStringField;
     Codigo: TStringField;

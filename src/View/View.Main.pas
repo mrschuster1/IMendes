@@ -70,6 +70,8 @@ type
     MDITabs: TdxTabbedMDIManager;
     StatusBar: TTMSFNCStatusBar;
     dxBarLargeButton1: TdxBarLargeButton;
+    gpIntegracao: TdxBar;
+    dxBarLargeButton2: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure buttonConfigClick(Sender: TObject);
     procedure buttonExportacaoClick(Sender: TObject);
@@ -93,20 +95,20 @@ implementation
 
 
 uses
-  Model.Connection,
+  Provider.Connection,
   View.Config,
   View.Exportacao,
   utils.Dialogs,
   View.Empresas,
   Services.Empresas,
-  View.Importar;
+  View.Importacao;
 
 { TFormMain }
 
 procedure TformMain.AtualizarStatusBar;
 begin
   StatusBar.Panels.Items[2].Text := format(' Banco de dados: %s',
-    [tdm.CaminhoDB]);
+    [TProviderConnection.CaminhoDB]);
   StatusBar.Panels.Items[3].Text := TServiceEmpresas.NomeEmpresa
 end;
 
@@ -122,7 +124,7 @@ end;
 
 procedure TformMain.buttonImportarClick(Sender: TObject);
 begin
-  TFormHelper.CreateTabForm<TformImportar>(self, true)
+  TFormHelper.CreateTabForm<TformImportacao>(self, true)
 end;
 
 procedure TformMain.CarregarIdioma;
