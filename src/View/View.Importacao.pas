@@ -442,12 +442,14 @@ begin
       + #13 + '%d produto(s) com ICMS alterado(s).'
       + #13 + '%d produto(s) com NCM alterados(s).'
       + #13 + '%d produto(s) com CEST alterados(s).'
-      + #13 + '%d produto(s) com IPI alterados(s).',
+      + #13 + '%d produto(s) com IPI alterados(s).'
+      + #13 + '%d produto(s) com PIS/COFINS alterados(s).',
       [Retorno.ICMSAdicionados,
       Retorno.ICMSAlterados,
       Retorno.NCMAlterados,
       Retorno.CESTAlterados,
-      Retorno.IPIAlterados]))
+      Retorno.IPIAlterados,
+      Retorno.PISCOFINSAlterados]))
   end
   else
     Produtos.Free;

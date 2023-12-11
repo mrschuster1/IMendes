@@ -1,10 +1,18 @@
 inherited ServiceTributos: TServiceTributos
-  Height = 439
-  Width = 691
+  Height = 653
+  Width = 860
   PixelsPerInch = 120
+  inherited Connection: TFDConnection
+    Left = 32
+    Top = 8
+  end
+  inherited FBClient: TFDPhysFBDriverLink
+    Left = 112
+    Top = 8
+  end
   inherited DBWaitCursor: TFDGUIxWaitCursor
-    Left = 360
-    Top = 48
+    Left = 200
+    Top = 8
   end
   object ICMS: TFDQuery
     Connection = Connection
@@ -75,8 +83,8 @@ inherited ServiceTributos: TServiceTributos
       'where I.EMPRESA = :EMPRESA and'
       '      I.PRODUTO = :PRODUTO and'
       '      I.ESTADO = :ESTADO')
-    Left = 68
-    Top = 139
+    Left = 28
+    Top = 91
     ParamData = <
       item
         Name = 'EMPRESA'
@@ -358,8 +366,8 @@ inherited ServiceTributos: TServiceTributos
       
         'select codigo, classificacaofiscal from testprodutogeral where c' +
         'odigo = :produto')
-    Left = 232
-    Top = 296
+    Left = 456
+    Top = 520
     ParamData = <
       item
         Name = 'PRODUTO'
@@ -388,8 +396,8 @@ inherited ServiceTributos: TServiceTributos
       'from TESTPRODUTOGERAL P'
       'inner join TESTCEST C on C.IDCEST = P.IDCEST'
       'where P.CODIGO = :PRODUTO   ')
-    Left = 376
-    Top = 312
+    Left = 552
+    Top = 520
     ParamData = <
       item
         Name = 'PRODUTO'
@@ -417,8 +425,8 @@ inherited ServiceTributos: TServiceTributos
     Connection = Connection
     SQL.Strings = (
       'select IDCEST from TESTCEST where CEST = :CEST')
-    Left = 496
-    Top = 312
+    Left = 648
+    Top = 520
     ParamData = <
       item
         Name = 'CEST'
@@ -440,8 +448,8 @@ inherited ServiceTributos: TServiceTributos
       'update TESTPRODUTOGERAL'
       'set IDCEST = :CEST'
       'where CODIGO = :PRODUTO   ')
-    Left = 616
-    Top = 320
+    Left = 744
+    Top = 520
     ParamData = <
       item
         Name = 'CEST'
@@ -461,7 +469,7 @@ inherited ServiceTributos: TServiceTributos
     SQL.Strings = (
       'select ipi from testprodutogeral '
       'where codigo = :produto')
-    Left = 368
+    Left = 672
     Top = 176
     ParamData = <
       item
@@ -477,8 +485,8 @@ inherited ServiceTributos: TServiceTributos
     SQL.Strings = (
       'update testprodutogeral set ipi = :ipi'
       'where codigo = :produto')
-    Left = 480
-    Top = 184
+    Left = 552
+    Top = 176
     ParamData = <
       item
         Name = 'IPI'
@@ -493,6 +501,146 @@ inherited ServiceTributos: TServiceTributos
         DataType = ftString
         ParamType = ptInput
         Size = 6
+      end>
+  end
+  object UpdateCSTIPI: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'update testprodutogeral '
+      'set tipoipisaida = :cst,'
+      '    tipoipidevcompra = :cst,'
+      '    codigoenquadramento = 999'
+      'where codigo = :produto')
+    Left = 552
+    Top = 104
+    ParamData = <
+      item
+        Name = 'CST'
+        DataType = ftSmallint
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PRODUTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 6
+      end>
+  end
+  object ComparaCSTIPI: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'select tipoipisaida cst from testprodutogeral'
+      'where codigo =:produto')
+    Left = 672
+    Top = 104
+    ParamData = <
+      item
+        Name = 'PRODUTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 6
+        Value = Null
+      end>
+  end
+  object VinculoTributario: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'select * from testvinculotributario')
+    Left = 104
+    Top = 560
+  end
+  object SelectGrupoTributacao: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'select *'
+      'from TESTGRUPOTRIBUTACAO G'
+      'where G.EMPRESA = :EMPRESA and'
+      '      substring(G.DESCRICAO from 13 for 2) = :ENTRADA and'
+      '      substring(G.DESCRICAO from 26 for 2) = :SAIDA   ')
+    Left = 104
+    Top = 328
+    ParamData = <
+      item
+        Name = 'EMPRESA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 2
+        Value = Null
+      end
+      item
+        Name = 'ENTRADA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end
+      item
+        Name = 'SAIDA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end>
+  end
+  object InsertGrupoTributacao: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'select *'
+      'from TESTGRUPOTRIBUTACAO')
+    Left = 104
+    Top = 256
+  end
+  object UpdateGrupoTributacaoProduto: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'update TESTPRODUTO P'
+      'set P.IDGRUPOTRIBUTACAO = :GRUPOTRIBUTACAO'
+      'where P.PRODUTO = :PRODUTO and'
+      '      P.EMPRESA = :EMPRESA   ')
+    Left = 104
+    Top = 400
+    ParamData = <
+      item
+        Name = 'GRUPOTRIBUTACAO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PRODUTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 6
+      end
+      item
+        Name = 'EMPRESA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 2
+        Value = Null
+      end>
+  end
+  object ComparaGrupoTributacaoProduto: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'select idgrupotributacao from TESTPRODUTO P'
+      'where P.PRODUTO = :PRODUTO and'
+      '      P.EMPRESA = :EMPRESA   ')
+    Left = 104
+    Top = 472
+    ParamData = <
+      item
+        Name = 'PRODUTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 6
+        Value = Null
+      end
+      item
+        Name = 'EMPRESA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 2
+        Value = Null
       end>
   end
 end

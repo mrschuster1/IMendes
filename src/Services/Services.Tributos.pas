@@ -39,6 +39,7 @@ type
     NCMAlterados: integer;
     CESTAlterados: integer;
     IPIAlterados: integer;
+    PISCOFINSAlterados: integer;
   end;
 
 type
@@ -114,12 +115,22 @@ type
     UpdateCEST: TFDQuery;
     ComparaPercIPI: TFDQuery;
     UpdatePercIPI: TFDQuery;
+    UpdateCSTIPI: TFDQuery;
+    ComparaCSTIPI: TFDQuery;
+    VinculoTributario: TFDQuery;
+    SelectGrupoTributacao: TFDQuery;
+    InsertGrupoTributacao: TFDQuery;
+    UpdateGrupoTributacaoProduto: TFDQuery;
+    ComparaGrupoTributacaoProduto: TFDQuery;
   private
     { Private declarations }
     function AtualizarICMS(Produto: iProduto): boolean;
     function AtualizarNCM(Produto: iProduto): boolean;
     function AtualizarCEST(Produto: iProduto): boolean;
     function AtualizarIPI(Produto: iProduto): boolean;
+    function AtualizarPISCOFINS(Produto: iProduto): boolean;
+    function ObterUltimoID(Tabela, Campo: string;
+      MultiEmpresa: boolean): integer;
   public
     { Public declarations }
     class function Post(var Produtos: TList<iProduto>): TRetornoProcessamento;
@@ -220,8 +231,10 @@ end;
 
 function TServiceTributos.AtualizarIPI(Produto: iProduto): boolean;
 begin
+  // Aliquota/percentual
   ComparaPercIPI.ParamByName('Produto').AsString := Produto.Codigo;
   ComparaPercIPI.Open;
+
   if ComparaPercIPI.FieldByName('IPI').AsFloat = Produto.PercIPI then
     Result := False
   else
@@ -229,9 +242,26 @@ begin
     UpdatePercIPI.ParamByName('Produto').AsString := Produto.Codigo;
     UpdatePercIPI.ParamByName('IPI').AsFloat := Produto.PercIPI;
     UpdatePercIPI.ExecSQL;
+
     Result := True;
   end;
   ComparaPercIPI.Close;
+
+  // CST/Enquadramento
+  ComparaCSTIPI.ParamByName('Produto').AsString := Produto.Codigo;
+  ComparaCSTIPI.Open;
+  if ComparaCSTIPI.FieldByName('CST').AsString = Produto.CSTIPI then
+    Result := False
+  else
+  begin
+    UpdateCSTIPI.ParamByName('Produto').AsString := Produto.Codigo;
+    UpdateCSTIPI.ParamByName('CST').AsString := Produto.CSTIPI;
+    UpdateCSTIPI.ExecSQL;
+
+    Result := True;
+  end;
+  ComparaCSTIPI.Close
+
 end;
 
 function TServiceTributos.AtualizarNCM(Produto: iProduto): boolean;
@@ -253,6 +283,111 @@ begin
   NCM.Close;
 end;
 
+function TServiceTributos.AtualizarPISCOFINS(Produto: iProduto): boolean;
+begin
+  if (Produto.CSTPisCofinsEntrada = '') and (Produto.CSTPisCofinsSaida = '')
+  then
+    Result := False
+  else
+  begin
+    VinculoTributario.Open;
+    if VinculoTributario.IsEmpty then
+    begin
+      VinculoTributario.Insert;
+      VinculoTributario.FieldByName('DESCRICAO').AsString := 'VINCULO PADRÃO';
+      VinculoTributario.FieldByName('USUARIO').AsString := 'SUPERVISOR';
+      VinculoTributario.Post;
+      Result := True;
+    end;
+
+    SelectGrupoTributacao.ParamByName('empresa').AsString :=
+      TServiceEmpresas.GetEmpresa;
+    SelectGrupoTributacao.ParamByName('entrada').AsString :=
+      Produto.CSTPisCofinsEntrada;
+    SelectGrupoTributacao.ParamByName('saida').AsString :=
+      Produto.CSTPisCofinsSaida;
+    SelectGrupoTributacao.Open;
+
+    if SelectGrupoTributacao.IsEmpty then
+    begin
+      InsertGrupoTributacao.Open;
+      InsertGrupoTributacao.Insert;
+      InsertGrupoTributacao.FieldByName('empresa').AsString :=
+        TServiceEmpresas.GetEmpresa;
+      InsertGrupoTributacao.FieldByName('usuario').AsString := 'IMENDES';
+      InsertGrupoTributacao.FieldByName('descricao').AsString :=
+        Format('CST ENTRADA %s CST SAIDA %s',
+        [Produto.CSTPisCofinsEntrada, Produto.CSTPisCofinsSaida]);
+      InsertGrupoTributacao.FieldByName('IDGRUPOTRIBUTACAO').AsInteger :=
+        ObterUltimoID('TESTGRUPOTRIBUTACAO', 'IDGRUPOTRIBUTACAO', True) + 1;
+      InsertGrupoTributacao.Post;
+
+      UpdateGrupoTributacaoProduto.ParamByName('produto').AsString :=
+        Produto.Codigo;
+      UpdateGrupoTributacaoProduto.ParamByName('empresa').AsString :=
+        TServiceEmpresas.GetEmpresa;
+      UpdateGrupoTributacaoProduto.ParamByName('grupotributacao').AsInteger :=
+        ObterUltimoID('TESTGRUPOTRIBUTACAO', 'IDGRUPOTRIBUTACAO', True);
+      UpdateGrupoTributacaoProduto.ExecSQL;
+      Result := True;
+    end
+    else
+    begin
+
+      ComparaGrupoTributacaoProduto.ParamByName('produto').AsString :=
+        Produto.Codigo;
+      ComparaGrupoTributacaoProduto.ParamByName('empresa').AsString :=
+        TServiceEmpresas.GetEmpresa;
+      ComparaGrupoTributacaoProduto.Open;
+
+      if ComparaGrupoTributacaoProduto.FieldByName('idgrupotributacao')
+        .AsInteger <> SelectGrupoTributacao.FieldByName('IDGRUPOTRIBUTACAO').AsInteger
+      then
+      begin
+        UpdateGrupoTributacaoProduto.ParamByName('produto').AsString :=
+          Produto.Codigo;
+        UpdateGrupoTributacaoProduto.ParamByName('empresa').AsString :=
+          TServiceEmpresas.GetEmpresa;
+        UpdateGrupoTributacaoProduto.ParamByName('grupotributacao').AsInteger :=
+          SelectGrupoTributacao.FieldByName('IDGRUPOTRIBUTACAO').AsInteger;
+        UpdateGrupoTributacaoProduto.ExecSQL;
+        Result := True;
+      end
+      else
+        Result := False
+    end;
+
+    SelectGrupoTributacao.Close;
+    VinculoTributario.Close;
+    ComparaGrupoTributacaoProduto.Close
+  end;
+end;
+
+function TServiceTributos.ObterUltimoID(Tabela, Campo: string;
+  MultiEmpresa: boolean): integer;
+begin
+  var
+  Query := TFDQuery.Create(Self);
+  try
+    Query.Connection := Connection;
+
+    if MultiEmpresa then
+      Query.SQL.Text := Format('SELECT MAX(%s) FROM %s where empresa = %d',
+        [Campo, Tabela, TServiceEmpresas.GetEmpresa.ToInteger])
+    else
+      Query.SQL.Text := Format('SELECT MAX(%s) FROM %s', [Campo, Tabela]);
+
+    Query.Open;
+
+    if not Query.IsEmpty then
+      Result := Query.Fields[0].AsInteger
+    else
+      Result := 0;
+  finally
+    Query.Free;
+  end;
+end;
+
 class function TServiceTributos.Post(var Produtos: TList<iProduto>)
   : TRetornoProcessamento;
 begin
@@ -261,6 +396,8 @@ begin
   Result.NCMAlterados := 0;
   Result.CESTAlterados := 0;
   Result.IPIAlterados := 0;
+  Result.PISCOFINSAlterados := 0;
+
   var
   lTributos := TServiceTributos.Create;
   try
@@ -283,6 +420,10 @@ begin
       // IPI
       if lTributos.AtualizarIPI(Produto) then
         Inc(Result.IPIAlterados);
+
+      // PIS/COFINS
+      if lTributos.AtualizarPISCOFINS(Produto) then
+        Inc(Result.PISCOFINSAlterados);
     end;
   finally
     Produtos.Free;

@@ -1,7 +1,11 @@
 inherited formImportacao: TformImportacao
   Caption = 'Importa'#231#227'o'
+  ClientHeight = 658
+  ClientWidth = 1076
   TextHeight = 15
   inherited pnlMain: TdxPanel
+    Width = 1076
+    Height = 658
     ExplicitWidth = 1070
     ExplicitHeight = 649
     object Grid: TcxGrid
@@ -665,7 +669,7 @@ inherited formImportacao: TformImportacao
       PrinterPage._dxMeasurementUnits_ = 0
       PrinterPage._dxLastMU_ = 2
       ReportDocument.Caption = 'Imrpess'#227'o - IMendes'
-      ReportDocument.CreationDate = 45270.612872361110000000
+      ReportDocument.CreationDate = 45271.017073217590000000
       ReportDocument.Creator = 'IMendes'
       OptionsOnEveryPage.Footers = False
       OptionsOnEveryPage.Caption = False
