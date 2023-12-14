@@ -1,7 +1,13 @@
 inherited formExportacao: TformExportacao
   Caption = 'Exporta'#231#227'o'
+  ClientHeight = 667
+  ClientWidth = 1082
   TextHeight = 15
   inherited pnlMain: TdxPanel
+    Width = 1082
+    Height = 667
+    ExplicitWidth = 1076
+    ExplicitHeight = 658
     inherited Grid: TcxGrid
       inherited TableView: TcxGridDBTableView
         DataController.DataSource = ds
@@ -53,16 +59,18 @@ inherited formExportacao: TformExportacao
       end
     end
     inherited pnlTop: TdxPanel
+      ExplicitWidth = 1076
       inherited lblRegistros: TcxLabel
-        AnchorX = 1056
+        ExplicitLeft = 1047
+        AnchorX = 1062
         AnchorY = 29
       end
       inherited edtPesquisa: TcxTextEdit
         Left = 273
         ExplicitLeft = 273
-        ExplicitWidth = 770
+        ExplicitWidth = 764
         ExplicitHeight = 37
-        Width = 764
+        Width = 770
       end
       inherited buttonImprimirGrade: TcxButton
         Left = 144

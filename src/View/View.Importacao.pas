@@ -543,8 +543,8 @@ end;
 procedure TformImportacao.ImportCSVAfterImport(Sender: TObject);
 begin
   inherited;
-  lblRegistros.Caption := Format('Total de registros: %s',
-    [MemData.RecordCount.ToString]);
+  lblRegistros.Caption := Format('Total de registros: %d',
+    [MemData.RecordCount]);
 end;
 
 end.

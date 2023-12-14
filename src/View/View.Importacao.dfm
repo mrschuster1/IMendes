@@ -669,7 +669,7 @@ inherited formImportacao: TformImportacao
       PrinterPage._dxMeasurementUnits_ = 0
       PrinterPage._dxLastMU_ = 2
       ReportDocument.Caption = 'Imrpess'#227'o - IMendes'
-      ReportDocument.CreationDate = 45271.017073217590000000
+      ReportDocument.CreationDate = 45273.755858483800000000
       ReportDocument.Creator = 'IMendes'
       OptionsOnEveryPage.Footers = False
       OptionsOnEveryPage.Caption = False
@@ -706,14 +706,14 @@ inherited formImportacao: TformImportacao
     OnAfterImport = ImportCSVAfterImport
     Comma = ';'
     Quote = '"'
-    Left = 576
-    Top = 208
+    Left = 600
+    Top = 304
   end
   object dialogExcel: TdxOpenFileDialog
     Filter = 'Planilha Excel|*.csv;*.xlsx'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
-    Left = 664
-    Top = 208
+    Left = 696
+    Top = 304
   end
   object MemData: TdxMemData
     Indexes = <
@@ -723,8 +723,8 @@ inherited formImportacao: TformImportacao
       end>
     SortOptions = []
     SortedFields = 'ID'
-    Left = 752
-    Top = 208
+    Left = 768
+    Top = 296
     object ID: TStringField
       DisplayLabel = 'Id'
       FieldName = 'ID'
@@ -891,6 +891,6 @@ inherited formImportacao: TformImportacao
     DataSet = MemData
     OnStateChange = DataSourceStateChange
     Left = 832
-    Top = 208
+    Top = 304
   end
 end

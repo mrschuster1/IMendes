@@ -40,7 +40,7 @@ type
     function Get: TFDQuery;
     function Query: TFDQuery;
     class procedure ListarEmpresas(Lista: TStrings);
-    class function NomeEmpresa: String;
+    class function NomeEmpresa: string;
     class procedure SetEmpresa(Id: string);
     class function GetEmpresa: string;
   end;

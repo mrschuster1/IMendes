@@ -33,11 +33,11 @@ type
   private
     { Private declarations }
     procedure CarregarConfiguracoes;
+    procedure Conectar;
+    procedure Desconectar;
   public
     { Public declarations }
     constructor Create; reintroduce;
-    procedure Conectar;
-    procedure Desconectar;
     class function CaminhoDB: string;
   end;
 

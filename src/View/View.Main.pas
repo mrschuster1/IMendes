@@ -71,11 +71,13 @@ type
     StatusBar: TTMSFNCStatusBar;
     dxBarLargeButton1: TdxBarLargeButton;
     gpIntegracao: TdxBar;
-    dxBarLargeButton2: TdxBarLargeButton;
+    btnIntegracao: TdxBarLargeButton;
+    btnProdutos: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure buttonConfigClick(Sender: TObject);
     procedure buttonExportacaoClick(Sender: TObject);
     procedure buttonImportarClick(Sender: TObject);
+    procedure btnIntegracaoClick(Sender: TObject);
   private
     procedure CarregarIdioma;
     procedure AtualizarStatusBar;
@@ -101,7 +103,7 @@ uses
   utils.Dialogs,
   View.Empresas,
   Services.Empresas,
-  View.Importacao;
+  View.Importacao, View.Integracao;
 
 { TFormMain }
 
@@ -112,6 +114,11 @@ begin
   StatusBar.Panels.Items[3].Text := TServiceEmpresas.NomeEmpresa
 end;
 
+procedure TformMain.btnIntegracaoClick(Sender: TObject);
+begin
+  TFormHelper.CreateTabForm<TformIntegracao>(self, FALSE)
+end;
+
 procedure TformMain.buttonConfigClick(Sender: TObject);
 begin
   Configurar
@@ -119,7 +126,7 @@ end;
 
 procedure TformMain.buttonExportacaoClick(Sender: TObject);
 begin
-  TFormHelper.CreateTabForm<TformExportacao>(self, true)
+  TFormHelper.CreateTabForm<TformExportacao>(self, FALSE)
 end;
 
 procedure TformMain.buttonImportarClick(Sender: TObject);

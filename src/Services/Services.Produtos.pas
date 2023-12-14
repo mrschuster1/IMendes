@@ -36,6 +36,7 @@ type
     Codigo: TStringField;
     Descricao: TStringField;
     Empresa: TStringField;
+    ExportaProdutos: TFDQuery;
     procedure ProdutosBeforeOpen(DataSet: TDataSet);
   private
     { Private declarations }
