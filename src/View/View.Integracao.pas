@@ -227,6 +227,7 @@ type
     { Private declarations }
     FLockFilter: Boolean;
     FMarcarTodos: Boolean;
+    procedure MarcarProdutos;
     procedure Imprimir;
     procedure Pesquisar;
     procedure ClearLikeFilter;
@@ -340,12 +341,33 @@ begin
   inherited;
   FMarcarTodos := False;
   AbrirQuery;
-  TableViewMarcadoHeaderClick(nil);
+  MarcarProdutos
 end;
 
 procedure TformIntegracao.Imprimir;
 begin
   GridPrinter.Preview(True)
+end;
+
+procedure TformIntegracao.MarcarProdutos;
+begin
+  MemData.DisableControls;
+  MemData.First;
+  FMarcarTodos := not FMarcarTodos;
+
+  while not MemData.Eof do
+  begin
+    MemData.Edit;
+
+    MemData.FieldByName('Marcado').AsBoolean := FMarcarTodos;
+
+    MemData.Post;
+    MemData.Next;
+  end;
+
+  MemData.First;
+  MemData.EnableControls;
+  TableView.ViewData.Collapse(True);
 end;
 
 procedure TformIntegracao.Pesquisar;
@@ -403,23 +425,7 @@ end;
 procedure TformIntegracao.TableViewMarcadoHeaderClick(Sender: TObject);
 begin
   inherited;
-  MemData.DisableControls;
-  MemData.First;
-  FMarcarTodos := not FMarcarTodos;
-
-  while not MemData.Eof do
-  begin
-    MemData.Edit;
-
-    MemData.FieldByName('Marcado').AsBoolean := FMarcarTodos;
-
-    MemData.Post;
-    MemData.Next;
-  end;
-
-  MemData.First;
-  MemData.EnableControls;
-  TableView.ViewData.Collapse(True);
+  MarcarProdutos
 end;
 
 end.
